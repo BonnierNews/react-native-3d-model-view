@@ -5,9 +5,9 @@
 //  RNGLModelView.m
 //
 
-#import "RNGLModelView.h"
+#import "RN3DModelView.h"
 
-@implementation RNGLModelView
+@implementation RN3DModelView
 
 const float TWOPIHALF = M_PI/180.0;
 

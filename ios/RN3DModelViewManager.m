@@ -1,29 +1,22 @@
-//
-//  react-native-gl-model-view
-//  https://github.com/rastapasta/react-native-gl-model-view
-//
-//  RNGLModelViewManager.m
-//
-
 #if __has_include("RCTBridge.h")
 #import "RCTBridge.h"
 #else
 #import <React/RCTBridge.h>
 #endif
 
-#import "RNGLModelViewManager.h"
+#import "RN3DModelViewManager.h"
 
-@implementation RNGLModelViewManager
+@implementation RN3DModelViewManager
 {
-  RNGLModelView *glModelView;
+  RN3DModelView *modelView;
 }
 
 RCT_EXPORT_MODULE()
 
 - (UIView *)view
 {
-  glModelView = [[RNGLModelView alloc] init];
-  return glModelView;
+  modelView = [[RN3DModelView alloc] init];
+  return modelView;
 }
 
 RCT_EXPORT_VIEW_PROPERTY(rotateX, CGFloat);
@@ -41,32 +34,32 @@ RCT_EXPORT_VIEW_PROPERTY(translateY, CGFloat);
 RCT_EXPORT_VIEW_PROPERTY(translateZ, CGFloat);
 
 // Loads a model - Wavefront (OBJ) or WWDC2010 model format
-RCT_CUSTOM_VIEW_PROPERTY(model, NSString, RNGLModelView)
+RCT_CUSTOM_VIEW_PROPERTY(model, NSString, RN3DModelView)
 {
-  view.model = [GLModel modelWithContentsOfFile:[RCTConvert NSString:json]];
+//  view.model = [GLModel modelWithContentsOfFile:[RCTConvert NSString:json]];
 }
 
 // Loads a texture - PVR + all formats supported by UIImage
-RCT_CUSTOM_VIEW_PROPERTY(texture, NSString, RNGLModelView)
+RCT_CUSTOM_VIEW_PROPERTY(texture, NSString, RN3DModelView)
 {
-  view.texture = [GLImage imageNamed:[RCTConvert NSString:json]];
+//  view.texture = [GLImage imageNamed:[RCTConvert NSString:json]];
 }
 
 // Starts or stops the animation loop to automatically re-render each 1/60 second
-RCT_CUSTOM_VIEW_PROPERTY(animate, BOOL, RNGLModelView)
+RCT_CUSTOM_VIEW_PROPERTY(animate, BOOL, RN3DModelView)
 {
-  view.animated = [RCTConvert BOOL:json];
-  if (view.animated) {
-    [view startAnimating];
-  } else {
-    [view stopAnimating];
-  }
+//  view.animated = [RCTConvert BOOL:json];
+//  if (view.animated) {
+//    [view startAnimating];
+//  } else {
+//    [view stopAnimating];
+//  }
 }
 
 // Applys the current props and rerenders the scene
 RCT_EXPORT_METHOD(render)
 {
-  [glModelView display];
+//  [modelView display];
 }
 
 @end

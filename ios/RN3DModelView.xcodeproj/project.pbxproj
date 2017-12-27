@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3E7B58A1CC2AC0600A0062D /* RNGLModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNGLModelView.m */; };
-		D913528A1EA2F442001C1909 /* RNGLModelViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D91352891EA2F442001C1909 /* RNGLModelViewManager.m */; };
-		D913528B1EA2F477001C1909 /* RNGLModelView.h in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5881CC2AC0600A0062D /* RNGLModelView.h */; };
-		D913528C1EA2F479001C1909 /* RNGLModelViewManager.h in Sources */ = {isa = PBXBuildFile; fileRef = D91352881EA2F442001C1909 /* RNGLModelViewManager.h */; };
+		B3E7B58A1CC2AC0600A0062D /* RN3DModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RN3DModelView.m */; };
+		D913528A1EA2F442001C1909 /* RN3DModelViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D91352891EA2F442001C1909 /* RN3DModelViewManager.m */; };
+		D913528B1EA2F477001C1909 /* RN3DModelView.h in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5881CC2AC0600A0062D /* RN3DModelView.h */; };
+		D913528C1EA2F479001C1909 /* RN3DModelViewManager.h in Sources */ = {isa = PBXBuildFile; fileRef = D91352881EA2F442001C1909 /* RN3DModelViewManager.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,11 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libRNGLModelView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNGLModelView.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E7B5881CC2AC0600A0062D /* RNGLModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGLModelView.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* RNGLModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGLModelView.m; sourceTree = "<group>"; };
-		D91352881EA2F442001C1909 /* RNGLModelViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGLModelViewManager.h; sourceTree = "<group>"; };
-		D91352891EA2F442001C1909 /* RNGLModelViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGLModelViewManager.m; sourceTree = "<group>"; };
+		134814201AA4EA6300B7C361 /* libRN3DModelView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRN3DModelView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3E7B5881CC2AC0600A0062D /* RN3DModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RN3DModelView.h; sourceTree = "<group>"; };
+		B3E7B5891CC2AC0600A0062D /* RN3DModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RN3DModelView.m; sourceTree = "<group>"; };
+		D91352881EA2F442001C1909 /* RN3DModelViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RN3DModelViewManager.h; sourceTree = "<group>"; };
+		D91352891EA2F442001C1909 /* RN3DModelViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RN3DModelViewManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +47,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libRNGLModelView.a */,
+				134814201AA4EA6300B7C361 /* libRN3DModelView.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,10 +55,10 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				B3E7B5881CC2AC0600A0062D /* RNGLModelView.h */,
-				B3E7B5891CC2AC0600A0062D /* RNGLModelView.m */,
-				D91352881EA2F442001C1909 /* RNGLModelViewManager.h */,
-				D91352891EA2F442001C1909 /* RNGLModelViewManager.m */,
+				B3E7B5881CC2AC0600A0062D /* RN3DModelView.h */,
+				B3E7B5891CC2AC0600A0062D /* RN3DModelView.m */,
+				D91352881EA2F442001C1909 /* RN3DModelViewManager.h */,
+				D91352891EA2F442001C1909 /* RN3DModelViewManager.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,9 +66,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* RNGLModelView */ = {
+		58B511DA1A9E6C8500147676 /* RN3DModelView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNGLModelView" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RN3DModelView" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -78,9 +78,9 @@
 			);
 			dependencies = (
 			);
-			name = RNGLModelView;
+			name = RN3DModelView;
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libRNGLModelView.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libRN3DModelView.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -97,7 +97,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNGLModelView" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RN3DModelView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -109,7 +109,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* RNGLModelView */,
+				58B511DA1A9E6C8500147676 /* RN3DModelView */,
 			);
 		};
 /* End PBXProject section */
@@ -119,10 +119,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D913528C1EA2F479001C1909 /* RNGLModelViewManager.h in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* RNGLModelView.m in Sources */,
-				D913528A1EA2F442001C1909 /* RNGLModelViewManager.m in Sources */,
-				D913528B1EA2F477001C1909 /* RNGLModelView.h in Sources */,
+				D913528C1EA2F479001C1909 /* RN3DModelViewManager.h in Sources */,
+				B3E7B58A1CC2AC0600A0062D /* RN3DModelView.m in Sources */,
+				D913528A1EA2F442001C1909 /* RN3DModelViewManager.m in Sources */,
+				D913528B1EA2F477001C1909 /* RN3DModelView.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +214,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RNGLModelView;
+				PRODUCT_NAME = RN3DModelView;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -230,7 +230,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RNGLModelView;
+				PRODUCT_NAME = RN3DModelView;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -238,7 +238,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNGLModelView" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RN3DModelView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -247,7 +247,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNGLModelView" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RN3DModelView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,

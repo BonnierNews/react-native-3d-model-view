@@ -1,13 +1,6 @@
-//
-//  react-native-gl-model-view
-//  https://github.com/rastapasta/react-native-gl-model-view
-//
-//  RNGLModelView.h
-//
+#import <SceneKit/SceneKit.h>
 
-#import <GLView/GLModelView.h>
-
-@interface RNGLModelView : GLModelView
+@interface RN3DModelView : SCNView
 
 @property (nonatomic, assign) BOOL animated;
 

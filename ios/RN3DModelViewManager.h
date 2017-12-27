@@ -11,8 +11,8 @@
 #import <React/RCTViewManager.h>
 #endif
 
-#import "RNGLModelView.h"
+#import "RN3DModelView.h"
 
-@interface RNGLModelViewManager : RCTViewManager
+@interface RN3DModelViewManager : RCTViewManager
 
 @end
