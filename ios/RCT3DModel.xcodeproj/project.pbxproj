@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3E7B58A1CC2AC0600A0062D /* RN3DModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RN3DModelView.m */; };
-		D913528A1EA2F442001C1909 /* RN3DModelViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D91352891EA2F442001C1909 /* RN3DModelViewManager.m */; };
-		D913528B1EA2F477001C1909 /* RN3DModelView.h in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5881CC2AC0600A0062D /* RN3DModelView.h */; };
-		D913528C1EA2F479001C1909 /* RN3DModelViewManager.h in Sources */ = {isa = PBXBuildFile; fileRef = D91352881EA2F442001C1909 /* RN3DModelViewManager.h */; };
+		530C02881FFD0CFA00187B2C /* RCT3DModelIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C02871FFD0CFA00187B2C /* RCT3DModelIO.m */; };
+		B3E7B58A1CC2AC0600A0062D /* RCT3DModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RCT3DModelView.m */; };
+		D913528A1EA2F442001C1909 /* RCT3DModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D91352891EA2F442001C1909 /* RCT3DModelManager.m */; };
+		D913528B1EA2F477001C1909 /* RCT3DModelView.h in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5881CC2AC0600A0062D /* RCT3DModelView.h */; };
+		D913528C1EA2F479001C1909 /* RCT3DModelManager.h in Sources */ = {isa = PBXBuildFile; fileRef = D91352881EA2F442001C1909 /* RCT3DModelManager.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,11 +27,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libRN3DModelView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRN3DModelView.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E7B5881CC2AC0600A0062D /* RN3DModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RN3DModelView.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* RN3DModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RN3DModelView.m; sourceTree = "<group>"; };
-		D91352881EA2F442001C1909 /* RN3DModelViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RN3DModelViewManager.h; sourceTree = "<group>"; };
-		D91352891EA2F442001C1909 /* RN3DModelViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RN3DModelViewManager.m; sourceTree = "<group>"; };
+		134814201AA4EA6300B7C361 /* libRCT3DModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCT3DModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		530C02861FFD0CFA00187B2C /* RCT3DModelIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DModelIO.h; sourceTree = "<group>"; };
+		530C02871FFD0CFA00187B2C /* RCT3DModelIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCT3DModelIO.m; sourceTree = "<group>"; };
+		B3E7B5881CC2AC0600A0062D /* RCT3DModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DModelView.h; sourceTree = "<group>"; };
+		B3E7B5891CC2AC0600A0062D /* RCT3DModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCT3DModelView.m; sourceTree = "<group>"; };
+		D91352881EA2F442001C1909 /* RCT3DModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DModelManager.h; sourceTree = "<group>"; };
+		D91352891EA2F442001C1909 /* RCT3DModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCT3DModelManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +50,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libRN3DModelView.a */,
+				134814201AA4EA6300B7C361 /* libRCT3DModel.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,10 +58,12 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				B3E7B5881CC2AC0600A0062D /* RN3DModelView.h */,
-				B3E7B5891CC2AC0600A0062D /* RN3DModelView.m */,
-				D91352881EA2F442001C1909 /* RN3DModelViewManager.h */,
-				D91352891EA2F442001C1909 /* RN3DModelViewManager.m */,
+				530C02861FFD0CFA00187B2C /* RCT3DModelIO.h */,
+				530C02871FFD0CFA00187B2C /* RCT3DModelIO.m */,
+				B3E7B5881CC2AC0600A0062D /* RCT3DModelView.h */,
+				B3E7B5891CC2AC0600A0062D /* RCT3DModelView.m */,
+				D91352881EA2F442001C1909 /* RCT3DModelManager.h */,
+				D91352891EA2F442001C1909 /* RCT3DModelManager.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,9 +71,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* RN3DModelView */ = {
+		58B511DA1A9E6C8500147676 /* RCT3DModel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RN3DModelView" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RCT3DModel" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -78,9 +83,9 @@
 			);
 			dependencies = (
 			);
-			name = RN3DModelView;
+			name = RCT3DModel;
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libRN3DModelView.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libRCT3DModel.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -97,7 +102,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RN3DModelView" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RCT3DModel" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -109,7 +114,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* RN3DModelView */,
+				58B511DA1A9E6C8500147676 /* RCT3DModel */,
 			);
 		};
 /* End PBXProject section */
@@ -119,10 +124,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D913528C1EA2F479001C1909 /* RN3DModelViewManager.h in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* RN3DModelView.m in Sources */,
-				D913528A1EA2F442001C1909 /* RN3DModelViewManager.m in Sources */,
-				D913528B1EA2F477001C1909 /* RN3DModelView.h in Sources */,
+				D913528C1EA2F479001C1909 /* RCT3DModelManager.h in Sources */,
+				B3E7B58A1CC2AC0600A0062D /* RCT3DModelView.m in Sources */,
+				D913528A1EA2F442001C1909 /* RCT3DModelManager.m in Sources */,
+				D913528B1EA2F477001C1909 /* RCT3DModelView.h in Sources */,
+				530C02881FFD0CFA00187B2C /* RCT3DModelIO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +220,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RN3DModelView;
+				PRODUCT_NAME = RCT3DModel;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -230,7 +236,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RN3DModelView;
+				PRODUCT_NAME = RCT3DModel;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -238,7 +244,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RN3DModelView" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RCT3DModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -247,7 +253,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RN3DModelView" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RCT3DModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,

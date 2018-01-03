@@ -7,32 +7,15 @@ import PropTypes from 'prop-types'
 
 class ModelView extends React.Component {
   render () {
-    return <RNModelView {...this.props} />
+    return <RCTModelView {...this.props} />
   }
 }
 
 ModelView.propTypes = {
   ...ViewPropTypes,
-  animate: PropTypes.bool,
-  allowAr: PropTypes.bool,
-
-  model: PropTypes.obj.isRequired,
-
-  rotateX: PropTypes.number,
-  rotateY: PropTypes.number,
-  rotateZ: PropTypes.number,
-
-  scale: PropTypes.number,
-
-  scaleX: PropTypes.number,
-  scaleY: PropTypes.number,
-  scaleZ: PropTypes.number,
-
-  translateX: PropTypes.number,
-  translateY: PropTypes.number,
-  translateZ: PropTypes.number
+  source: PropTypes.object.isRequired
 }
 
-const RNModelView = requireNativeComponent('RNModelView', ModelView)
+const RCTModelView = requireNativeComponent('RCT3DModel', ModelView)
 
 export default ModelView
