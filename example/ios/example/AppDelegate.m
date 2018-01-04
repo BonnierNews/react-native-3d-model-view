@@ -11,6 +11,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <AFNetworking/AFNetworking.h>
 
 @implementation AppDelegate
 

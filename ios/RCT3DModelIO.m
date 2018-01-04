@@ -2,6 +2,8 @@
 #import <ModelIO/ModelIO.h>
 #import <ModelIO/MDLAsset.h>
 #import <SceneKit/ModelIO.h>
+#import "AFNetworking/AFNetworking.h"
+#import "SSZipArchive/SSZipArchive.h"
 
 @implementation RCT3DModelIO
 
@@ -23,82 +25,70 @@
     return self;
 }
 
+- (void)downloadZip:(NSString *)url completion:(void (^)(NSURL* url))completion {
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL *URL = [NSURL URLWithString:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        NSURL *tempDirectory = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+        return [tempDirectory URLByAppendingPathComponent:[response suggestedFilename]];
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        // Unzip the archive
+        NSURL *tempDirectory = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+        NSString *inputPath = [filePath path];
+        NSString *outputPath = [tempDirectory path];
+        NSError *zipError = nil;
+        
+        [SSZipArchive unzipFileAtPath:inputPath toDestination:outputPath overwrite:YES password:nil error:&zipError];
+        
+        if (zipError) {
+            completion(nil);
+        } else {
+            NSString *folderName = [[url lastPathComponent] stringByReplacingOccurrencesOfString:@".zip" withString:@""];
+            NSURL *resultPath = [tempDirectory URLByAppendingPathComponent:folderName isDirectory:YES];
+            completion(resultPath);
+        }
+    }];
+    [downloadTask resume];
+    
+}
 
-- (SCNNode *)loadModel:(NSString *)path nodeName:(NSString *)nodeName withAnimation:(BOOL)withAnimation {
-    NSURL *url = [self urlFromPath:path];
-    NSError* error;
-    
-    SCNScene *scene = [SCNScene sceneWithURL:url options:nil error:&error];
-    if(error) {
-        NSLog(@"%@",[error localizedDescription]);
-    }
-    
-    SCNNode *node;
-    if (nodeName) {
-        node = [scene.rootNode childNodeWithName:nodeName recursively:YES];
-    } else {
-        node = [[SCNNode alloc] init];
-        NSArray *nodeArray = [scene.rootNode childNodes];
-        for (SCNNode *eachChild in nodeArray) {
-            [node addChildNode:eachChild];
+- (void)loadModel:(NSString *)name zipPath:(NSString *)path completion:(void (^)(SCNNode * node))completion {
+    [self downloadZip:path completion:^(NSURL *url) {
+        if (url) {
+            SCNNode *model = [self createModel:name url:url];
+            completion(model);
+        } else {
+            completion(nil);
         }
-    }
+    }];
+}
+
+-(SCNNode *)createModel:(NSString *)name url:(NSURL *)url {
+    NSString *objName = [NSString stringWithFormat:@"%@.obj", name];
+    NSString *textureName = [NSString stringWithFormat:@"%@.bmp", name];
+    NSURL *modelUrl = [url URLByAppendingPathComponent:objName];
+    NSURL *textureUrl = [url URLByAppendingPathComponent:textureName];
+    MDLAsset *asset = [[MDLAsset alloc] initWithURL:modelUrl];
+    MDLMesh* object = (MDLMesh *)[asset objectAtIndex:0];
+
+    MDLScatteringFunction *scatteringFunction = [MDLScatteringFunction new];
+    MDLMaterial *material = [[MDLMaterial alloc] initWithName:@"baseMaterial" scatteringFunction:scatteringFunction];
+    MDLMaterialProperty * baseColor = [MDLMaterialProperty new];
+    [baseColor setType:MDLMaterialPropertyTypeTexture];
+    [baseColor setSemantic:MDLMaterialSemanticBaseColor];
+    [baseColor setURLValue:textureUrl];
+    [material setProperty:baseColor];
     
-    if (withAnimation) {
-        NSMutableArray *animationMutableArray = [NSMutableArray array];
-        SCNSceneSource *sceneSource = [SCNSceneSource sceneSourceWithURL:url options:@{SCNSceneSourceAnimationImportPolicyKey:SCNSceneSourceAnimationImportPolicyPlayRepeatedly}];
-        
-        NSArray *animationIds = [sceneSource identifiersOfEntriesWithClass:[CAAnimation class]];
-        for (NSString *eachId in animationIds){
-            CAAnimation *animation = [sceneSource entryWithIdentifier:eachId withClass:[CAAnimation class]];
-            [animationMutableArray addObject:animation];
-            
-        }
-        NSArray *animationArray = [NSArray arrayWithArray:animationMutableArray];
-        
-        int i = 1;
-        for (CAAnimation *animation in animationArray) {
-            NSString *key = [NSString stringWithFormat:@"ANIM_%d", i];
-            [node addAnimation:animation forKey:key];
-            i++;
-        }
+    for (MDLSubmesh * sub in object.submeshes){
+        sub.material = material;
     }
-    
+    SCNNode *node = [SCNNode nodeWithMDLObject:object];
     return node;
-}
-
-
-- (NSURL *)urlFromPath:(NSString *)path {
-    
-    NSURL *url;
-    
-    if([path hasPrefix: @"/"]) {
-        url = [NSURL fileURLWithPath: path];
-    } else if ([path rangeOfString:@"scnassets"].location == NSNotFound) {
-        NSString *assetPath = [self getAppLibraryCachesPathWithSubDirectory:nil];
-        NSString *modelPath = [NSString stringWithFormat:@"file://%@", [assetPath stringByAppendingPathComponent:path]];
-        url = [NSURL URLWithString:[modelPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-    } else {
-        url = [[NSBundle mainBundle] URLForResource:path withExtension:nil];
-    }
-    
-    return url;
-}
-
-
-- (NSString *)getAppLibraryCachesPathWithSubDirectory:(NSString *)directory {
-    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
-                      stringByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]];
-    if (directory) {
-        path = [path stringByAppendingPathComponent:directory];
-    }
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:path]) {
-        [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    
-    return path;
 }
 
 @end

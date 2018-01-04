@@ -15,9 +15,6 @@ RCT_EXPORT_MODULE()
   return modelView;
 }
 
-RCT_CUSTOM_VIEW_PROPERTY(source, NSString, RCT3DModelView)
-{
-//  view.model = [GLModel modelWithContentsOfFile:[RCTConvert NSString:json]];
-}
+RCT_EXPORT_VIEW_PROPERTY(source, NSString)
 
 @end

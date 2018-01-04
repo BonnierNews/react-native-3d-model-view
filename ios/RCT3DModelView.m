@@ -8,12 +8,8 @@
         self.sceneView.backgroundColor = [UIColor clearColor];
         SCNScene *scene = [SCNScene scene];
 
-        SCNCone *boxGeometry = [SCNBox boxWithWidth:5 height:5 length:5 chamferRadius:0];
-        SCNNode *boxNode = [SCNNode nodeWithGeometry:boxGeometry];
-        [scene.rootNode addChildNode:boxNode];
         self.sceneView.autoenablesDefaultLighting = YES;
         self.sceneView.allowsCameraControl = YES;
-        self.backgroundColor = [UIColor greenColor];
         self.sceneView.scene = scene;
         [self addSubview:self.sceneView];
     }
@@ -23,7 +19,16 @@
 -(void)layoutSubviews {
     [super layoutSubviews];
     self.sceneView.frame = self.bounds;
-    NSLog(@"%@", NSStringFromCGRect(self.bounds));
+}
+
+- (void)setSource:(NSString *)source
+{
+    if (_source == nil) {
+        _source = source;
+        [[RCT3DModelIO sharedInstance] loadModel:@"BMW X5 4" zipPath:source completion:^(SCNNode *node) {
+            [self.sceneView.scene.rootNode addChildNode:node];
+        }];
+    }
 }
 
 @end

@@ -5,6 +5,6 @@
 
 + (instancetype)sharedInstance;
 
-- (SCNNode *)loadModel:(NSString *)path nodeName:(NSString *)nodeName withAnimation:(BOOL)withAnimation;
+- (void)loadModel:(NSString *)name zipPath:(NSString *)path completion:(void (^)(SCNNode * node))completion;
 
 @end

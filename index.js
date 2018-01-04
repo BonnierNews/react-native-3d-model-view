@@ -7,7 +7,9 @@ import PropTypes from 'prop-types'
 
 class ModelView extends React.Component {
   render () {
-    return <RCTModelView {...this.props} />
+    const props = {...this.props}
+    props.source = this.props.source.scn
+    return <RCTModelView {...props} />
   }
 }
 

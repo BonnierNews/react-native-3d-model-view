@@ -30,6 +30,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "58B511DA1A9E6C8500147676"
+            BuildableName = "libRCT3DModel.a"
+            BlueprintName = "RCT3DModel"
+            ReferencedContainer = "container:RCT3DModel.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

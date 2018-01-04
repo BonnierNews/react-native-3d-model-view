@@ -30,6 +30,8 @@
 		134814201AA4EA6300B7C361 /* libRCT3DModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCT3DModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		530C02861FFD0CFA00187B2C /* RCT3DModelIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DModelIO.h; sourceTree = "<group>"; };
 		530C02871FFD0CFA00187B2C /* RCT3DModelIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCT3DModelIO.m; sourceTree = "<group>"; };
+		53B5DC811FFE781B00E08D79 /* AFNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AFNetworking; sourceTree = "<group>"; };
+		53B5DC821FFE789200E08D79 /* SSZipArchive */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SSZipArchive; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RCT3DModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DModelView.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RCT3DModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCT3DModelView.m; sourceTree = "<group>"; };
 		D91352881EA2F442001C1909 /* RCT3DModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DModelManager.h; sourceTree = "<group>"; };
@@ -58,6 +60,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				53B5DC821FFE789200E08D79 /* SSZipArchive */,
+				53B5DC811FFE781B00E08D79 /* AFNetworking */,
 				530C02861FFD0CFA00187B2C /* RCT3DModelIO.h */,
 				530C02871FFD0CFA00187B2C /* RCT3DModelIO.m */,
 				B3E7B5881CC2AC0600A0062D /* RCT3DModelView.h */,
