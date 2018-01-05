@@ -18,7 +18,7 @@ export default class App extends React.Component {
       <Text style={styles.welcome}>
         Welcome to React Native 3D model view!
       </Text>
-      <ModelView style={{width: 300, height: 300, backgroundColor: 'white'}} source={{scn: 'http://localhost:8000/bmw_x5.zip'}} />
+      <ModelView style={{width: 300, height: 300, backgroundColor: 'white'}} source='art.scnassets/Jonas_2.scn' name='Jonas_2' type={1} />
     </View>
   }
 }

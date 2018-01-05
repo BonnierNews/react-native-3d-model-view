@@ -7,15 +7,15 @@ import PropTypes from 'prop-types'
 
 class ModelView extends React.Component {
   render () {
-    const props = {...this.props}
-    props.source = this.props.source.scn
-    return <RCTModelView {...props} />
+    return <RCTModelView {...this.props} />
   }
 }
 
 ModelView.propTypes = {
   ...ViewPropTypes,
-  source: PropTypes.object.isRequired
+  source: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.number.isRequired
 }
 
 const RCTModelView = requireNativeComponent('RCT3DModel', ModelView)
