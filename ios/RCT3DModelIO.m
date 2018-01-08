@@ -135,6 +135,7 @@
     SCNScene *scene = [SCNScene sceneWithURL:modelUrl options:nil error:&error];
     if(error) {
         NSLog(@"%@",[error localizedDescription]);
+        return nil;
     }
 
     SCNNode *node = [[SCNNode alloc] init];
@@ -167,6 +168,9 @@
         textureUrl = [[url URLByDeletingLastPathComponent] URLByAppendingPathComponent:textureName];
     }
     MDLAsset *asset = [[MDLAsset alloc] initWithURL:modelUrl];
+    if (asset.count == 0) {
+        return nil;
+    }
     MDLMesh* object = (MDLMesh *)[asset objectAtIndex:0];
     MDLScatteringFunction *scatteringFunction = [MDLScatteringFunction new];
     MDLMaterial *material = [[MDLMaterial alloc] initWithName:@"baseMaterial" scatteringFunction:scatteringFunction];

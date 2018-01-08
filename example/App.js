@@ -13,6 +13,15 @@ import {
 import ModelView, {ModelTypes} from 'react-native-3d-model-view'
 
 export default class App extends React.Component {
+  onLoadModelStart () {
+    console.log('[react-native-3d-model-view]:', 'Load model start.')
+  }
+  onLoadModelSuccess () {
+    console.log('[react-native-3d-model-view]:', 'Load model success.')
+  }
+  onLoadModelError () {
+    console.log('[react-native-3d-model-view]:', 'Load model error.')
+  }
   render () {
     return <View style={styles.container}>
       <Text style={styles.welcome}>
@@ -21,10 +30,11 @@ export default class App extends React.Component {
       <ModelView
         style={{width: 300, height: 300, backgroundColor: 'white'}}
         source='http://localhost:8000/V_Jonas1-7.zip'
-        name='Jonas_1'
+        name='Jonas_11'
         type={ModelTypes.OBJ}
-        onLoadModelStart={() => { console.log("start") }}
-        onLoadModelSuccess={() => { console.log("sucess") }} />
+        onLoadModelStart={this.onLoadModelStart}
+        onLoadModelSuccess={this.onLoadModelSuccess}
+        onLoadModelError={this.onLoadModelError} />
     </View>
   }
 }
