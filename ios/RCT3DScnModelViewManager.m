@@ -1,17 +1,18 @@
 #import <React/RCTBridge.h>
 
-#import "RCT3DModelViewManager.h"
+#import "RCT3DScnModelViewManager.h"
+#import "RCT3DScnModelView.h"
 
-@implementation RCT3DModelViewManager
+@implementation RCT3DScnModelViewManager
 {
-  RCT3DModelView *modelView;
+  RCT3DScnModelView *modelView;
 }
 
 RCT_EXPORT_MODULE()
 
 - (UIView *)view
 {
-  modelView = [[RCT3DModelView alloc] init];
+  modelView = [[RCT3DScnModelView alloc] init];
   return modelView;
 }
 

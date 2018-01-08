@@ -7,4 +7,7 @@
 @property (nonatomic, copy) RCTBubblingEventBlock onLoadModelSuccess;
 @property (nonatomic, copy) RCTBubblingEventBlock onLoadModelError;
 
+- (void)addModelNode:(SCNNode *)node;
+- (void)removeNode:(SCNNode *)node;
+
 @end

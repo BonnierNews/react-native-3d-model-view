@@ -12,15 +12,7 @@ export const ModelTypes = {
   OBJ: 2
 }
 
-class ModelView extends React.Component {
-  render () {
-    return <RCTModelView
-      {...this.props}
-      />
-  }
-}
-
-ModelView.propTypes = {
+const propTypes = {
   ...ViewPropTypes,
   source: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -30,6 +22,24 @@ ModelView.propTypes = {
   onLoadModelError: PropTypes.func
 }
 
-const RCTModelView = requireNativeComponent('RCT3DModelView', ModelView)
+export class ModelView extends React.Component {
+  render () {
+    return <RCTScnModelView
+      {...this.props}
+      />
+  }
+}
 
-export default ModelView
+ModelView.propTypes = propTypes
+const RCTScnModelView = requireNativeComponent('RCT3DScnModelView', ModelView)
+
+export class ARModelView extends React.Component {
+  render () {
+    return <RCTARModelView
+      {...this.props}
+      />
+  }
+}
+
+ARModelView.propTypes = propTypes
+const RCTARModelView = requireNativeComponent('RCT3DARModelView', ARModelView)

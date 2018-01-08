@@ -10,9 +10,14 @@ import {
   Text,
   View
 } from 'react-native'
-import ModelView, {ModelTypes} from 'react-native-3d-model-view'
+import {ARModelView, Manager, ModelTypes} from 'react-native-3d-model-view'
 
 export default class App extends React.Component {
+  componentDidMount () {
+    Manager.checkIfARSupported(supported => {
+      console.log(supported)
+    })
+  }
   onLoadModelStart () {
     console.log('[react-native-3d-model-view]:', 'Load model start.')
   }
@@ -27,10 +32,10 @@ export default class App extends React.Component {
       <Text style={styles.welcome}>
         Welcome to React Native 3D model view!
       </Text>
-      <ModelView
-        style={{width: 300, height: 300, backgroundColor: 'white'}}
-        source='http://localhost:8000/V_Jonas1-7.zip'
-        name='Jonas_11'
+      <ARModelView
+        style={{flex: 1, width: '100%', backgroundColor: 'red'}}
+        source='http://10.80.96.25:8000/V_Jonas1-7.zip'
+        name='Jonas_1'
         type={ModelTypes.OBJ}
         onLoadModelStart={this.onLoadModelStart}
         onLoadModelSuccess={this.onLoadModelSuccess}
