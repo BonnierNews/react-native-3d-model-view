@@ -1,10 +1,10 @@
-#import <SceneKit/SceneKit.h>
 #import "RCT3DModelIO.h"
+#import <React/RCTView.h>
 
 @interface RCT3DModelView : UIView
-@property (nonatomic, strong) SCNView *sceneView;
-@property (nonatomic) bool isLoaded;
-@property (nonatomic, copy) NSString *source;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic) NSInteger *type;
+
+@property (nonatomic, copy) RCTBubblingEventBlock onLoadModelStart;
+@property (nonatomic, copy) RCTBubblingEventBlock onLoadModelSuccess;
+@property (nonatomic, copy) RCTBubblingEventBlock onLoadModelError;
+
 @end

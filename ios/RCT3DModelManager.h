@@ -1,7 +1,6 @@
-#import <React/RCTViewManager.h>
+#import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
 
-#import "RCT3DModelView.h"
-
-@interface RCT3DModelManager : RCTViewManager
+@interface RCT3DModelManager : NSObject <RCTBridgeModule>
 
 @end

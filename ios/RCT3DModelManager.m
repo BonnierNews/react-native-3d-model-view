@@ -1,21 +1,13 @@
-#import <React/RCTBridge.h>
-
 #import "RCT3DModelManager.h"
+#import "RCT3DModelIO.h"
 
 @implementation RCT3DModelManager
+
+RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(clearDownloadedFiles)
 {
-  RCT3DModelView *modelView;
+    [[RCT3DModelIO sharedInstance] clearDownloadedFiles];
 }
 
-RCT_EXPORT_MODULE()
-
-- (UIView *)view
-{
-  modelView = [[RCT3DModelView alloc] init];
-  return modelView;
-}
-
-RCT_EXPORT_VIEW_PROPERTY(source, NSString)
-RCT_EXPORT_VIEW_PROPERTY(name, NSString)
-RCT_EXPORT_VIEW_PROPERTY(type, NSInteger)
 @end

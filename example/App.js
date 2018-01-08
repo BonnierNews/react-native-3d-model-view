@@ -10,7 +10,7 @@ import {
   Text,
   View
 } from 'react-native'
-import ModelView from 'react-native-3d-model-view'
+import ModelView, {ModelTypes} from 'react-native-3d-model-view'
 
 export default class App extends React.Component {
   render () {
@@ -18,7 +18,13 @@ export default class App extends React.Component {
       <Text style={styles.welcome}>
         Welcome to React Native 3D model view!
       </Text>
-      <ModelView style={{width: 300, height: 300, backgroundColor: 'white'}} source='art.scnassets/Jonas_2.scn' name='Jonas_2' type={1} />
+      <ModelView
+        style={{width: 300, height: 300, backgroundColor: 'white'}}
+        source='http://localhost:8000/V_Jonas1-7.zip'
+        name='Jonas_1'
+        type={ModelTypes.OBJ}
+        onLoadModelStart={() => { console.log("start") }}
+        onLoadModelSuccess={() => { console.log("sucess") }} />
     </View>
   }
 }
