@@ -27,15 +27,7 @@ class VirtualObjectLoader {
     func loadVirtualObject(_ object: VirtualObject, loadedHandler: @escaping (VirtualObject) -> Void) {
         isLoading = true
 		loadedObjects.append(object)
-		
-		// Load the content asynchronously.
-        DispatchQueue.global(qos: .userInitiated).async {
-            object.reset()
-            object.load()
-
-            self.isLoading = false
-            loadedHandler(object)
-        }
+        loadedHandler(object)
 	}
     
     // MARK: - Removing Objects

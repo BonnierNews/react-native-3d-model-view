@@ -15,7 +15,7 @@ extension ARView: UIGestureRecognizerDelegate {
     func restartExperience() {
         guard isRestartAvailable, !virtualObjectLoader.isLoading else { return }
         isRestartAvailable = false
-
+        
         virtualObjectLoader.removeAllVirtualObjects()
 
         resetTracking()

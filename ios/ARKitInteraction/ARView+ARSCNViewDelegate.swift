@@ -37,6 +37,7 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
 //                self.statusViewController.scheduleMessage("TAP + TO PLACE AN OBJECT", inSeconds: 7.5, messageType: .contentPlacement)
             }
         }
+        
         updateQueue.async {
             for object in self.virtualObjectLoader.loadedObjects {
                 object.adjustOntoPlaneAnchor(planeAnchor, using: node)

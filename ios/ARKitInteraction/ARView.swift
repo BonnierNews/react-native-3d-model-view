@@ -28,13 +28,13 @@ class ARView: UIView {
     var isRestartAvailable = true
     
     /// A serial queue used to coordinate adding or removing nodes from the scene.
-    let updateQueue = DispatchQueue(label: "rct-3d-model")
+    let updateQueue = DispatchQueue(label: "RCT3DModel.serialSceneKitQueue")
     
     var screenCenter: CGPoint {
         let bounds = sceneView.bounds
         return CGPoint(x: bounds.midX, y: bounds.midY)
     }
-    
+        
     /// Convenience accessor for the session owned by ARSCNView.
     var session: ARSession {
         return sceneView.session
@@ -95,7 +95,6 @@ class ARView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.sceneView.frame = self.bounds
-        print(self.sceneView.frame)
     }
 
     // MARK: - Scene content setup

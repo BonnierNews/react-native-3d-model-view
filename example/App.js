@@ -10,7 +10,7 @@ import {
   Text,
   View
 } from 'react-native'
-import {ARModelView, Manager, ModelTypes} from 'react-native-3d-model-view'
+import {ARModelView, ModelView, Manager, ModelTypes} from 'react-native-3d-model-view'
 
 export default class App extends React.Component {
   componentDidMount () {
@@ -34,9 +34,9 @@ export default class App extends React.Component {
       </Text>
       <ARModelView
         style={{flex: 1, width: '100%'}}
-        source='http://10.80.96.25:8000/V_Jonas1-7.zip'
-        name='Jonas_1'
-        type={ModelTypes.OBJ}
+        source='art.scnassets/jonas/Jonas_2.scn'
+        name='Jonas_2'
+        type={ModelTypes.SCN}
         onLoadModelStart={this.onLoadModelStart}
         onLoadModelSuccess={this.onLoadModelSuccess}
         onLoadModelError={this.onLoadModelError} />

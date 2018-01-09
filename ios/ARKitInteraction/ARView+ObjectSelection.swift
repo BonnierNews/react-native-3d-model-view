@@ -23,32 +23,18 @@ extension ARView {
 //            statusViewController.showMessage("CANNOT PLACE OBJECT\nTry moving left or right.")
             return
         }
-        
-        virtualObjectInteraction.selectedObject = virtualObject
-        virtualObject.setPosition(focusSquarePosition, relativeTo: cameraTransform, smoothMovement: false)
-        
+//        virtualObjectInteraction.selectedObject = virtualObject
+//        virtualObject.setPosition(focusSquarePosition, relativeTo: cameraTransform, smoothMovement: false)
         updateQueue.async {
             self.sceneView.scene.rootNode.addChildNode(virtualObject)
         }
     }
     
-    // MARK: - VirtualObjectSelectionViewControllerDelegate
-    
-//    func virtualObjectSelectionViewController(_: VirtualObjectSelectionViewController, didSelectObject object: VirtualObject) {
-//        virtualObjectLoader.loadVirtualObject(object, loadedHandler: { [unowned self] loadedObject in
-//            DispatchQueue.main.async {
-//                self.hideObjectLoadingUI()
-//                self.placeVirtualObject(loadedObject)
-//            }
-//        })
-//
-//        displayObjectLoadingUI()
-//    }
-//
-//    func virtualObjectSelectionViewController(_: VirtualObjectSelectionViewController, didDeselectObject object: VirtualObject) {
-//        guard let objectIndex = virtualObjectLoader.loadedObjects.index(of: object) else {
-//            fatalError("Programmer error: Failed to lookup virtual object in scene.")
-//        }
-//        virtualObjectLoader.removeVirtualObject(at: objectIndex)
-//    }
+    func addVirtualObject(_ virtualObject: VirtualObject) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(15)) {
+            self.virtualObjectLoader.loadVirtualObject(virtualObject) { (object) in
+                self.placeVirtualObject(object)
+            }
+        }
+    }
 }
