@@ -45,7 +45,7 @@
 
 -(void) addModelNode:(SCNNode *)node {
     [super addModelNode:node];
-    [_arView addVirtualObject:(VirtualObject *)node];
+    [_arView addVirtualObject:node];
 }
 
 -(void) removeNode:(SCNNode *)node {

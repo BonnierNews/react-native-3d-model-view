@@ -23,14 +23,16 @@ extension ARView {
 //            statusViewController.showMessage("CANNOT PLACE OBJECT\nTry moving left or right.")
             return
         }
-//        virtualObjectInteraction.selectedObject = virtualObject
-//        virtualObject.setPosition(focusSquarePosition, relativeTo: cameraTransform, smoothMovement: false)
+        virtualObjectInteraction.selectedObject = virtualObject
+        virtualObject.setPosition(focusSquarePosition, relativeTo: cameraTransform, smoothMovement: false)
         updateQueue.async {
             self.sceneView.scene.rootNode.addChildNode(virtualObject)
         }
     }
     
-    func addVirtualObject(_ virtualObject: VirtualObject) {
+    func addVirtualObject(_ node: SCNNode) {
+        let virtualObject = VirtualObject()
+        virtualObject.addChildNode(node.childNodes.first!)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(15)) {
             self.virtualObjectLoader.loadVirtualObject(virtualObject) { (object) in
                 self.placeVirtualObject(object)
