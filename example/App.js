@@ -33,7 +33,7 @@ export default class App extends React.Component {
         Welcome to React Native 3D model view!
       </Text>
       <ARModelView
-        style={{flex: 1, width: '100%', backgroundColor: 'red'}}
+        style={{flex: 1, width: '100%'}}
         source='http://10.80.96.25:8000/V_Jonas1-7.zip'
         name='Jonas_1'
         type={ModelTypes.OBJ}
