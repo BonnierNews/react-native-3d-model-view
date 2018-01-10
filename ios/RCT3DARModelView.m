@@ -1,35 +1,21 @@
 #import "RCT3DARModelView.h"
-#import <SceneKit/SceneKit.h>
-#import <ARKit/ARKit.h>
-#import <React/RCTConvert.h>
-#import "RCT3DModel-Swift.h"
 
-@interface RCT3DARModelView ()
+@interface RCT3DARModelView () <ARViewDelegate>
 @end
 
 @implementation RCT3DARModelView
 {
     ARView *_arView;
+    bool _hasSurface;
+    bool _modelIsAddedToScene;
 }
 - (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-//        _sceneView = [[ARSCNView alloc] init];
-//        _sceneView.backgroundColor = [UIColor clearColor];
-//        _sceneView.debugOptions = ARSCNDebugOptionShowFeaturePoints;
-//        _sceneView.autoenablesDefaultLighting = YES;
-//        _sceneView.automaticallyUpdatesLighting = YES;
-//        _sceneView.delegate = self;
-//
-//        SCNScene *scene = [SCNScene scene];
-//        _sceneView.scene = scene;
-//
-//        ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
-//        configuration.planeDetection = ARPlaneDetectionHorizontal;
-//        [_sceneView.session runWithConfiguration:configuration];
-//
-//        [self addSubview:_sceneView];
         if (@available(iOS 11.0, *)) {
+            _hasSurface = false;
+            _modelIsAddedToScene = false;
             _arView = [[ARView alloc] initWithFrame:frame];
+            _arView.delegate = self;
             [self addSubview:_arView];
         }
     }
@@ -45,11 +31,93 @@
 
 -(void) addModelNode:(SCNNode *)node {
     [super addModelNode:node];
-    [_arView addVirtualObject:node];
+    [self addScaleToModelNode];
+    if (_hasSurface && !_modelIsAddedToScene) {
+        [_arView addVirtualObject:node];
+        _modelIsAddedToScene = YES;
+    }
 }
 
 -(void) removeNode:(SCNNode *)node {
+    [super removeNode:node];
     [node removeFromParentNode];
+}
+
+-(void) setFocusSquareColor:(UIColor*)color {
+    [[_arView focusSquare] setColorWithPrimary:color fill:nil];
+}
+
+-(void) setFocusSquareFillColor:(UIColor*)color {
+    [[_arView focusSquare] setColorWithPrimary:nil fill:color];
+}
+
+-(void) setScale:(float)scale {
+    [super setScale:scale];
+    [self addScaleToModelNode];
+}
+
+- (void)addScaleToModelNode {
+    if (self.scale && self.modelNode) {
+        SCNVector3 scaleV = SCNVector3Make(self.scale, self.scale, self.scale);
+        for(SCNNode *child in self.modelNode.childNodes) {
+            [child setScale:scaleV];
+        }
+    }
+}
+
+// MARK: - ARViewDelegate
+-(void) start {
+    if (self.onStart) {
+        self.onStart(@{});
+    }
+}
+
+-(void) surfaceFound {
+    _hasSurface = YES;
+    if (self.modelNode && !_modelIsAddedToScene) {
+        [_arView addVirtualObject:self.modelNode];
+        _modelIsAddedToScene = YES;
+    }
+    if (self.onSurfaceFound) {
+        self.onSurfaceFound(@{});
+    }
+}
+
+-(void) surfaceLost {
+    _hasSurface = NO;
+    if (self.onSurfaceLost) {
+        self.onSurfaceLost(@{});
+    }
+}
+
+-(void) sessionInterupted {
+    if (self.onSessionInterupted) {
+        self.onSessionInterupted(@{});
+    }
+}
+
+-(void) sessionInteruptedEnded {
+    if (self.onSessionInteruptedEnded) {
+        self.onSessionInteruptedEnded(@{});
+    }
+}
+
+-(void) trackingQualityInfoWithId:(NSInteger)id presentation:(NSString *)presentation recommendation:(NSString *)recommendation {
+    if (self.trackingQualityInfo) {
+        self.trackingQualityInfo(@{@"id": [NSNumber numberWithInteger:id], @"presentation": presentation, @"recommendation": recommendation});
+    }
+}
+
+-(void) placeObjectSuccess {
+    if (self.onPlaceObjectSuccess) {
+        self.onPlaceObjectSuccess(@{});
+    }
+}
+
+-(void) placeObjectError {
+    if (self.onPlaceObjectError) {
+        self.onPlaceObjectError(@{});
+    }
 }
 
 @end

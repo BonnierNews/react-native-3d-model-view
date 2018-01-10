@@ -26,6 +26,7 @@ class VirtualObjectLoader {
     */
     func loadVirtualObject(_ object: VirtualObject, loadedHandler: @escaping (VirtualObject) -> Void) {
         isLoading = true
+        object.castsShadow = true
 		loadedObjects.append(object)
         loadedHandler(object)
 	}

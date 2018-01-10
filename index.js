@@ -2,10 +2,10 @@ import React from 'react'
 import {
   requireNativeComponent,
   ViewPropTypes,
+  ColorPropType,
   NativeModules
 } from 'react-native'
 import PropTypes from 'prop-types'
-
 export const Manager = NativeModules['3DModelManager']
 export const ModelTypes = {
   SCN: 1,
@@ -17,6 +17,8 @@ const propTypes = {
   source: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.number.isRequired,
+  color: ColorPropType,
+  scale: PropTypes.number,
   onLoadModelStart: PropTypes.func,
   onLoadModelSuccess: PropTypes.func,
   onLoadModelError: PropTypes.func
@@ -24,6 +26,7 @@ const propTypes = {
 
 export class ModelView extends React.Component {
   render () {
+    console.log(this.props)
     return <RCTScnModelView
       {...this.props}
       />
@@ -41,5 +44,17 @@ export class ARModelView extends React.Component {
   }
 }
 
-ARModelView.propTypes = propTypes
+ARModelView.propTypes = {
+  ...propTypes,
+  focusSquareColor: ColorPropType,
+  focusSquareFillColor: ColorPropType,
+  onStart: PropTypes.func,
+  onSurfaceFound: PropTypes.func,
+  onSurfaceLost: PropTypes.func,
+  onSessionInterupted: PropTypes.func,
+  onSessionInteruptedEnded: PropTypes.func,
+  onPlaceObjectSuccess: PropTypes.func,
+  onPlaceObjectError: PropTypes.func,
+  trackingQualityInfo: PropTypes.func
+}
 const RCTARModelView = requireNativeComponent('RCT3DARModelView', ARModelView)

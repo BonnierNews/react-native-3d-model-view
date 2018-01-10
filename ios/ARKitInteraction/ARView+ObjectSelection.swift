@@ -20,7 +20,9 @@ extension ARView {
     func placeVirtualObject(_ virtualObject: VirtualObject) {
         guard let cameraTransform = session.currentFrame?.camera.transform,
             let focusSquarePosition = focusSquare.lastPosition else {
-//            statusViewController.showMessage("CANNOT PLACE OBJECT\nTry moving left or right.")
+            if let delegate = self.delegate {
+                delegate.placeObjectError()
+            }
             return
         }
         virtualObjectInteraction.selectedObject = virtualObject
@@ -28,15 +30,20 @@ extension ARView {
         updateQueue.async {
             self.sceneView.scene.rootNode.addChildNode(virtualObject)
         }
+        if let delegate = self.delegate {
+            delegate.placeObjectSuccess()
+        }
     }
     
     func addVirtualObject(_ node: SCNNode) {
         let virtualObject = VirtualObject()
-        virtualObject.addChildNode(node.childNodes.first!)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(15)) {
+        for child in node.childNodes {
+            virtualObject.addChildNode(child)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1), execute: {
             self.virtualObjectLoader.loadVirtualObject(virtualObject) { (object) in
                 self.placeVirtualObject(object)
             }
-        }
+        })
     }
 }

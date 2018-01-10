@@ -1,6 +1,4 @@
 #import "RCT3DModelManager.h"
-#import "RCT3DModelIO.h"
-#import <ARKit/ARKit.h>
 
 @implementation RCT3DModelManager
 

@@ -55,14 +55,10 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
     }
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
-//        statusViewController.showTrackingQualityInfo(for: camera.trackingState, autoHide: true)
-        
-//        switch camera.trackingState {
-//        case .notAvailable, .limited:
-//            statusViewController.escalateFeedback(for: camera.trackingState, inSeconds: 3.0)
-//        case .normal:
-//            statusViewController.cancelScheduledMessage(for: .trackingStateEscalation)
-//        }
+        if let delegate = self.delegate {
+            let state = camera.trackingState
+            delegate.trackingQualityInfo(id: state.id, presentation: state.presentationString, recommendation: state.recommendation)
+        }
     }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
@@ -84,15 +80,59 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
-//        statusViewController.showMessage("""
-//        SESSION INTERRUPTED
-//        The session will be reset after the interruption has ended.
-//        """, autoHide: false)
+        if let delegate = self.delegate {
+            delegate.sessionInterupted()
+        }
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
-//        statusViewController.showMessage("RESETTING SESSION")
-        
         restartExperience()
+        if let delegate = self.delegate {
+            delegate.sessionInteruptedEnded()
+        }
+    }
+}
+
+@available(iOS 11.0, *)
+extension ARCamera.TrackingState {
+    var id: Int {
+        switch self {
+        case .notAvailable:
+            return 0
+        case .normal:
+            return 1
+        case .limited(.excessiveMotion):
+            return 2
+        case .limited(.insufficientFeatures):
+            return 3
+        case .limited(.initializing):
+            return 4
+        }
+    }
+    
+    var presentationString: String {
+        switch self {
+        case .notAvailable:
+            return "Tracking unavailable"
+        case .normal:
+            return "Tracking normal"
+        case .limited(.excessiveMotion):
+            return "Tracking limited (Eccessive motion)"
+        case .limited(.insufficientFeatures):
+            return "Tracking limited (Low detail)"
+        case .limited(.initializing):
+            return "Initializing"
+        }
+    }
+    
+    var recommendation: String? {
+        switch self {
+        case .limited(.excessiveMotion):
+            return "Try slowing down your movement, or reset the session."
+        case .limited(.insufficientFeatures):
+            return "Try pointing at a flat surface, or reset the session."
+        default:
+            return nil
+        }
     }
 }

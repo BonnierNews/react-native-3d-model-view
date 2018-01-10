@@ -1,7 +1,4 @@
-#import <React/RCTBridge.h>
-
 #import "RCT3DScnModelViewManager.h"
-#import "RCT3DScnModelView.h"
 
 @implementation RCT3DScnModelViewManager
 {
@@ -19,7 +16,8 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_VIEW_PROPERTY(source, NSString)
 RCT_EXPORT_VIEW_PROPERTY(name, NSString)
 RCT_EXPORT_VIEW_PROPERTY(type, NSInteger)
-RCT_EXPORT_VIEW_PROPERTY(color, NSNumber)
+RCT_EXPORT_VIEW_PROPERTY(scale, float)
+RCT_EXPORT_VIEW_PROPERTY(color, UIColor)
 
 RCT_EXPORT_VIEW_PROPERTY(onLoadModelStart, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onLoadModelSuccess, RCTBubblingEventBlock)

@@ -10,11 +10,26 @@ import SceneKit
 import UIKit
 
 @available(iOS 11.0, *)
+@objc protocol ARViewDelegate: class {
+    func start()
+    func surfaceFound()
+    func surfaceLost()
+    func trackingQualityInfo(id: Int, presentation: String?, recommendation: String?)
+    func sessionInterupted()
+    func sessionInteruptedEnded()
+    func placeObjectSuccess()
+    func placeObjectError()
+}
+
+@available(iOS 11.0, *)
 class ARView: UIView {
+    
+    // MARK: - Delegate
+    var delegate: ARViewDelegate?
     
     // MARK: - UI Elements
     var sceneView: VirtualObjectARView!
-    var focusSquare = FocusSquare()
+    let focusSquare = FocusSquare()
     
     // MARK: - ARKit Configuration Properties
     
@@ -43,39 +58,19 @@ class ARView: UIView {
     // MARK: - View Controller Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.green
         
         sceneView = VirtualObjectARView(frame: self.frame)
         sceneView.delegate = self
         sceneView.session.delegate = self
         sceneView.backgroundColor = UIColor.clear
         self.addSubview(sceneView)
+        
         // Set up scene content.
         setupCamera()
-        sceneView.scene.rootNode.addChildNode(focusSquare)
-
-        /*
-         The `sceneView.automaticallyUpdatesLighting` option creates an
-         ambient light source and modulates its intensity. This sample app
-         instead modulates a global lighting environment map for use with
-         physically based materials, so disable automatic lighting.
-         */
-        sceneView.automaticallyUpdatesLighting = false
-        if let environmentMap = UIImage(named: "Models.scnassets/sharedImages/environment_blur.exr") {
-            sceneView.scene.lightingEnvironment.contents = environmentMap
-        }
+        sceneView.scene.rootNode.addChildNode(self.focusSquare)
+        sceneView.automaticallyUpdatesLighting = true
         
         virtualObjectInteraction = VirtualObjectInteraction(sceneView: sceneView)
-
-//        // Hook up status view controller callback(s).
-//        statusViewController.restartExperienceHandler = { [unowned self] in
-//            self.restartExperience()
-//        }
-        
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showVirtualObjectSelectionViewController))
-//        // Set the delegate to ensure this gesture is only used when there are no virtual objects in the scene.
-//        tapGesture.delegate = self
-//        sceneView.addGestureRecognizer(tapGesture)
         
         // Prevent the screen from being dimmed to avoid interuppting the AR experience.
         UIApplication.shared.isIdleTimerDisabled = true
@@ -121,8 +116,9 @@ class ARView: UIView {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
 		session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-
-//        statusViewController.scheduleMessage("FIND A SURFACE TO PLACE AN OBJECT", inSeconds: 7.5, messageType: .planeEstimation)
+        if let delegate = self.delegate {
+            delegate.start()
+        }
 	}
 
     // MARK: - Focus Square
@@ -136,7 +132,6 @@ class ARView: UIView {
             focusSquare.hide()
         } else {
             focusSquare.unhide()
-//            statusViewController.scheduleMessage("TRY MOVING LEFT OR RIGHT", inSeconds: 5.0, messageType: .focusSquare)
         }
         
         // We should always have a valid world position unless the sceen is just being initialized.
@@ -144,6 +139,9 @@ class ARView: UIView {
             updateQueue.async {
                 self.focusSquare.state = .initializing
                 self.sceneView.pointOfView?.addChildNode(self.focusSquare)
+            }
+            if let delegate = self.delegate {
+                delegate.surfaceLost()
             }
             return
         }
@@ -158,7 +156,9 @@ class ARView: UIView {
                 self.focusSquare.state = .featuresDetected(anchorPosition: worldPosition, camera: camera)
             }
         }
-//        statusViewController.cancelScheduledMessage(for: .focusSquare)
+        if let delegate = self.delegate {
+            delegate.surfaceFound()
+        }
 	}
     
 	// MARK: - Error handling

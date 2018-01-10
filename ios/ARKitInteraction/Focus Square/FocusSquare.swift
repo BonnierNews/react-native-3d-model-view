@@ -39,10 +39,10 @@ class FocusSquare: SCNNode {
     // Duration of the open/close animation
     static let animationDuration = 0.7
     
-    static let primaryColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1)
+    var primaryColor: UIColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1)
     
     // Color of the focus square fill.
-    static let fillColor = #colorLiteral(red: 1, green: 0.9254901961, blue: 0.4117647059, alpha: 1)
+    var fillColor: UIColor = #colorLiteral(red: 1, green: 0.9254901961, blue: 0.4117647059, alpha: 1)
     
     // MARK: - Properties
     
@@ -107,14 +107,14 @@ class FocusSquare: SCNNode {
              -   -
              s7  s8
          */
-        let s1 = Segment(name: "s1", corner: .topLeft, alignment: .horizontal)
-        let s2 = Segment(name: "s2", corner: .topRight, alignment: .horizontal)
-        let s3 = Segment(name: "s3", corner: .topLeft, alignment: .vertical)
-        let s4 = Segment(name: "s4", corner: .topRight, alignment: .vertical)
-        let s5 = Segment(name: "s5", corner: .bottomLeft, alignment: .vertical)
-        let s6 = Segment(name: "s6", corner: .bottomRight, alignment: .vertical)
-        let s7 = Segment(name: "s7", corner: .bottomLeft, alignment: .horizontal)
-        let s8 = Segment(name: "s8", corner: .bottomRight, alignment: .horizontal)
+        let s1 = Segment(name: "s1", corner: .topLeft, alignment: .horizontal, color: primaryColor)
+        let s2 = Segment(name: "s2", corner: .topRight, alignment: .horizontal, color: primaryColor)
+        let s3 = Segment(name: "s3", corner: .topLeft, alignment: .vertical, color: primaryColor)
+        let s4 = Segment(name: "s4", corner: .topRight, alignment: .vertical, color: primaryColor)
+        let s5 = Segment(name: "s5", corner: .bottomLeft, alignment: .vertical, color: primaryColor)
+        let s6 = Segment(name: "s6", corner: .bottomRight, alignment: .vertical, color: primaryColor)
+        let s7 = Segment(name: "s7", corner: .bottomLeft, alignment: .horizontal, color: primaryColor)
+        let s8 = Segment(name: "s8", corner: .bottomRight, alignment: .horizontal, color: primaryColor)
         segments = [s1, s2, s3, s4, s5, s6, s7, s8]
         
         let sl: Float = 0.5  // segment length
@@ -149,6 +149,19 @@ class FocusSquare: SCNNode {
 	}
     
     // MARK: - Appearance
+    
+    /// Sets color
+    func setColor(primary: UIColor?, fill: UIColor?) {
+        if let primary = primary {
+            self.primaryColor = primary
+            for segment in segments {
+                segment.setColor(color: primary)
+            }
+        }
+        if let fill = fill {
+            self.fillColor = fill
+        }
+    }
     
     /// Hides the focus square.
     func hide() {
@@ -381,11 +394,11 @@ class FocusSquare: SCNNode {
         node.opacity = 0.0
 
         let material = plane.firstMaterial!
-        material.diffuse.contents = FocusSquare.fillColor
+        material.diffuse.contents = self.fillColor
         material.isDoubleSided = true
         material.ambient.contents = UIColor.black
         material.lightingModel = .constant
-        material.emission.contents = FocusSquare.fillColor
+        material.emission.contents = self.fillColor
 
         return node
     }()

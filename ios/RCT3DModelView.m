@@ -1,20 +1,10 @@
 #import "RCT3DModelView.h"
-#import <SceneKit/SceneKit.h>
-#import <React/RCTConvert.h>
 
 @implementation RCT3DModelView
-{
-    bool _isLoaded;
-    NSString *_source;
-    NSString *_name;
-    NSInteger *_type;
-    UIColor *_color;
-    SCNNode *_modelNode;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        _isLoaded = NO;
+        self.isLoaded = NO;
     }
     return self;
 }
@@ -25,15 +15,15 @@
 }
 
 -(void)loadModel {
-    if (_isLoaded || _name == nil || _source == nil || _type == nil) {
+    if (self.isLoaded || self.name == nil || self.source == nil || self.type == nil) {
         return;
     }
     if (self.onLoadModelStart) {
         self.onLoadModelStart(@{});
     }
-    [[RCT3DModelIO sharedInstance] loadModel:_source name:_name type:(ModelType)_type color:_color completion:^(SCNNode *node) {
+    [[RCT3DModelIO sharedInstance] loadModel:self.source name:self.name type:(ModelType)self.type color:self.color completion:^(SCNNode *node) {
         if (node != nil) {
-            _isLoaded = YES;
+            self.isLoaded = YES;
             [self addModelNode:node];
             if (self.onLoadModelSuccess) {
                 self.onLoadModelSuccess(@{});
@@ -54,9 +44,13 @@
 }
 
 -(void)removeNode:(SCNNode *)node {
+    _modelNode = nil;
 }
 
 - (void)setSource:(NSString *)source {
+    if (source == nil && _modelNode != nil) {
+        [self removeNode:_modelNode];
+    }
     _source = source;
 }
 
@@ -64,12 +58,16 @@
     _name = name;
 }
 
-- (void)setType:(NSInteger *)type {
+- (void)setType:(int *)type {
     _type = type;
 }
 
-- (void)setColor:(NSNumber*)color {
-    _color = [RCTConvert UIColor:color];
+- (void)setScale:(float)scale {
+    _scale = scale;
+}
+
+- (void)setColor:(UIColor*)color {
+    _color = color;
 }
 
 @end

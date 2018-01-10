@@ -1,6 +1,4 @@
 #import "RCT3DScnModelView.h"
-#import <SceneKit/SceneKit.h>
-#import <React/RCTConvert.h>
 
 @implementation RCT3DScnModelView
 {
@@ -35,7 +33,12 @@
 }
 
 -(void) removeNode:(SCNNode *)node {
+    [super removeNode:node];
     [node removeFromParentNode];
 }
 
+-(void) setScale:(float)scale {
+    [super setScale:scale];
+    [_sceneView.scene.rootNode setScale:SCNVector3Make(scale, scale, scale)];
+}
 @end

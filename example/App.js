@@ -37,6 +37,10 @@ export default class App extends React.Component {
         source='art.scnassets/jonas/Jonas_2.scn'
         name='Jonas_2'
         type={ModelTypes.SCN}
+        scale={0.1}
+        // color={'#FF0000'}
+        focusSquareColor='red'
+        focusSquareFillColor='black'
         onLoadModelStart={this.onLoadModelStart}
         onLoadModelSuccess={this.onLoadModelSuccess}
         onLoadModelError={this.onLoadModelError} />
