@@ -19,4 +19,6 @@
 @property (nonatomic, copy) RCTBubblingEventBlock onPlaceObjectError;
 @property (nonatomic, copy) RCTBubblingEventBlock trackingQualityInfo;
 
+- (void)takeSnapthot:(bool)saveToLibrary completion:(void (^)(NSURL* url))completion;
+
 @end

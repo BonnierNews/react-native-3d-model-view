@@ -56,13 +56,17 @@
     [self addScaleToModelNode];
 }
 
-- (void)addScaleToModelNode {
+-(void) addScaleToModelNode {
     if (self.scale && self.modelNode) {
         SCNVector3 scaleV = SCNVector3Make(self.scale, self.scale, self.scale);
         for(SCNNode *child in self.modelNode.childNodes) {
             [child setScale:scaleV];
         }
     }
+}
+
+-(void) takeSnapthot:(bool)saveToLibrary completion:(void (^)(NSURL *))completion {
+    [_arView snapshotWithSaveToPhotoLibrary:saveToLibrary completion:completion];
 }
 
 // MARK: - ARViewDelegate

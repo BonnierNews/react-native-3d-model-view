@@ -31,6 +31,9 @@ class ARView: UIView {
     var sceneView: VirtualObjectARView!
     let focusSquare = FocusSquare()
     
+    // MARK: - Action Properties
+    var snapshotImageCompletion: ((NSURL?) -> Void)?
+    
     // MARK: - ARKit Configuration Properties
     
     /// A type which manages gesture manipulation of virtual content in the scene.

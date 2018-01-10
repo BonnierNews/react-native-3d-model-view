@@ -20,7 +20,6 @@
 		538B82DB2004EBE800206B2E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B82DA2004EBE800206B2E /* Utilities.swift */; };
 		538B82DE2004EBF100206B2E /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B82DC2004EBF100206B2E /* VirtualObject.swift */; };
 		538B82DF2004EBF100206B2E /* VirtualObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B82DD2004EBF100206B2E /* VirtualObjectLoader.swift */; };
-		53B59F022003955B007669AA /* RCT3DModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B59F012003955B007669AA /* RCT3DModelManager.m */; };
 		53B59F132003B8B3007669AA /* RCT3DScnModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B59F122003B8B2007669AA /* RCT3DScnModelView.m */; };
 		53B59F162003BC21007669AA /* RCT3DARModelViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B59F152003BC21007669AA /* RCT3DARModelViewManager.m */; };
 		53B59F192003BCD4007669AA /* RCT3DARModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B59F172003BCD4007669AA /* RCT3DARModelView.m */; };
@@ -82,8 +81,6 @@
 		538B82DC2004EBF100206B2E /* VirtualObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObject.swift; sourceTree = "<group>"; };
 		538B82DD2004EBF100206B2E /* VirtualObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectLoader.swift; sourceTree = "<group>"; };
 		538B82E02004EC2600206B2E /* RCT3DModel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RCT3DModel-Bridging-Header.h"; sourceTree = "<group>"; };
-		53B59F012003955B007669AA /* RCT3DModelManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCT3DModelManager.m; sourceTree = "<group>"; };
-		53B59F032003956F007669AA /* RCT3DModelManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCT3DModelManager.h; sourceTree = "<group>"; };
 		53B59F112003B8B2007669AA /* RCT3DScnModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DScnModelView.h; sourceTree = "<group>"; };
 		53B59F122003B8B2007669AA /* RCT3DScnModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCT3DScnModelView.m; sourceTree = "<group>"; };
 		53B59F142003BC21007669AA /* RCT3DARModelViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DARModelViewManager.h; sourceTree = "<group>"; };
@@ -311,8 +308,6 @@
 				D91352891EA2F442001C1909 /* RCT3DScnModelViewManager.m */,
 				53B59F142003BC21007669AA /* RCT3DARModelViewManager.h */,
 				53B59F152003BC21007669AA /* RCT3DARModelViewManager.m */,
-				53B59F032003956F007669AA /* RCT3DModelManager.h */,
-				53B59F012003955B007669AA /* RCT3DModelManager.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -383,7 +378,6 @@
 				536AB81920050426004223D4 /* VirtualObjectARView.swift in Sources */,
 				536AB81A20050426004223D4 /* VirtualObjectInteraction.swift in Sources */,
 				53ED49F71FFF725B00FB63D6 /* sha1.c in Sources */,
-				53B59F022003955B007669AA /* RCT3DModelManager.m in Sources */,
 				53ED49F51FFF725B00FB63D6 /* prng.c in Sources */,
 				53ED49F31FFF725B00FB63D6 /* fileenc.c in Sources */,
 				53B59F132003B8B3007669AA /* RCT3DScnModelView.m in Sources */,
