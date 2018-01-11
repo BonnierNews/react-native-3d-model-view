@@ -32,7 +32,7 @@ class ARView: UIView {
     let focusSquare = FocusSquare()
     
     // MARK: - Action Properties
-    var snapshotImageCompletion: ((NSURL?) -> Void)?
+    var snapshotImageCompletion: ((Bool, NSURL?) -> Void)?
     
     // MARK: - ARKit Configuration Properties
     
@@ -52,6 +52,8 @@ class ARView: UIView {
         let bounds = sceneView.bounds
         return CGPoint(x: bounds.midX, y: bounds.midY)
     }
+    
+    var hasFoundSurface = false
         
     /// Convenience accessor for the session owned by ARSCNView.
     var session: ARSession {
@@ -119,6 +121,7 @@ class ARView: UIView {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
 		session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        hasFoundSurface = false
         if let delegate = self.delegate {
             delegate.start()
         }
@@ -143,8 +146,9 @@ class ARView: UIView {
                 self.focusSquare.state = .initializing
                 self.sceneView.pointOfView?.addChildNode(self.focusSquare)
             }
-            if let delegate = self.delegate {
+            if let delegate = self.delegate, hasFoundSurface == true {
                 delegate.surfaceLost()
+                hasFoundSurface = false
             }
             return
         }
@@ -159,8 +163,9 @@ class ARView: UIView {
                 self.focusSquare.state = .featuresDetected(anchorPosition: worldPosition, camera: camera)
             }
         }
-        if let delegate = self.delegate {
+        if let delegate = self.delegate, hasFoundSurface == false {
             delegate.surfaceFound()
+            hasFoundSurface = true
         }
 	}
     

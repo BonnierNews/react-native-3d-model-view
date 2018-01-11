@@ -15,9 +15,7 @@ import ARKit
 @available(iOS 11.0, *)
 class VirtualObjectLoader {
 	private(set) var loadedObjects = [VirtualObject]()
-    
-    private(set) var isLoading = false
-	
+    	
 	// MARK: - Loading object
 
     /**
@@ -25,7 +23,6 @@ class VirtualObjectLoader {
      on a background queue once `object` has been loaded.
     */
     func loadVirtualObject(_ object: VirtualObject, loadedHandler: @escaping (VirtualObject) -> Void) {
-        isLoading = true
         object.castsShadow = true
 		loadedObjects.append(object)
         loadedHandler(object)

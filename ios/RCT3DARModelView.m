@@ -65,7 +65,14 @@
     }
 }
 
--(void) takeSnapthot:(bool)saveToLibrary completion:(void (^)(NSURL *))completion {
+-(void) restart {
+    _modelIsAddedToScene = NO;
+    [self removeNode:self.modelNode];
+    [_arView restartExperience];
+    [self loadModel];
+}
+
+-(void) takeSnapshot:(bool)saveToLibrary completion:(void (^)(BOOL success, NSURL *))completion {
     [_arView snapshotWithSaveToPhotoLibrary:saveToLibrary completion:completion];
 }
 
@@ -106,9 +113,9 @@
     }
 }
 
--(void) trackingQualityInfoWithId:(NSInteger)id presentation:(NSString *)presentation recommendation:(NSString *)recommendation {
-    if (self.trackingQualityInfo) {
-        self.trackingQualityInfo(@{@"id": [NSNumber numberWithInteger:id], @"presentation": presentation, @"recommendation": recommendation});
+-(void) trackingQualityInfoWithId:(NSInteger)id presentation:(NSString*)presentation recommendation:(NSString*)recommendation {
+    if (self.onTrackingQualityInfo) {
+        self.onTrackingQualityInfo(@{@"id": [NSNumber numberWithInteger:id], @"presentation": presentation, @"recommendation": recommendation});
     }
 }
 

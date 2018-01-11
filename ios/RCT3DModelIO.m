@@ -123,7 +123,7 @@
 -(SCNNode *)createScnModel:(NSURL *)url color:(UIColor *)color {
     NSError* error;
     NSURL *modelUrl = url;
-    if (![[modelUrl path] hasPrefix:@".scn"]) {
+    if (![[modelUrl path] hasSuffix:@".scn"]) {
         NSString *objName = [NSString stringWithFormat:@"%@.scn", [modelUrl lastPathComponent]];
         modelUrl = [url URLByAppendingPathComponent:objName];
     }
@@ -152,7 +152,7 @@
 -(SCNNode *)createObjModel:(NSURL *)url color:(UIColor *)color {
     NSURL *textureUrl;
     NSURL *modelUrl = url;
-    if (![[modelUrl path] hasPrefix:@".obj"]) {
+    if (![[modelUrl path] hasSuffix:@".obj"]) {
         NSString *name = [modelUrl lastPathComponent];
         NSString *objName = [NSString stringWithFormat:@"%@.obj", name];
         modelUrl = [url URLByAppendingPathComponent:objName];
@@ -183,7 +183,8 @@
         sub.material = material;
     }
     
-    SCNNode *node = [SCNNode nodeWithMDLObject:object];
+    SCNNode *node = [SCNNode node];
+    [node addChildNode:[SCNNode nodeWithMDLObject:object]];
     node.castsShadow = YES;
     return node;
 }

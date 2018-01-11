@@ -9,11 +9,12 @@ import { ModelView, ModelTypes, ARManager } from 'react-native-3d-model-view'
 
 export default class ModelScreen extends React.Component {
   state = {
-    arSupported: false
+    arSupported: false,
+    message: ''
   }
 
   static navigationOptions = {
-    title: 'Home'
+    title: 'Welcome!'
   }
 
   componentDidMount () {
@@ -22,27 +23,28 @@ export default class ModelScreen extends React.Component {
     })
   }
 
-  onLoadModelStart () {
+  onLoadModelStart = () => {
+    this.setState({ message: 'Loading model...'})
     console.log('[react-native-3d-model-view]:', 'Load model start.')
   }
 
-  onLoadModelSuccess () {
+  onLoadModelSuccess = () => {
+    this.setState({ message: 'Loading model success!'})
     console.log('[react-native-3d-model-view]:', 'Load model success.')
   }
 
-  onLoadModelError () {
+  onLoadModelError = () => {
+    this.setState({ message: 'Loading model error :('})
     console.log('[react-native-3d-model-view]:', 'Load model error.')
   }
 
   render () {
     const { navigate } = this.props.navigation
-    const { arSupported } = this.state
+    const { arSupported, message } = this.state
 
     return <View style={styles.container}>
-      <Text style={styles.welcome}>
-        Welcome to React Native 3D model view!
-      </Text>
       <View style={styles.modelContainer}>
+        <Text>{message}</Text>
         <ModelView
           style={styles.modelView}
           source='https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true'
@@ -68,11 +70,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
   },
   modelContainer: {
     padding: 10,

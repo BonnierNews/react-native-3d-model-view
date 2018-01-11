@@ -44,6 +44,7 @@
 }
 
 -(void)removeNode:(SCNNode *)node {
+    _isLoaded = NO;
     _modelNode = nil;
 }
 

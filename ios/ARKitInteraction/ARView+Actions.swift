@@ -13,7 +13,7 @@ extension ARView: UIGestureRecognizerDelegate {
     
     /// - Tag: restartExperience
     func restartExperience() {
-        guard isRestartAvailable, !virtualObjectLoader.isLoading else { return }
+        guard isRestartAvailable else { return }
         isRestartAvailable = false
         
         virtualObjectLoader.removeAllVirtualObjects()
@@ -27,19 +27,27 @@ extension ARView: UIGestureRecognizerDelegate {
         }
     }
     
-    func snapshot(saveToPhotoLibrary: Bool, completion: @escaping (NSURL?) -> Void) {
+    func snapshot(saveToPhotoLibrary: Bool, completion: @escaping (Bool, NSURL?) -> Void) {
         let image = self.sceneView.snapshot()
         if (saveToPhotoLibrary) {
             self.snapshotImageCompletion = completion
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image), nil)
         } else {
-            if let url = NSURL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent("rct-3d-model-view", isDirectory: true),
+            if let directory = NSURL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent("rct-3d-model-view", isDirectory: true),
                 let imageData = UIImagePNGRepresentation(image) {
+                let baseName = "rct-3d-model-view-"
+                let fileExtension = ".png"
+                var index = 1
+                var url = directory.appendingPathComponent("\(baseName)\(index)\(fileExtension)")
+                while FileManager.default.fileExists(atPath: url.path) {
+                    index += 1
+                    url = directory.appendingPathComponent("\(baseName)\(index)\(fileExtension)")
+                }
                 do {
                     try imageData.write(to: url)
-                    completion(url as NSURL)
+                    completion(true, url as NSURL)
                 } catch {
-                    completion(nil)
+                    completion(false, nil)
                 }
             }
         }
@@ -48,11 +56,11 @@ extension ARView: UIGestureRecognizerDelegate {
     func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let _ = error {
             if let completion = self.snapshotImageCompletion {
-                completion(nil)
+                completion(false, nil)
             }
         } else {
             if let completion = self.snapshotImageCompletion {
-                completion(NSURL(fileURLWithPath: ""))
+                completion(true, nil)
             }
         }
         self.snapshotImageCompletion = nil

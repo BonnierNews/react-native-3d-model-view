@@ -122,17 +122,19 @@ extension ARCamera.TrackingState {
             return "Tracking limited (Low detail)"
         case .limited(.initializing):
             return "Initializing"
+        default:
+            return ""
         }
     }
     
-    var recommendation: String? {
+    var recommendation: String {
         switch self {
         case .limited(.excessiveMotion):
             return "Try slowing down your movement, or reset the session."
         case .limited(.insufficientFeatures):
             return "Try pointing at a flat surface, or reset the session."
         default:
-            return nil
+            return ""
         }
     }
 }

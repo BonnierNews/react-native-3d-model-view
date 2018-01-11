@@ -37,7 +37,7 @@ RCT_EXPORT_VIEW_PROPERTY(onSessionInterupted, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSessionInteruptedEnded, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onPlaceObjectSuccess, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onPlaceObjectError, RCTBubblingEventBlock)
-RCT_EXPORT_VIEW_PROPERTY(trackingQualityInfo, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onTrackingQualityInfo, RCTBubblingEventBlock)
 
 RCT_EXPORT_METHOD(clearDownloadedFiles)
 {
@@ -53,17 +53,32 @@ RCT_EXPORT_METHOD(checkIfARSupported:(RCTResponseSenderBlock)callback)
     callback(@[@(isSupported)]);
 }
 
-RCT_EXPORT_METHOD(getARSnapshot:(bool)saveToLibrary completion:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(restart)
 {
     if (modelView) {
-        [modelView takeSnapthot:saveToLibrary completion:^(NSURL *url) {
-            if (url) {
-                return callback(@[@[[url path]]]);
-            }
-            return callback(@[]);
-        }];
+        [modelView restart];
     }
-    callback(@[]);
+}
+
+RCT_EXPORT_METHOD(getARSnapshot:(BOOL)saveToLibrary
+                 findEventsWithResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    if (modelView) {
+        [modelView takeSnapshot:saveToLibrary completion:^(BOOL success, NSURL *url) {
+            if (success) {
+                if (saveToLibrary) {
+                    resolve(@{@"success":@YES});
+                } else {
+                    resolve(@{@"success":@YES, @"url": [url path]});
+                }
+            } else {
+                reject(RCTErrorUnspecified, nil, RCTErrorWithMessage(@"RCT3DModelView: Could not save image"));
+            }
+        }];
+    } else {
+        reject(RCTErrorUnspecified, nil, RCTErrorWithMessage(@"RCT3DModelView: Could not save image"));
+    }
 }
 
 @end
