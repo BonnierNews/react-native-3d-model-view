@@ -15,6 +15,6 @@ typedef enum
 
 + (instancetype)sharedInstance;
 
-- (void)loadModel:(NSString *)path name:(NSString *)name type:(ModelType)type color:(UIColor *)color completion:(void (^)(SCNNode * node))completion;
+- (void)loadModel:(NSString *)path type:(ModelType)type color:(UIColor *)color completion:(void (^)(SCNNode * node))completion;
 - (void)clearDownloadedFiles;
 @end

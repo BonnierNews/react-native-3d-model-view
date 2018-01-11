@@ -7,7 +7,6 @@
 
 @property (nonatomic) bool isLoaded;
 @property (nonatomic, copy) NSString* source;
-@property (nonatomic, copy) NSString* name;
 @property (nonatomic) int* type;
 @property (nonatomic) float scale;
 @property (nonatomic, copy) UIColor* color;

@@ -21,7 +21,7 @@
 }
 
 
-- (void)loadModel:(NSString *)path name:(NSString *)name type:(ModelType)type color:(UIColor *)color completion:(void (^)(SCNNode * node))completion {
+- (void)loadModel:(NSString *)path type:(ModelType)type color:(UIColor *)color completion:(void (^)(SCNNode * node))completion {
     NSURL *url = [self urlFromPath:path];
     bool isHttp = [path hasPrefix:@"http"];
     bool isZip = [path hasSuffix:@".zip"];
@@ -29,19 +29,19 @@
         [self download:url completion:^(NSURL *localUrl) {
             if (isZip) {
                 [self unzip:localUrl completion:^(NSURL *unzippedUrl) {
-                    completion([self createModel:unzippedUrl name:name type:type color:color]);
+                    completion([self createModel:unzippedUrl type:type color:color]);
                 }];
             } else {
-                completion([self createModel:localUrl name:nil type:type color:color]);
+                completion([self createModel:localUrl type:type color:color]);
             }
         }];
     } else {
         if (isZip) {
             [self unzip:url completion:^(NSURL *unzippedUrl) {
-                completion([self createModel:unzippedUrl name:name type:type color:color]);
+                completion([self createModel:unzippedUrl type:type color:color]);
             }];
         } else {
-            completion([self createModel:url name:nil type:type color:color]);
+            completion([self createModel:url type:type color:color]);
         }
     }
 }
@@ -104,14 +104,14 @@
     return url;
 }
 
--(SCNNode *)createModel:(NSURL*)url name:(NSString *)name type:(ModelType)type color:(UIColor *)color  {
+-(SCNNode *)createModel:(NSURL*)url type:(ModelType)type color:(UIColor *)color  {
     SCNNode* node;
     switch (type) {
         case ModelTypeSCN:
-            node = [self createScnModel:url name:name color:color];
+            node = [self createScnModel:url color:color];
             break;
         case ModelTypeOBJ:
-            node = [self createObjModel:url name:name color:color];
+            node = [self createObjModel:url color:color];
             break;
         default:
             break;
@@ -119,14 +119,14 @@
     return node;
 }
 
--(SCNNode *)createScnModel:(NSURL *)url name:(NSString *)name color:(UIColor *)color {
+-(SCNNode *)createScnModel:(NSURL *)url color:(UIColor *)color {
     NSError* error;
     NSURL *modelUrl = url;
-    NSLog(@"%@", [modelUrl path]);
-    if (name) {
-        NSString *objName = [NSString stringWithFormat:@"%@.scn", name];
+    if (![[modelUrl path] hasPrefix:@".scn"]) {
+        NSString *objName = [NSString stringWithFormat:@"%@.scn", [modelUrl lastPathComponent]];
         modelUrl = [url URLByAppendingPathComponent:objName];
     }
+    NSLog(@"%@", [modelUrl path]);
     SCNScene *scene = [SCNScene sceneWithURL:modelUrl options:nil error:&error];
     if(error) {
         NSLog(@"%@",[error localizedDescription]);
@@ -149,18 +149,16 @@
     return node;
 }
 
--(SCNNode *)createObjModel:(NSURL *)url name:(NSString *)name color:(UIColor *)color {
+-(SCNNode *)createObjModel:(NSURL *)url color:(UIColor *)color {
     NSURL *textureUrl;
     NSURL *modelUrl = url;
     NSLog(@"%@", [modelUrl path]);
-    if (name) {
+    if (![[modelUrl path] hasPrefix:@".obj"]) {
+        NSString *name = [modelUrl lastPathComponent];
         NSString *objName = [NSString stringWithFormat:@"%@.obj", name];
         modelUrl = [url URLByAppendingPathComponent:objName];
-        NSString *textureName = [NSString stringWithFormat:@"%@.bmp", name];
+        NSString *textureName = [NSString stringWithFormat:@"%@.png", name];
         textureUrl = [url URLByAppendingPathComponent:textureName];
-    } else {
-        NSString *textureName = [NSString stringWithFormat:@"%@.bmp", name];
-        textureUrl = [[url URLByDeletingLastPathComponent] URLByAppendingPathComponent:textureName];
     }
     MDLAsset *asset = [[MDLAsset alloc] initWithURL:modelUrl];
     if (asset.count == 0) {
@@ -174,16 +172,21 @@
     if (color != nil) {
         [baseColor setType:MDLMaterialPropertyTypeColor];
         [baseColor setColor:color.CGColor];
-    } else {
+    } else if (textureUrl) {
         [baseColor setType:MDLMaterialPropertyTypeTexture];
         [baseColor setURLValue:textureUrl];
+    } else {
+        [baseColor setType:MDLMaterialPropertyTypeColor];
+        [baseColor setColor:[UIColor blueColor].CGColor];
     }
     [material setProperty:baseColor];
     for (MDLSubmesh* sub in object.submeshes) {
         sub.material = material;
     }
     
-    return [SCNNode nodeWithMDLObject:object];
+    SCNNode *node = [SCNNode nodeWithMDLObject:object];
+    node.castsShadow = YES;
+    return node;
 }
 
 -(NSURL *)getDownloadDirectory {

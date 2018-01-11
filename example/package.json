@@ -9,7 +9,8 @@
   "dependencies": {
     "react": "16.0.0",
     "react-native": "0.51.0",
-    "react-native-3d-model-view": "file:../"
+    "react-native-3d-model-view": "file:../",
+    "react-navigation": "^1.0.0-beta.23"
   },
   "devDependencies": {
     "babel-jest": "22.0.4",
