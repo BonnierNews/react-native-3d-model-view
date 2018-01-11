@@ -24,7 +24,8 @@
 - (void)loadModel:(NSString *)path type:(ModelType)type color:(UIColor *)color completion:(void (^)(SCNNode * node))completion {
     NSURL *url = [self urlFromPath:path];
     bool isHttp = [path hasPrefix:@"http"];
-    bool isZip = [path hasSuffix:@".zip"];
+    bool isZip = [path containsString:@".zip"];
+
     if (isHttp) {
         [self download:url completion:^(NSURL *localUrl) {
             if (isZip) {
@@ -126,7 +127,6 @@
         NSString *objName = [NSString stringWithFormat:@"%@.scn", [modelUrl lastPathComponent]];
         modelUrl = [url URLByAppendingPathComponent:objName];
     }
-    NSLog(@"%@", [modelUrl path]);
     SCNScene *scene = [SCNScene sceneWithURL:modelUrl options:nil error:&error];
     if(error) {
         NSLog(@"%@",[error localizedDescription]);
@@ -152,7 +152,6 @@
 -(SCNNode *)createObjModel:(NSURL *)url color:(UIColor *)color {
     NSURL *textureUrl;
     NSURL *modelUrl = url;
-    NSLog(@"%@", [modelUrl path]);
     if (![[modelUrl path] hasPrefix:@".obj"]) {
         NSString *name = [modelUrl lastPathComponent];
         NSString *objName = [NSString stringWithFormat:@"%@.obj", name];

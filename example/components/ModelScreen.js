@@ -45,7 +45,7 @@ export default class ModelScreen extends React.Component {
       <View style={styles.modelContainer}>
         <ModelView
           style={styles.modelView}
-          source='http://localhost:8000/Hamburger.zip'
+          source='https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true'
           type={ModelTypes.OBJ}
           onLoadModelStart={this.onLoadModelStart}
           onLoadModelSuccess={this.onLoadModelSuccess}
