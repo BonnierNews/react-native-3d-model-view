@@ -22,6 +22,13 @@ RCT_EXPORT_VIEW_PROPERTY(onLoadModelStart, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onLoadModelSuccess, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onLoadModelError, RCTBubblingEventBlock)
 
+RCT_EXPORT_METHOD(reload)
+{
+    if (modelView) {
+        [modelView reload];
+    }
+}
+
 RCT_EXPORT_METHOD(clearDownloadedFiles)
 {
     [[RCT3DModelIO sharedInstance] clearDownloadedFiles];

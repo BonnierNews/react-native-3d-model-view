@@ -5,12 +5,14 @@ import {
   View,
   TouchableOpacity
 } from 'react-native'
-import {ARModelView, ARManager, ModelTypes} from 'react-native-3d-model-view'
+import {ARModelView, ModelTypes} from 'react-native-3d-model-view'
 
 export default class ARScreen extends React.Component {
   state = {
     message: ''
   }
+
+  arView = null
 
   onLoadModelStart = () => {
     console.log('[react-native-3d-model-view]:', 'Load model start.')
@@ -61,6 +63,7 @@ export default class ARScreen extends React.Component {
     const {message} = this.state
     return <View style={styles.container}>
       <ARModelView
+        ref={arView => { this.arView = arView }}
         style={styles.modelView}
         source='https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true'
         type={ModelTypes.OBJ}
@@ -79,10 +82,10 @@ export default class ARScreen extends React.Component {
         onPlaceObjectError={this.onPlaceObjectError}
         onTrackingQualityInfo={this.onTrackingQualityInfo} />
       <Text style={[styles.controlItem, styles.message]}>{message}</Text>
-      <TouchableOpacity onPress={() => { ARManager.restart() }} style={styles.restartButton}>
+      <TouchableOpacity onPress={() => { this.arView.restart() }} style={styles.restartButton}>
         <Text style={styles.controlItem}>Restart</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { ARManager.getARSnapshot(false).then(event => console.log(event) ) }} style={styles.photoButton}>
+      <TouchableOpacity onPress={() => { this.arView.getSnapshot(false).then(event => console.log(event) ) }} style={styles.photoButton}>
         <Text style={styles.controlItem}>Take photo</Text>
       </TouchableOpacity>
     </View>

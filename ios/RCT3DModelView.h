@@ -5,7 +5,7 @@
 
 @interface RCT3DModelView : UIView
 
-@property (nonatomic) bool isLoaded;
+@property (nonatomic) bool isLoading;
 @property (nonatomic, copy) NSString* source;
 @property (nonatomic) int* type;
 @property (nonatomic) float scale;
@@ -17,6 +17,7 @@
 @property (nonatomic, copy) RCTBubblingEventBlock onLoadModelError;
 
 - (void)loadModel;
+- (void)reload;
 - (void)addModelNode:(SCNNode *)node;
 - (void)removeNode:(SCNNode *)node;
 @end

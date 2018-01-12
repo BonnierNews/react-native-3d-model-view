@@ -106,6 +106,7 @@
 }
 
 -(SCNNode *)createModel:(NSURL*)url type:(ModelType)type color:(UIColor *)color  {
+    NSLog(@"[RCT3dModel]: Loading model at %@", url);
     SCNNode* node;
     switch (type) {
         case ModelTypeSCN:

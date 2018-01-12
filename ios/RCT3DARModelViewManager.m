@@ -39,6 +39,13 @@ RCT_EXPORT_VIEW_PROPERTY(onPlaceObjectSuccess, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onPlaceObjectError, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTrackingQualityInfo, RCTBubblingEventBlock)
 
+RCT_EXPORT_METHOD(reload)
+{
+    if (modelView) {
+        [modelView reload];
+    }
+}
+
 RCT_EXPORT_METHOD(clearDownloadedFiles)
 {
     [[RCT3DModelIO sharedInstance] clearDownloadedFiles];
@@ -60,7 +67,7 @@ RCT_EXPORT_METHOD(restart)
     }
 }
 
-RCT_EXPORT_METHOD(getARSnapshot:(BOOL)saveToLibrary
+RCT_EXPORT_METHOD(getSnapshot:(BOOL)saveToLibrary
                  findEventsWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
