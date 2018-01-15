@@ -3,7 +3,7 @@
 #import <ModelIO/MDLAsset.h>
 #import <SceneKit/ModelIO.h>
 #import "AFNetworking.h"
-#import "SSZipArchive.h"
+#import <SSZipArchive/SSZipArchive.h>
 
 typedef enum
 {

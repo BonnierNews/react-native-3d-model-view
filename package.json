@@ -1,7 +1,7 @@
 {
   "name": "react-native-3d-model-view",
   "version": "1.0",
-  "description": "",
+  "description": "React Native plugin for showing .obj and .scn models.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
