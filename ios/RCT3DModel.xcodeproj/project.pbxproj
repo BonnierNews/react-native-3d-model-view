@@ -28,23 +28,6 @@
 		53ED49C11FFF723D00FB63D6 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49B91FFF723D00FB63D6 /* AFURLRequestSerialization.m */; };
 		53ED49C21FFF723D00FB63D6 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49BB1FFF723D00FB63D6 /* AFURLResponseSerialization.m */; };
 		53ED49C31FFF723D00FB63D6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49BD1FFF723D00FB63D6 /* AFURLSessionManager.m */; };
-		53ED49EF1FFF725B00FB63D6 /* aes_ni.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49CA1FFF725B00FB63D6 /* aes_ni.c */; };
-		53ED49F01FFF725B00FB63D6 /* aescrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49CC1FFF725B00FB63D6 /* aescrypt.c */; };
-		53ED49F11FFF725B00FB63D6 /* aeskey.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49CD1FFF725B00FB63D6 /* aeskey.c */; };
-		53ED49F21FFF725B00FB63D6 /* aestab.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49CF1FFF725B00FB63D6 /* aestab.c */; };
-		53ED49F31FFF725B00FB63D6 /* fileenc.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49D31FFF725B00FB63D6 /* fileenc.c */; };
-		53ED49F41FFF725B00FB63D6 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49D51FFF725B00FB63D6 /* hmac.c */; };
-		53ED49F51FFF725B00FB63D6 /* prng.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49D71FFF725B00FB63D6 /* prng.c */; };
-		53ED49F61FFF725B00FB63D6 /* pwd2key.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49D91FFF725B00FB63D6 /* pwd2key.c */; };
-		53ED49F71FFF725B00FB63D6 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49DB1FFF725B00FB63D6 /* sha1.c */; };
-		53ED49F81FFF725B00FB63D6 /* crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49DD1FFF725B00FB63D6 /* crypt.c */; };
-		53ED49F91FFF725B00FB63D6 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49DF1FFF725B00FB63D6 /* ioapi.c */; };
-		53ED49FA1FFF725B00FB63D6 /* ioapi_buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49E11FFF725B00FB63D6 /* ioapi_buf.c */; };
-		53ED49FB1FFF725B00FB63D6 /* ioapi_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49E31FFF725B00FB63D6 /* ioapi_mem.c */; };
-		53ED49FC1FFF725B00FB63D6 /* minishared.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49E51FFF725B00FB63D6 /* minishared.c */; };
-		53ED49FD1FFF725B00FB63D6 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49E71FFF725B00FB63D6 /* unzip.c */; };
-		53ED49FE1FFF725B00FB63D6 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49E91FFF725B00FB63D6 /* zip.c */; };
-		53ED49FF1FFF725B00FB63D6 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49EC1FFF725B00FB63D6 /* SSZipArchive.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RCT3DModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RCT3DModelView.m */; };
 		D913528A1EA2F442001C1909 /* RCT3DScnModelViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D91352891EA2F442001C1909 /* RCT3DScnModelViewManager.m */; };
 		D913528B1EA2F477001C1909 /* RCT3DModelView.h in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5881CC2AC0600A0062D /* RCT3DModelView.h */; };
@@ -99,45 +82,6 @@
 		53ED49BB1FFF723D00FB63D6 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		53ED49BC1FFF723D00FB63D6 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		53ED49BD1FFF723D00FB63D6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		53ED49C61FFF725B00FB63D6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		53ED49C91FFF725B00FB63D6 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
-		53ED49CA1FFF725B00FB63D6 /* aes_ni.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes_ni.c; sourceTree = "<group>"; };
-		53ED49CB1FFF725B00FB63D6 /* aes_ni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes_ni.h; sourceTree = "<group>"; };
-		53ED49CC1FFF725B00FB63D6 /* aescrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aescrypt.c; sourceTree = "<group>"; };
-		53ED49CD1FFF725B00FB63D6 /* aeskey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aeskey.c; sourceTree = "<group>"; };
-		53ED49CE1FFF725B00FB63D6 /* aesopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aesopt.h; sourceTree = "<group>"; };
-		53ED49CF1FFF725B00FB63D6 /* aestab.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aestab.c; sourceTree = "<group>"; };
-		53ED49D01FFF725B00FB63D6 /* aestab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aestab.h; sourceTree = "<group>"; };
-		53ED49D11FFF725B00FB63D6 /* brg_endian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brg_endian.h; sourceTree = "<group>"; };
-		53ED49D21FFF725B00FB63D6 /* brg_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brg_types.h; sourceTree = "<group>"; };
-		53ED49D31FFF725B00FB63D6 /* fileenc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fileenc.c; sourceTree = "<group>"; };
-		53ED49D41FFF725B00FB63D6 /* fileenc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileenc.h; sourceTree = "<group>"; };
-		53ED49D51FFF725B00FB63D6 /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac.c; sourceTree = "<group>"; };
-		53ED49D61FFF725B00FB63D6 /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
-		53ED49D71FFF725B00FB63D6 /* prng.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = prng.c; sourceTree = "<group>"; };
-		53ED49D81FFF725B00FB63D6 /* prng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prng.h; sourceTree = "<group>"; };
-		53ED49D91FFF725B00FB63D6 /* pwd2key.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pwd2key.c; sourceTree = "<group>"; };
-		53ED49DA1FFF725B00FB63D6 /* pwd2key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pwd2key.h; sourceTree = "<group>"; };
-		53ED49DB1FFF725B00FB63D6 /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
-		53ED49DC1FFF725B00FB63D6 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
-		53ED49DD1FFF725B00FB63D6 /* crypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypt.c; sourceTree = "<group>"; };
-		53ED49DE1FFF725B00FB63D6 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
-		53ED49DF1FFF725B00FB63D6 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
-		53ED49E01FFF725B00FB63D6 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
-		53ED49E11FFF725B00FB63D6 /* ioapi_buf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi_buf.c; sourceTree = "<group>"; };
-		53ED49E21FFF725B00FB63D6 /* ioapi_buf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi_buf.h; sourceTree = "<group>"; };
-		53ED49E31FFF725B00FB63D6 /* ioapi_mem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi_mem.c; sourceTree = "<group>"; };
-		53ED49E41FFF725B00FB63D6 /* ioapi_mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi_mem.h; sourceTree = "<group>"; };
-		53ED49E51FFF725B00FB63D6 /* minishared.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = minishared.c; sourceTree = "<group>"; };
-		53ED49E61FFF725B00FB63D6 /* minishared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = minishared.h; sourceTree = "<group>"; };
-		53ED49E71FFF725B00FB63D6 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
-		53ED49E81FFF725B00FB63D6 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
-		53ED49E91FFF725B00FB63D6 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
-		53ED49EA1FFF725B00FB63D6 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
-		53ED49EB1FFF725B00FB63D6 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
-		53ED49EC1FFF725B00FB63D6 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
-		53ED49ED1FFF725B00FB63D6 /* SSZipCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipCommon.h; sourceTree = "<group>"; };
-		53ED49EE1FFF725B00FB63D6 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RCT3DModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DModelView.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RCT3DModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCT3DModelView.m; sourceTree = "<group>"; };
 		D91352881EA2F442001C1909 /* RCT3DScnModelViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DScnModelViewManager.h; sourceTree = "<group>"; };
@@ -393,7 +337,6 @@
 				53ED49F91FFF725B00FB63D6 /* ioapi.c in Sources */,
 				D913528A1EA2F442001C1909 /* RCT3DScnModelViewManager.m in Sources */,
 				53ED49EF1FFF725B00FB63D6 /* aes_ni.c in Sources */,
-				53ED49FF1FFF725B00FB63D6 /* SSZipArchive.m in Sources */,
 				53ED49FE1FFF725B00FB63D6 /* zip.c in Sources */,
 				53ED49C31FFF723D00FB63D6 /* AFURLSessionManager.m in Sources */,
 				53ED49FB1FFF725B00FB63D6 /* ioapi_mem.c in Sources */,
@@ -504,6 +447,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../react-native-code-push/ios/**",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -526,6 +470,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../react-native-code-push/ios/**",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
