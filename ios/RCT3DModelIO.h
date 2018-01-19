@@ -2,8 +2,7 @@
 #import <ModelIO/ModelIO.h>
 #import <ModelIO/MDLAsset.h>
 #import <SceneKit/ModelIO.h>
-#import "AFNetworking.h"
-#import "SSZipArchive.h"
+#import <UIKit/UIKit.h>
 
 typedef enum
 {

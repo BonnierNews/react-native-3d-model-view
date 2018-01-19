@@ -13,14 +13,13 @@ RCT_EXPORT_MODULE()
   return modelView;
 }
 
-RCT_EXPORT_VIEW_PROPERTY(source, NSString)
+RCT_EXPORT_VIEW_PROPERTY(src, NSString)
 RCT_EXPORT_VIEW_PROPERTY(type, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(scale, float)
 RCT_EXPORT_VIEW_PROPERTY(color, UIColor)
 
-RCT_EXPORT_VIEW_PROPERTY(onLoadModelStart, RCTBubblingEventBlock)
-RCT_EXPORT_VIEW_PROPERTY(onLoadModelSuccess, RCTBubblingEventBlock)
-RCT_EXPORT_VIEW_PROPERTY(onLoadModelError, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(loadModelSuccess, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(loadModelError, RCTBubblingEventBlock)
 
 RCT_EXPORT_METHOD(reload)
 {

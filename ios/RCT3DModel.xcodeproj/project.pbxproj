@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		530C02881FFD0CFA00187B2C /* RCT3DModelIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C02871FFD0CFA00187B2C /* RCT3DModelIO.m */; };
 		536AB81420050426004223D4 /* ThresholdPanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538848952004EB180000C28B /* ThresholdPanGesture.swift */; };
@@ -22,12 +23,6 @@
 		53B59F132003B8B3007669AA /* RCT3DScnModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B59F122003B8B2007669AA /* RCT3DScnModelView.m */; };
 		53B59F162003BC21007669AA /* RCT3DARModelViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B59F152003BC21007669AA /* RCT3DARModelViewManager.m */; };
 		53B59F192003BCD4007669AA /* RCT3DARModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B59F172003BCD4007669AA /* RCT3DARModelView.m */; };
-		53ED49BE1FFF723D00FB63D6 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49B21FFF723D00FB63D6 /* AFHTTPSessionManager.m */; };
-		53ED49BF1FFF723D00FB63D6 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49B51FFF723D00FB63D6 /* AFNetworkReachabilityManager.m */; };
-		53ED49C01FFF723D00FB63D6 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49B71FFF723D00FB63D6 /* AFSecurityPolicy.m */; };
-		53ED49C11FFF723D00FB63D6 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49B91FFF723D00FB63D6 /* AFURLRequestSerialization.m */; };
-		53ED49C21FFF723D00FB63D6 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49BB1FFF723D00FB63D6 /* AFURLResponseSerialization.m */; };
-		53ED49C31FFF723D00FB63D6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED49BD1FFF723D00FB63D6 /* AFURLSessionManager.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RCT3DModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RCT3DModelView.m */; };
 		D913528A1EA2F442001C1909 /* RCT3DScnModelViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D91352891EA2F442001C1909 /* RCT3DScnModelViewManager.m */; };
 		D913528B1EA2F477001C1909 /* RCT3DModelView.h in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5881CC2AC0600A0062D /* RCT3DModelView.h */; };
@@ -69,19 +64,6 @@
 		53B59F152003BC21007669AA /* RCT3DARModelViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCT3DARModelViewManager.m; sourceTree = "<group>"; };
 		53B59F172003BCD4007669AA /* RCT3DARModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCT3DARModelView.m; sourceTree = "<group>"; };
 		53B59F182003BCD4007669AA /* RCT3DARModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DARModelView.h; sourceTree = "<group>"; };
-		53ED49B11FFF723D00FB63D6 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		53ED49B21FFF723D00FB63D6 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		53ED49B31FFF723D00FB63D6 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		53ED49B41FFF723D00FB63D6 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		53ED49B51FFF723D00FB63D6 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		53ED49B61FFF723D00FB63D6 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
-		53ED49B71FFF723D00FB63D6 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
-		53ED49B81FFF723D00FB63D6 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		53ED49B91FFF723D00FB63D6 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		53ED49BA1FFF723D00FB63D6 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		53ED49BB1FFF723D00FB63D6 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		53ED49BC1FFF723D00FB63D6 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
-		53ED49BD1FFF723D00FB63D6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RCT3DModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DModelView.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RCT3DModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCT3DModelView.m; sourceTree = "<group>"; };
 		D91352881EA2F442001C1909 /* RCT3DScnModelViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCT3DScnModelViewManager.h; sourceTree = "<group>"; };
@@ -151,94 +133,10 @@
 			path = "Virtual Objects";
 			sourceTree = "<group>";
 		};
-		53ED49B01FFF723D00FB63D6 /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				53ED49B11FFF723D00FB63D6 /* AFHTTPSessionManager.h */,
-				53ED49B21FFF723D00FB63D6 /* AFHTTPSessionManager.m */,
-				53ED49B31FFF723D00FB63D6 /* AFNetworking.h */,
-				53ED49B41FFF723D00FB63D6 /* AFNetworkReachabilityManager.h */,
-				53ED49B51FFF723D00FB63D6 /* AFNetworkReachabilityManager.m */,
-				53ED49B61FFF723D00FB63D6 /* AFSecurityPolicy.h */,
-				53ED49B71FFF723D00FB63D6 /* AFSecurityPolicy.m */,
-				53ED49B81FFF723D00FB63D6 /* AFURLRequestSerialization.h */,
-				53ED49B91FFF723D00FB63D6 /* AFURLRequestSerialization.m */,
-				53ED49BA1FFF723D00FB63D6 /* AFURLResponseSerialization.h */,
-				53ED49BB1FFF723D00FB63D6 /* AFURLResponseSerialization.m */,
-				53ED49BC1FFF723D00FB63D6 /* AFURLSessionManager.h */,
-				53ED49BD1FFF723D00FB63D6 /* AFURLSessionManager.m */,
-			);
-			path = AFNetworking;
-			sourceTree = "<group>";
-		};
-		53ED49C51FFF725B00FB63D6 /* SSZipArchive */ = {
-			isa = PBXGroup;
-			children = (
-				53ED49C61FFF725B00FB63D6 /* Info.plist */,
-				53ED49C71FFF725B00FB63D6 /* minizip */,
-				53ED49EB1FFF725B00FB63D6 /* SSZipArchive.h */,
-				53ED49EC1FFF725B00FB63D6 /* SSZipArchive.m */,
-				53ED49ED1FFF725B00FB63D6 /* SSZipCommon.h */,
-				53ED49EE1FFF725B00FB63D6 /* ZipArchive.h */,
-			);
-			path = SSZipArchive;
-			sourceTree = "<group>";
-		};
-		53ED49C71FFF725B00FB63D6 /* minizip */ = {
-			isa = PBXGroup;
-			children = (
-				53ED49C81FFF725B00FB63D6 /* aes */,
-				53ED49DD1FFF725B00FB63D6 /* crypt.c */,
-				53ED49DE1FFF725B00FB63D6 /* crypt.h */,
-				53ED49DF1FFF725B00FB63D6 /* ioapi.c */,
-				53ED49E01FFF725B00FB63D6 /* ioapi.h */,
-				53ED49E11FFF725B00FB63D6 /* ioapi_buf.c */,
-				53ED49E21FFF725B00FB63D6 /* ioapi_buf.h */,
-				53ED49E31FFF725B00FB63D6 /* ioapi_mem.c */,
-				53ED49E41FFF725B00FB63D6 /* ioapi_mem.h */,
-				53ED49E51FFF725B00FB63D6 /* minishared.c */,
-				53ED49E61FFF725B00FB63D6 /* minishared.h */,
-				53ED49E71FFF725B00FB63D6 /* unzip.c */,
-				53ED49E81FFF725B00FB63D6 /* unzip.h */,
-				53ED49E91FFF725B00FB63D6 /* zip.c */,
-				53ED49EA1FFF725B00FB63D6 /* zip.h */,
-			);
-			path = minizip;
-			sourceTree = "<group>";
-		};
-		53ED49C81FFF725B00FB63D6 /* aes */ = {
-			isa = PBXGroup;
-			children = (
-				53ED49C91FFF725B00FB63D6 /* aes.h */,
-				53ED49CA1FFF725B00FB63D6 /* aes_ni.c */,
-				53ED49CB1FFF725B00FB63D6 /* aes_ni.h */,
-				53ED49CC1FFF725B00FB63D6 /* aescrypt.c */,
-				53ED49CD1FFF725B00FB63D6 /* aeskey.c */,
-				53ED49CE1FFF725B00FB63D6 /* aesopt.h */,
-				53ED49CF1FFF725B00FB63D6 /* aestab.c */,
-				53ED49D01FFF725B00FB63D6 /* aestab.h */,
-				53ED49D11FFF725B00FB63D6 /* brg_endian.h */,
-				53ED49D21FFF725B00FB63D6 /* brg_types.h */,
-				53ED49D31FFF725B00FB63D6 /* fileenc.c */,
-				53ED49D41FFF725B00FB63D6 /* fileenc.h */,
-				53ED49D51FFF725B00FB63D6 /* hmac.c */,
-				53ED49D61FFF725B00FB63D6 /* hmac.h */,
-				53ED49D71FFF725B00FB63D6 /* prng.c */,
-				53ED49D81FFF725B00FB63D6 /* prng.h */,
-				53ED49D91FFF725B00FB63D6 /* pwd2key.c */,
-				53ED49DA1FFF725B00FB63D6 /* pwd2key.h */,
-				53ED49DB1FFF725B00FB63D6 /* sha1.c */,
-				53ED49DC1FFF725B00FB63D6 /* sha1.h */,
-			);
-			path = aes;
-			sourceTree = "<group>";
-		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
 				538848882004EB180000C28B /* ARKitInteraction */,
-				53ED49C51FFF725B00FB63D6 /* SSZipArchive */,
-				53ED49B01FFF723D00FB63D6 /* AFNetworking */,
 				530C02861FFD0CFA00187B2C /* RCT3DModelIO.h */,
 				530C02871FFD0CFA00187B2C /* RCT3DModelIO.m */,
 				B3E7B5881CC2AC0600A0062D /* RCT3DModelView.h */,
@@ -320,40 +218,18 @@
 				536AB81820050426004223D4 /* ARView+ObjectSelection.swift in Sources */,
 				536AB81920050426004223D4 /* VirtualObjectARView.swift in Sources */,
 				536AB81A20050426004223D4 /* VirtualObjectInteraction.swift in Sources */,
-				53ED49F71FFF725B00FB63D6 /* sha1.c in Sources */,
-				53ED49F51FFF725B00FB63D6 /* prng.c in Sources */,
-				53ED49F31FFF725B00FB63D6 /* fileenc.c in Sources */,
 				53B59F132003B8B3007669AA /* RCT3DScnModelView.m in Sources */,
 				538B82DF2004EBF100206B2E /* VirtualObjectLoader.swift in Sources */,
 				53B59F162003BC21007669AA /* RCT3DARModelViewManager.m in Sources */,
-				53ED49C11FFF723D00FB63D6 /* AFURLRequestSerialization.m in Sources */,
-				53ED49FD1FFF725B00FB63D6 /* unzip.c in Sources */,
-				53ED49F21FFF725B00FB63D6 /* aestab.c in Sources */,
 				D913528C1EA2F479001C1909 /* RCT3DScnModelViewManager.h in Sources */,
 				538B82D82004EBE100206B2E /* FocusSquare.swift in Sources */,
-				53ED49F01FFF725B00FB63D6 /* aescrypt.c in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RCT3DModelView.m in Sources */,
 				53B59F192003BCD4007669AA /* RCT3DARModelView.m in Sources */,
-				53ED49F91FFF725B00FB63D6 /* ioapi.c in Sources */,
 				D913528A1EA2F442001C1909 /* RCT3DScnModelViewManager.m in Sources */,
-				53ED49EF1FFF725B00FB63D6 /* aes_ni.c in Sources */,
-				53ED49FE1FFF725B00FB63D6 /* zip.c in Sources */,
-				53ED49C31FFF723D00FB63D6 /* AFURLSessionManager.m in Sources */,
-				53ED49FB1FFF725B00FB63D6 /* ioapi_mem.c in Sources */,
-				53ED49F11FFF725B00FB63D6 /* aeskey.c in Sources */,
-				53ED49FA1FFF725B00FB63D6 /* ioapi_buf.c in Sources */,
 				538B82DB2004EBE800206B2E /* Utilities.swift in Sources */,
-				53ED49C21FFF723D00FB63D6 /* AFURLResponseSerialization.m in Sources */,
-				53ED49BF1FFF723D00FB63D6 /* AFNetworkReachabilityManager.m in Sources */,
-				53ED49C01FFF723D00FB63D6 /* AFSecurityPolicy.m in Sources */,
-				53ED49BE1FFF723D00FB63D6 /* AFHTTPSessionManager.m in Sources */,
-				53ED49FC1FFF725B00FB63D6 /* minishared.c in Sources */,
-				53ED49F61FFF725B00FB63D6 /* pwd2key.c in Sources */,
 				538B82D92004EBE100206B2E /* FocusSquareSegment.swift in Sources */,
 				D913528B1EA2F477001C1909 /* RCT3DModelView.h in Sources */,
 				538B82DE2004EBF100206B2E /* VirtualObject.swift in Sources */,
-				53ED49F81FFF725B00FB63D6 /* crypt.c in Sources */,
-				53ED49F41FFF725B00FB63D6 /* hmac.c in Sources */,
 				530C02881FFD0CFA00187B2C /* RCT3DModelIO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

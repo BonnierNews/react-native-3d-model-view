@@ -23,72 +23,13 @@
 
 - (void)loadModel:(NSString *)path type:(ModelType)type color:(UIColor *)color completion:(void (^)(SCNNode * node))completion {
     NSURL *url = [self urlFromPath:path];
-    bool isHttp = [path hasPrefix:@"http"];
-    bool isZip = [path containsString:@".zip"];
-
-    if (isHttp) {
-        [self download:url completion:^(NSURL *localUrl) {
-            if (isZip) {
-                [self unzip:localUrl completion:^(NSURL *unzippedUrl) {
-                    completion([self createModel:unzippedUrl type:type color:color]);
-                }];
-            } else {
-                completion([self createModel:localUrl type:type color:color]);
-            }
-        }];
-    } else {
-        if (isZip) {
-            [self unzip:url completion:^(NSURL *unzippedUrl) {
-                completion([self createModel:unzippedUrl type:type color:color]);
-            }];
-        } else {
-            completion([self createModel:url type:type color:color]);
-        }
-    }
+    NSLog(@"%@", [url path]);
+    completion([self createModel:url type:type color:color]);
 }
 
 - (void)clearDownloadedFiles {
     NSURL *dir = [self getDownloadDirectory];
     [[NSFileManager defaultManager] removeItemAtURL:dir error:nil];
-}
-
-- (void)download:(NSURL *)url completion:(void (^)(NSURL* url))completion {
-    
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-        NSURL *dir = [self getDownloadDirectory];
-        return [dir URLByAppendingPathComponent:[response suggestedFilename]];
-    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-        if (filePath != nil) {
-            completion(filePath);
-        } else {
-            completion(nil);
-        }
-    }];
-    [downloadTask resume];
-    
-}
-
--(void)unzip:(NSURL *)url completion:(void (^)(NSURL* url))completion {
-    // Unzip the archive
-    NSURL *dir = [self getDownloadDirectory];
-    NSString *inputPath = [url path];
-    NSString *outputPath = [dir path];
-    NSString *folderName = [[url lastPathComponent] stringByReplacingOccurrencesOfString:@".zip" withString:@""];
-    NSError *zipError = nil;
-    
-    [SSZipArchive unzipFileAtPath:inputPath toDestination:outputPath overwrite:NO password:nil error:&zipError];
-    
-    if (zipError) {
-        completion(nil);
-    } else {
-        NSURL *resultPath = [dir URLByAppendingPathComponent:folderName isDirectory:YES];
-        completion(resultPath);
-    }
 }
 
 - (NSURL *)urlFromPath:(NSString *)path {

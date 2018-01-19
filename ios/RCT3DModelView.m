@@ -15,24 +15,21 @@
 }
 
 - (void)loadModel {
-    if (self.isLoading || self.source == nil || self.type == nil) {
+    if (self.isLoading || self.src == nil || self.type == nil) {
         return;
     }
-    if (self.onLoadModelStart) {
-        self.onLoadModelStart(@{});
-    }
     self.isLoading = YES;
-    NSLog(@"%@", self.source);
-    [[RCT3DModelIO sharedInstance] loadModel:self.source type:(ModelType)self.type color:self.color completion:^(SCNNode *node) {
+    NSLog(@"%@", self.src);
+    [[RCT3DModelIO sharedInstance] loadModel:self.src type:(ModelType)self.type color:self.color completion:^(SCNNode *node) {
         if (node != nil) {
             self.isLoading = NO;
             [self addModelNode:node];
-            if (self.onLoadModelSuccess) {
-                self.onLoadModelSuccess(@{});
+            if (self.loadModelSuccess) {
+                self.loadModelSuccess(@{});
             }
         } else {
-            if (self.onLoadModelError) {
-                self.onLoadModelError(@{});
+            if (self.loadModelError) {
+                self.loadModelError(@{});
             }
         }
     }];
@@ -54,11 +51,11 @@
     [self loadModel];
 }
 
-- (void)setSource:(NSString *)source {
-    if (source == nil && _modelNode != nil) {
+- (void)setSrc:(NSString *)src {
+    if (src == nil && _modelNode != nil) {
         [self removeNode:_modelNode];
     }
-    _source = source;
+    _src = src;
     [self loadModel];
 }
 
