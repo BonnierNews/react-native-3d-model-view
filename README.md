@@ -58,7 +58,8 @@ The lib also have peer dependencies of `react-native-zip-archive`, `react-native
 
 ## Contributing
 
-If you find a bug or would like to request a new feature, just [open an issue](https://github.com/HippoAR/react-native-arkit/issues/new). Your contributions are always welcome! Submit a pull request and see [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines.
+If you find a bug or would like to request a new feature, just [open an issue](https://github.com/BonnierNews/react-native-3d-model-view/issues/new). Your contributions are always welcome! Just submit a pull request.
+
 ## License
 
 #### The MIT License (MIT)
