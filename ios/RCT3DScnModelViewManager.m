@@ -27,9 +27,4 @@ RCT_EXPORT_METHOD(reload)
         [modelView reload];
     }
 }
-
-RCT_EXPORT_METHOD(clearDownloadedFiles)
-{
-    [[RCT3DModelIO sharedInstance] clearDownloadedFiles];
-}
 @end

@@ -19,7 +19,7 @@ export default class ModelScreen extends React.Component {
 
   componentDidMount () {
     ARManager.checkIfARSupported(supported => {
-      this.setState({ arSupported: true })
+      this.setState({ arSupported: supported })
     })
   }
 

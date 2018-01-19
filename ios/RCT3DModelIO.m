@@ -27,11 +27,6 @@
     completion([self createModel:url type:type color:color]);
 }
 
-- (void)clearDownloadedFiles {
-    NSURL *dir = [self getDownloadDirectory];
-    [[NSFileManager defaultManager] removeItemAtURL:dir error:nil];
-}
-
 - (NSURL *)urlFromPath:(NSString *)path {
     NSURL *url;
     
@@ -129,19 +124,6 @@
     [node addChildNode:[SCNNode nodeWithMDLObject:object]];
     node.castsShadow = YES;
     return node;
-}
-
--(NSURL *)getDownloadDirectory {
-    NSURL *parentDir = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
-    NSURL *directory = [parentDir URLByAppendingPathComponent:@"rct-3d-model-view"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL isDir = YES;
-    if(![fileManager fileExistsAtPath:[directory path] isDirectory:&isDir]) {
-        if(![fileManager createDirectoryAtPath:[directory path] withIntermediateDirectories:YES attributes:nil error:nil]) {
-            NSLog(@"Error: Create folder failed %@", directory);
-        }
-    }
-    return directory;
 }
 
 @end
