@@ -1,4 +1,6 @@
 # react-native-3d-model-view
+[![npm version](https://img.shields.io/npm/v/react-native-3d-model-view.svg?style=flat)](https://www.npmjs.com/package/react-native-3d-model-view)
+[![npm downloads](https://img.shields.io/npm/dm/react-native-3d-model-view.svg?style=flat)](https://www.npmjs.com/package/react-native-3d-model-view)
 
 A React Native view for displaying .obj and .scn (iOS only) models either on screen or in AR (iOS devices with A9 or later processors only).
 
@@ -30,7 +32,7 @@ import ModelView, { ModelTypes } from 'react-native-3d-model-view'
   onLoadModelError={this.onLoadModelError} />
 
 ```
-<img src="screenshots/modelview.png" width="250">
+<img src="https://raw.githubusercontent.com/BonnierNews/react-native-3d-model-view/master/screenshots/modelview.png" width="250">
 
 ### AR Model view
 ```javascript
@@ -56,7 +58,7 @@ import ARModelView, { ModelTypes } from 'react-native-3d-model-view'
 
 ```
 
-<img src="screenshots/arview.png" width="250">
+<img src="https://raw.githubusercontent.com/BonnierNews/react-native-3d-model-view/master/screenshots/arview.png" width="250">
 
 ## Components
 
