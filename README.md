@@ -58,13 +58,13 @@ import ARModelView, { ModelTypes } from 'react-native-3d-model-view'
 
 <img src="screenshots/arview.png" width="250">
 
-### Components
+## Components
 
-#### ModelView
+### ModelView
 
 View for displaying .obj or .scn (iOS only) on screen with SceneKit or OpenGL.
 
-##### Props
+#### Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
 |`source`|`string` or `object`|`null`|Can be either a `string` with a local path or an `object` with prop `uri` if you want to fetch it from a server. Also please note that the source can be a .zip containing the object and the texture.|
@@ -72,24 +72,25 @@ View for displaying .obj or .scn (iOS only) on screen with SceneKit or OpenGL.
 |`color`|`string`|`null`|Desired color of the model.|
 |`scale`|`number`|`1`|Scale of the model.|
 
-##### Events
+#### Events
 | Event Name | Returns | Notes |
 |---|---|---|
 |`onLoadModelStart`|`null`|Loading model has started.|
 |`onLoadModelSuccess`|`null`|Loading model has succeeded.|
 |`onLoadModelError`|`Error`|Failed loading model.|
 
-##### Methods
+#### Methods
 Use `ref={modelView => {this.modelView = modelView}}` to be able to call the methods listed below.
+
 | Method Name | Returns | Notes |
 |---|---|---|
 |`reload`|`null`|Reloads the model.|
 
-#### ARModelView
+### ARModelView
 
 View for displaying .obj or .scn in augmented reality (iOS devices with A9 or later processors only).
 
-##### Props
+#### Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
 |`source`|`string` or `object`|`null`|Can be either a `string` with a local path or an `object` with prop `uri` if you want to fetch it from a server. Also please note that the source can be a .zip containing the object and the texture.|
@@ -99,7 +100,7 @@ View for displaying .obj or .scn in augmented reality (iOS devices with A9 or la
 |`focusSquareColor`|`string`|`#FFCC00`|Color of the segments in the focus square.|
 |`focusSquareFillColor`|`string`|`#FFEC69`|Fill color of the focus square.|
 
-##### Events
+#### Events
 | Event Name | Returns | Notes |
 |---|---|---|
 |`onLoadModelStart`|`null`|Loading model has started.|
@@ -114,24 +115,27 @@ View for displaying .obj or .scn in augmented reality (iOS devices with A9 or la
 |`onPlaceObjectError`|`null`||
 |`onTrackingQualityInfo`|`{id: number, presentation: string, recommendation: string`|The current info about the tracking quality.|
 
-##### Methods
+#### Methods
 Use `ref={arView => {this.arView = arView}}` to be able to call the methods listed below.
+
 | Method Name | Returns | Notes |
 |---|---|---|
 |`reload`|`null`|Reloads the model.|
 |`restart`|`null`|Restarts the ARKit session.|
 |`getSnapshot(boolean)`|`Promise`|Save a print screen of the current AR session. Boolean determines if the image should be saved to the Photo Library of the device. The promise return the url of the saved image.|
 
-### Native modules
+## Native modules
 
-#### Manager
+### Manager
 Manager for common actions needed for the `ModelView`.
+
 | Method Name | Returns | Notes |
 |---|---|---|
 |`clearDownloadedFiles`|`null`|Removes all downloaded model assets from the device. **Should be called when existing the app**|
 
-#### ARManager
+### ARManager
 Manager for common actions needed for the `ARModelView`.
+
 | Method Name | Returns | Notes |
 |---|---|---|
 |`clearDownloadedFiles`|`null`|Removes all downloaded model assets from the device. **Should be called when existing the app**|
