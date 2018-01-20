@@ -131,14 +131,14 @@ Manager for common actions needed for the `ModelView`.
 
 | Method Name | Returns | Notes |
 |---|---|---|
-|`clearDownloadedFiles`|`null`|Removes all downloaded model assets from the device. **Should be called when existing the app**|
+|`clearDownloadedFiles`|`null`|Removes all downloaded model assets from the device. **Should be called when exiting the app**|
 
 ### ARManager
 Manager for common actions needed for the `ARModelView`.
 
 | Method Name | Returns | Notes |
 |---|---|---|
-|`clearDownloadedFiles`|`null`|Removes all downloaded model assets from the device. **Should be called when existing the app**|
+|`clearDownloadedFiles`|`null`|Removes all downloaded model assets from the device. **Should be called when exiting the app**|
 |`checkIfARSupported(callback)`|`null`|Check if ARKit is supported on the current device. Callback params is a boolean saying if it is supported or not.|
 
 ## Contributing
