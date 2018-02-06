@@ -6,6 +6,7 @@ import com.facebook.react.ReactApplication;
 import com.rnziparchive.RNZipArchivePackage;
 import com.rnfs.RNFSPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
+import se.bonniernews.rn3d.RN3DPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -28,7 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RNZipArchivePackage(),
             new RNFSPackage(),
-            new RNFetchBlobPackage()
+            new RNFetchBlobPackage(),
+            new RN3DPackage()
       );
     }
 
