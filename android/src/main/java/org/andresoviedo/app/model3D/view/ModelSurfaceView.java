@@ -32,7 +32,6 @@ public class ModelSurfaceView extends GLSurfaceView {
 	private TouchController touchHandler;
 	private float[] backgroundColor = new float[]{0.2f, 0.2f, 0.2f, 1.0f};
 
-	private ModelSurfaceView gLView;
 
 	private SceneLoader scene;
 
@@ -40,7 +39,8 @@ public class ModelSurfaceView extends GLSurfaceView {
 
 	public ModelSurfaceView(Context context) {
 		super(context);
-
+		this.paramAssetFilename = "model.obj";
+		this.paramAssetDir = "files/rct-3d-model-view/Hamburger";
 		// Create an OpenGL ES 2.0 context.
 		setEGLContextClientVersion(2);
 
@@ -78,7 +78,7 @@ public class ModelSurfaceView extends GLSurfaceView {
 	}
 
 	public ModelSurfaceView getgLView() {
-		return gLView;
+		return this;
 	}
 
 	public File getParamFile() {

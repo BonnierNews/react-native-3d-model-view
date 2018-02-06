@@ -98,6 +98,7 @@ public class SceneLoader {
 	}
 
 	public void init() {
+		Log.d("SceneLoader", "init");
 
 		// Load object
 		if (parent.getParamFile() != null || parent.getParamAssetDir() != null) {
@@ -113,14 +114,14 @@ public class SceneLoader {
 				if (parent.getParamFile() != null) {
 					url = parent.getParamFile().toURI().toURL();
 				} else {
-					url = new URL("android://org.andresoviedo.dddmodel2/assets/" + parent.getParamAssetDir() + File.separator + parent.getParamAssetFilename());
-
+					url = new URL("android://com.example/files/rct-3d-model-view/Hamburger/Hamburger.obj");
+					Log.d("SceneLoader", url.toString());
 				}
 			} catch (MalformedURLException e) {
 				Log.e("SceneLoader", e.getMessage(), e);
 				throw new RuntimeException(e);
 			}
-
+			Log.d("SceneLoader", "load");
 			Object3DBuilder.loadV6AsyncParallel(context, url, parent.getParamFile(), parent.getParamAssetDir(),
 					parent.getParamAssetFilename(), new Callback() {
 
