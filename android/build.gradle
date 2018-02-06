@@ -17,5 +17,7 @@ android {
 }
 
 dependencies {
+    compile 'com.android.support:support-v4:19.1.0'
+    compile 'commons-io:commons-io:2.5'
     compile 'com.facebook.react:react-native:+'
 }

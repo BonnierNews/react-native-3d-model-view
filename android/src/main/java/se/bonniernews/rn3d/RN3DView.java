@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.graphics.Paint;
 import android.graphics.Canvas;
+import android.os.Handler;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
@@ -28,32 +29,26 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.views.view.ReactViewGroup;
 
+import android.widget.RelativeLayout;
 import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 import android.util.DisplayMetrics;
 
 import org.andresoviedo.app.model3D.view.ModelSurfaceView;
+import org.andresoviedo.app.model3D.services.SceneLoader;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-class RN3DViewManager extends SimpleViewManager<ModelSurfaceView> {
-  public static final String REACT_CLASS = "RCT3DScnModelView";
+public class RN3DView extends RelativeLayout {
+    private ModelSurfaceView gLView;
 
-  @Override
-  public String getName() {
-    return REACT_CLASS;
-  }
+    private SceneLoader scene;
 
-  @Override
-  protected ModelSurfaceView createViewInstance(ThemedReactContext themedReactContext) {
-    ModelSurfaceView view = create3DView(themedReactContext);
-    return view;
-  }
+    private Handler handler;
 
-  @NonNull
-  public static ModelSurfaceView create3DView(ThemedReactContext context) {
-    return new ModelSurfaceView(context);
-  }
+    public RN3DView(Context context) {
+        super(context);
+    }
 }
