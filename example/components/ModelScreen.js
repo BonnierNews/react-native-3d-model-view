@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   modelView: {
-    backgroundColor: 'white',
     width: '100%',
     height: 300
   }
