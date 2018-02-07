@@ -8,7 +8,6 @@ import android.content.Context;
 import org.andresoviedo.app.model3D.controller.LoaderTask;
 import org.andresoviedo.app.model3D.model.Object3DBuilder;
 import org.andresoviedo.app.model3D.model.Object3DData;
-import org.andresoviedo.app.model3D.services.stl.STLLoader;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,26 +25,17 @@ import java.util.List;
 
 public class WavefrontLoader2 {
 
-	public static void loadAsync(final Context parent, URL url, final File currentDir,
-								 final String assetsDir, final String modelId, final Object3DBuilder.Callback callback)
+	public static void loadAsync(Context context, URL url, final Object3DBuilder.Callback callback)
 	{
-		new LoaderTask(parent,url,currentDir,assetsDir,modelId,callback){
+		new LoaderTask(context, url,callback){
 
 			// TODO: move this method inside the wavefront loader
 			private InputStream getInputStream() {
-				Log.i("LoaderTask", "Opening " + modelId + "...");
 				try {
-					final InputStream ret;
-					if (currentDir != null) {
-						return new FileInputStream(new File(currentDir, modelId));
-					} else if (assetsDir != null) {
-						return parent.getAssets().open(assetsDir + "/" + modelId);
-					} else {
-						throw new IllegalArgumentException("Model data source not specified");
-					}
-				} catch (IOException ex) {
-					throw new RuntimeException(
-							"There was a problem opening file/asset '" + (currentDir != null ? currentDir : assetsDir) + "/" + modelId + "'");
+					return url.openStream();
+				} catch (Exception e) {
+					Log.e("LoaderTask", e.getMessage(), e);
+					throw new RuntimeException(e);
 				}
 			}
 
@@ -78,9 +68,6 @@ public class WavefrontLoader2 {
 				// create the 3D object
 				Object3DData data3D = new Object3DData(wfl.getVerts(), wfl.getNormals(), wfl.getTexCoords(), wfl.getFaces(),
 						wfl.getFaceMats(), wfl.getMaterials());
-				data3D.setId(modelId);
-				data3D.setCurrentDir(currentDir);
-				data3D.setAssetsDir(assetsDir);
 				data3D.setLoader(wfl);
 				data3D.setDrawMode(GLES20.GL_TRIANGLES);
 				data3D.setDimensions(data3D.getLoader().getDimensions());
@@ -109,7 +96,7 @@ public class WavefrontLoader2 {
 
 					// build 3D object buffers
 					publishProgress(4);
-					Object3DBuilder.generateArrays(parent.getAssets(), data);
+					Object3DBuilder.generateArrays(context.getAssets(), data);
 					publishProgress(5);
 
 				} catch (Exception e) {

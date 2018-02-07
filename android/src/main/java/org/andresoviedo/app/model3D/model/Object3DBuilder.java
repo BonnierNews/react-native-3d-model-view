@@ -13,7 +13,6 @@ import org.andresoviedo.app.model3D.services.WavefrontLoader.Material;
 import org.andresoviedo.app.model3D.services.WavefrontLoader.Materials;
 import org.andresoviedo.app.model3D.services.WavefrontLoader.Tuple3;
 import org.andresoviedo.app.model3D.services.collada.loader.ColladaLoader;
-import org.andresoviedo.app.model3D.services.stl.STLLoader;
 import org.andresoviedo.app.model3D.services.wavefront.WavefrontLoader2;
 import org.andresoviedo.app.util.math.Math3DUtils;
 import org.apache.commons.io.IOUtils;
@@ -24,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.MalformedURLException;
 import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -894,33 +894,15 @@ public final class Object3DBuilder {
 		return bb;
 	}
 
-	public static void loadV6AsyncParallel(final Context parent, final URL url, final File file, final String assetsDir, final String assetName,
+	public static void loadV6AsyncParallel(Context context, final URL url,
 										   final Callback callback) {
 
-		final String modelId = file != null ? file.getName() : assetName;
-
-		Log.i("Object3DBuilder", "Loading model " + modelId + ". async and parallel..");
-		if (modelId.toLowerCase().endsWith(".obj")) {
-			loadV6AsyncParallel_Obj(parent, file, assetsDir, assetName, callback);
-		} else if (modelId.toLowerCase().endsWith(".stl")) {
-			Log.i("Object3DBuilder", "Loading STL object from: "+url);
-			STLLoader.loadSTLAsync(parent, url, callback);
-		} else if (modelId.toLowerCase().endsWith(".dae")) {
-			Log.i("Object3DBuilder", "Loading Collada object from: "+url);
-			ColladaLoader.loadAsync(parent, url, callback);
+		final String modelId = url.toString().toLowerCase();
+		if (modelId.endsWith(".obj")) {
+			WavefrontLoader2.loadAsync(context, url, callback);
+		} else if (modelId.endsWith(".dae")) {
+			ColladaLoader.loadAsync(url, callback);
 		}
-	}
-
-
-
-	public static void loadV6AsyncParallel_Obj(final Context parent, final File file, final String assetsDir, final String assetName,
-										   final Callback callback) {
-
-		final String modelId = file != null ? file.getName() : assetName;
-		final File currentDir = file != null ? file.getParentFile() : null;
-
-		Log.i("Object3DBuilder", "Loading model "+modelId+". async and parallel..");
-		WavefrontLoader2.loadAsync(parent, null, currentDir, assetsDir, modelId, callback);
 	}
 }
 

@@ -21,16 +21,9 @@ import android.content.Context;
  */
 public class ModelSurfaceView extends GLSurfaceView {
 
-	private String paramAssetDir;
-	private String paramAssetFilename;
-	/**
-	 * The file to load. Passed as input parameter
-	 */
-	private String paramFilename;
-
 	private ModelRenderer mRenderer;
 	private TouchController touchHandler;
-	private float[] backgroundColor = new float[]{0.2f, 0.2f, 0.2f, 1.0f};
+	private float[] backgroundColor = new float[]{1f, 1f, 1f, 0.0f};
 
 
 	private SceneLoader scene;
@@ -39,8 +32,6 @@ public class ModelSurfaceView extends GLSurfaceView {
 
 	public ModelSurfaceView(Context context) {
 		super(context);
-		this.paramAssetFilename = "model.obj";
-		this.paramAssetDir = "files/rct-3d-model-view/Hamburger";
 		// Create an OpenGL ES 2.0 context.
 		setEGLContextClientVersion(2);
 
@@ -54,10 +45,13 @@ public class ModelSurfaceView extends GLSurfaceView {
 
 		touchHandler = new TouchController(this, mRenderer);
 
-		//handler = new Handler(getMainLooper());
+		handler = new Handler(context.getMainLooper());
 
 		scene = new SceneLoader(this, context);
-		scene.init();
+		scene.init(
+				"/data/user/0/com.example/files/rct-3d-model-view/Hamburger/Hamburger.obj",
+				"/data/user/0/com.example/files/rct-3d-model-view/Hamburger/Hamburger.png"
+		);
 	}
 
 	@Override
@@ -73,28 +67,10 @@ public class ModelSurfaceView extends GLSurfaceView {
 		return mRenderer;
 	}
 
-	public SceneLoader getScene() {
-		return scene;
-	}
+	public SceneLoader getScene() { return scene; }
 
 	public ModelSurfaceView getgLView() {
 		return this;
-	}
-
-	public File getParamFile() {
-		return getParamFilename() != null ? new File(getParamFilename()) : null;
-	}
-
-	public String getParamAssetDir() {
-		return paramAssetDir;
-	}
-
-	public String getParamAssetFilename() {
-		return paramAssetFilename;
-	}
-
-	public String getParamFilename() {
-		return paramFilename;
 	}
 
 	public float[] getBackgroundColor(){

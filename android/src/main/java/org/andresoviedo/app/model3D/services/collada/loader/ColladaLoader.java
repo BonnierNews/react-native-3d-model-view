@@ -53,6 +53,8 @@ public class ColladaLoader {
 
 	private static Object[] buildAnimatedModel(URL url) throws IOException {
 		List<AnimatedModel> ret = new ArrayList<AnimatedModel>();
+		Log.d("SceneLoader", "collade");
+		Log.d("SceneLoader", url.toString());
 		AnimatedModelData modelData = loadColladaModel(url.openStream(),3);
 		List<MeshData> meshDataList = modelData.getMeshData();
 		for (MeshData meshData : meshDataList) {
@@ -169,16 +171,16 @@ public class ColladaLoader {
 		return (Object3DData)ret[1];
 	}
 
-	public static void loadAsync(final Context parent, URL url, final Object3DBuilder.Callback callback) {
-		new ColladaLoader.ColladaLoaderTask(parent,url,callback).execute();
+	public static void loadAsync(URL url, final Object3DBuilder.Callback callback) {
+		new ColladaLoader.ColladaLoaderTask(url,callback).execute();
 	}
 
 	private static class ColladaLoaderTask extends LoaderTask {
 
 		AnimatedModelData modelData;
 
-		ColladaLoaderTask(Context parent, URL url, Object3DBuilder.Callback callback) {
-			super(parent, url, null, null, null, callback);
+		ColladaLoaderTask(URL url, Object3DBuilder.Callback callback) {
+			super(null, url, callback);
 		}
 
 		@Override

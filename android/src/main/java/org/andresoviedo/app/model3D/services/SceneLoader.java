@@ -70,11 +70,11 @@ public class SceneLoader {
 	/**
 	 * Light toggle feature: we have 3 states: no light, light, light + rotation
 	 */
-	private boolean rotatingLight = true;
+	private boolean rotatingLight = false;
 	/**
 	 * Light toggle feature: whether to draw using lights
 	 */
-	private boolean drawLighting = true;
+	private boolean drawLighting = false;
 	/**
 	 * Object selected by the user
 	 */
@@ -97,57 +97,64 @@ public class SceneLoader {
 		this.context = context;
 	}
 
-	public void init() {
-		Log.d("SceneLoader", "init");
-
-		// Load object
-		if (parent.getParamFile() != null || parent.getParamAssetDir() != null) {
-
-			// Initialize assets url handler
-			Handler.assets = context.getAssets();
-			// Handler.classLoader = parent.getClassLoader(); (optional)
-			// Handler.androidResources = parent.getResources(); (optional)
-
-			// Create asset url
-			final URL url;
+	public void init(final String modelPath, final String texturePath) {
+		final URL modelUrl;
+		final URL textureUrl;
+		if (modelPath.startsWith("android")) {
 			try {
-				if (parent.getParamFile() != null) {
-					url = parent.getParamFile().toURI().toURL();
-				} else {
-					url = new URL("android://com.example/files/rct-3d-model-view/Hamburger/Hamburger.obj");
-					Log.d("SceneLoader", url.toString());
-				}
+				modelUrl = new URL(modelPath);
 			} catch (MalformedURLException e) {
 				Log.e("SceneLoader", e.getMessage(), e);
 				throw new RuntimeException(e);
 			}
-			Log.d("SceneLoader", "load");
-			Object3DBuilder.loadV6AsyncParallel(context, url, parent.getParamFile(), parent.getParamAssetDir(),
-					parent.getParamAssetFilename(), new Callback() {
-
-						long startTime = SystemClock.uptimeMillis();
-
-						@Override
-						public void onBuildComplete(List<Object3DData> datas) {
-							for (Object3DData data : datas) {
-								loadTexture(data, parent.getParamFile(), parent.getParamAssetDir());
-							}
-							final String elapsed = (SystemClock.uptimeMillis() - startTime)/1000+" secs";
-						}
-
-						@Override
-						public void onLoadComplete(List<Object3DData> datas) {
-							for (Object3DData data : datas) {
-								addObject(data);
-							}
-						}
-
-						@Override
-						public void onLoadError(Exception ex) {
-							Log.e("SceneLoader",ex.getMessage(),ex);
-						}
-					});
+		} else {
+			try {
+				modelUrl = new File(modelPath).toURI().toURL();
+			} catch (MalformedURLException e) {
+				Log.e("SceneLoader", e.getMessage(), e);
+				throw new RuntimeException(e);
+			}
 		}
+
+		if (texturePath.startsWith("android")) {
+			try {
+				textureUrl = new URL(texturePath);
+			} catch (MalformedURLException e) {
+				Log.e("SceneLoader", e.getMessage(), e);
+				throw new RuntimeException(e);
+			}
+		} else {
+			try {
+				textureUrl = new File(texturePath).toURI().toURL();
+			} catch (MalformedURLException e) {
+				Log.e("SceneLoader", e.getMessage(), e);
+				throw new RuntimeException(e);
+			}
+		}
+		Log.d("SceneLoader", modelUrl.toString());
+		Object3DBuilder.loadV6AsyncParallel(context, modelUrl, new Callback() {
+			long startTime = SystemClock.uptimeMillis();
+
+			@Override
+			public void onBuildComplete(List<Object3DData> datas) {
+				for (Object3DData data : datas) {
+					loadTexture(data, textureUrl);
+				}
+				final String elapsed = (SystemClock.uptimeMillis() - startTime)/1000+" secs";
+			}
+
+			@Override
+			public void onLoadComplete(List<Object3DData> datas) {
+				for (Object3DData data : datas) {
+					addObject(data);
+				}
+			}
+
+			@Override
+			public void onLoadError(Exception ex) {
+				Log.e("SceneLoader",ex.getMessage(),ex);
+			}
+		});
 	}
 
 	public Object3DData getLightBulb() {
@@ -265,41 +272,15 @@ public class SceneLoader {
 		this.selectedObject = selectedObject;
 	}
 
-	public void loadTexture(Object3DData data, File file, String parentAssetsDir){
-		if (data.getTextureData() == null && data.getTextureFile() != null){
-			try {
-				Log.i("SceneLoader","Loading texture '"+data.getTextureFile()+"'...");
-				InputStream stream = null;
-				if (file != null){
-					File textureFile = new File(file.getParent(),data.getTextureFile());
-					stream = new FileInputStream(textureFile);
-				}
-				else {
-					stream = context.getAssets().open(parentAssetsDir + "/" + data.getTextureFile());
-				}
-				ByteArrayOutputStream bos = new ByteArrayOutputStream();
-				IOUtils.copy(stream,bos);
-				stream.close();
-
-				data.setTextureData(bos.toByteArray());
-			} catch (IOException ex) {
-			}
-		}
-	}
-
-	public void loadTexture(Object3DData obj, URL path){
-		if (obj == null && objects.size() != 1) {
-			return;
-		}
-
+	public void loadTexture(Object3DData data, URL url){
+		Log.d("SceneLoader", "try load texture");
 		try {
-			InputStream is = path.openStream();
+			InputStream stream = url.openStream();
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			IOUtils.copy(is,bos);
-			is.close();
+			IOUtils.copy(stream,bos);
+			stream.close();
 
-			obj = obj != null? obj : objects.get(0);
-			obj.setTextureData(bos.toByteArray());
+			data.setTextureData(bos.toByteArray());
 		} catch (IOException ex) {
 		}
 	}
