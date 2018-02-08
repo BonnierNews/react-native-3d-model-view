@@ -1,3 +1,3 @@
 module.exports = {
-    getAssetExts: () => [ 'obj' ],
-};
+  getAssetExts: () => [ 'obj', 'dae', 'scn' ]
+}

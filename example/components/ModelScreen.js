@@ -5,8 +5,7 @@ import {
   View,
   Button
 } from 'react-native'
-import { ModelView, ModelTypes, ARManager } from 'react-native-3d-model-view'
-import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource"
+import { ModelView, ARManager } from 'react-native-3d-model-view'
 
 export default class ModelScreen extends React.Component {
   state = {
@@ -19,7 +18,6 @@ export default class ModelScreen extends React.Component {
   }
 
   componentDidMount () {
-    console.log(resolveAssetSource(require('../obj/Hamburger.obj')))
     ARManager.checkIfARSupported(supported => {
       this.setState({ arSupported: supported })
     })
@@ -43,14 +41,12 @@ export default class ModelScreen extends React.Component {
   render () {
     const { navigate } = this.props.navigation
     const { arSupported, message } = this.state
-    return null
     return <View style={styles.container}>
       <View style={styles.modelContainer}>
         <Text>{message}</Text>
         <ModelView
           style={styles.modelView}
-          source={{ uri: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
-          type={ModelTypes.OBJ}
+          source={{ zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Cowboy.zip?raw=true' }}
           onLoadModelStart={this.onLoadModelStart}
           onLoadModelSuccess={this.onLoadModelSuccess}
           onLoadModelError={this.onLoadModelError} />
