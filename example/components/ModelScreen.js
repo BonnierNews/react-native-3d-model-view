@@ -46,7 +46,10 @@ export default class ModelScreen extends React.Component {
         <Text>{message}</Text>
         <ModelView
           style={styles.modelView}
-          source={{ zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Cowboy.zip?raw=true' }}
+          source={{
+            model: require('../obj/Hamburger.obj'),
+            texture: require('../obj/Hamburger.png')
+          }}
           onLoadModelStart={this.onLoadModelStart}
           onLoadModelSuccess={this.onLoadModelSuccess}
           onLoadModelError={this.onLoadModelError} />

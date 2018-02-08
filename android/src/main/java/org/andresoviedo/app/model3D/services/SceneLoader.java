@@ -100,38 +100,13 @@ public class SceneLoader {
 	public void init(final String modelPath, final String texturePath) {
 		final URL modelUrl;
 		final URL textureUrl;
-		if (modelPath.startsWith("android")) {
-			try {
-				modelUrl = new URL(modelPath);
-			} catch (MalformedURLException e) {
-				Log.e("SceneLoader", e.getMessage(), e);
-				throw new RuntimeException(e);
-			}
-		} else {
-			try {
-				modelUrl = new File(modelPath).toURI().toURL();
-			} catch (MalformedURLException e) {
-				Log.e("SceneLoader", e.getMessage(), e);
-				throw new RuntimeException(e);
-			}
+		try {
+			modelUrl = new File(modelPath).toURI().toURL();
+			textureUrl = new File(texturePath).toURI().toURL();
+		} catch (MalformedURLException e) {
+			Log.e("SceneLoader", e.getMessage(), e);
+			throw new RuntimeException(e);
 		}
-
-		if (texturePath.startsWith("android")) {
-			try {
-				textureUrl = new URL(texturePath);
-			} catch (MalformedURLException e) {
-				Log.e("SceneLoader", e.getMessage(), e);
-				throw new RuntimeException(e);
-			}
-		} else {
-			try {
-				textureUrl = new File(texturePath).toURI().toURL();
-			} catch (MalformedURLException e) {
-				Log.e("SceneLoader", e.getMessage(), e);
-				throw new RuntimeException(e);
-			}
-		}
-		Log.d("SceneLoader", modelUrl.toString());
 		Object3DBuilder.loadV6AsyncParallel(context, modelUrl, new Callback() {
 			long startTime = SystemClock.uptimeMillis();
 

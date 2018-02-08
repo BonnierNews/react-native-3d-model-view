@@ -24,11 +24,11 @@ public class ModelSurfaceView extends GLSurfaceView {
 	private ModelRenderer mRenderer;
 	private TouchController touchHandler;
 	private float[] backgroundColor = new float[]{1f, 1f, 1f, 0.0f};
-
-
 	private SceneLoader scene;
-
 	private Handler handler;
+
+	private String modelSrc;
+	private String textureSrc;
 
 	public ModelSurfaceView(Context context) {
 		super(context);
@@ -48,10 +48,6 @@ public class ModelSurfaceView extends GLSurfaceView {
 		handler = new Handler(context.getMainLooper());
 
 		scene = new SceneLoader(this, context);
-		scene.init(
-				"/data/user/0/com.example/files/rct-3d-model-view/Hamburger/Hamburger.obj",
-				"/data/user/0/com.example/files/rct-3d-model-view/Hamburger/Hamburger.png"
-		);
 	}
 
 	@Override
@@ -75,6 +71,25 @@ public class ModelSurfaceView extends GLSurfaceView {
 
 	public float[] getBackgroundColor(){
 		return backgroundColor;
+	}
+
+	private void tryInitScene() {
+		if (modelSrc != null && textureSrc != null) {
+			scene.init(modelSrc, textureSrc);
+		}
+	}
+
+	/**
+	 * React props
+	 */
+	public void setModelSrc(final String modelSrc) {
+		this.modelSrc = modelSrc;
+		this.tryInitScene();
+	}
+
+	public void setTextureSrc(final String textureSrc) {
+		this.textureSrc = textureSrc;
+		this.tryInitScene();
 	}
 
 }

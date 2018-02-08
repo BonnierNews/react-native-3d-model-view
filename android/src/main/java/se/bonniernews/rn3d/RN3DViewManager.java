@@ -52,6 +52,16 @@ class RN3DViewManager extends SimpleViewManager<ModelSurfaceView> {
     return view;
   }
 
+  @ReactProp(name = "modelSrc")
+  public void setModelSrc(final ModelSurfaceView view, final String modelSrc) {
+    view.setModelSrc(modelSrc);
+  }
+
+  @ReactProp(name = "textureSrc")
+  public void setTextureSrc(final ModelSurfaceView view, final String textureSrc) {
+    view.setTextureSrc(textureSrc);
+  }
+
   @NonNull
   public static ModelSurfaceView create3DView(ThemedReactContext context) {
     return new ModelSurfaceView(context);
