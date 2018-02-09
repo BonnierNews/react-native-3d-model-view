@@ -1,6 +1,5 @@
 package org.andresoviedo.app.model3D.controller;
 
-import org.andresoviedo.app.model3D.collision.CollisionDetection;
 import org.andresoviedo.app.model3D.model.Object3DBuilder;
 import org.andresoviedo.app.model3D.model.Object3DData;
 import org.andresoviedo.app.model3D.services.SceneLoader;
@@ -182,14 +181,6 @@ public class TouchController {
 			isRotating = !isOneFixedAndOneMoving && (dx1 != 0 && dy1 != 0 && dx2 != 0 && dy2 != 0)
 					&& rotationVector[2] != 0;
 		}
-
-		if (pointerCount == 1 && simpleTouch) {
-            SceneLoader scene = view.getModelActivity().getScene();
-            if (scene != null) {
-                scene.processTouch(x1,y1);
-            }
-		}
-
 
 		int max = Math.max(mRenderer.getWidth(), mRenderer.getHeight());
 		if (touchDelay > 1) {

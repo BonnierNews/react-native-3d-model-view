@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.opengl.GLES20;
 import android.util.Log;
 import android.content.Context;
+import android.webkit.MimeTypeMap;
 
 import org.andresoviedo.app.model3D.services.WavefrontLoader;
 import org.andresoviedo.app.model3D.services.WavefrontLoader.FaceMaterials;
@@ -898,9 +899,10 @@ public final class Object3DBuilder {
 										   final Callback callback) {
 
 		final String modelId = url.toString().toLowerCase();
-		if (modelId.endsWith(".obj")) {
+		String fileExtension = MimeTypeMap.getFileExtensionFromUrl(modelId);
+		if (fileExtension.equals("obj")) {
 			WavefrontLoader2.loadAsync(context, url, callback);
-		} else if (modelId.endsWith(".dae")) {
+		} else if (fileExtension.equals("dae")) {
 			ColladaLoader.loadAsync(url, callback);
 		}
 	}

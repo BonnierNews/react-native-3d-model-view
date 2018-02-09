@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 import android.content.Context;
+import android.util.Log;
 
 /**
  * This is the actual opengl view. From here we can detect touch gestures for example
@@ -23,15 +24,19 @@ public class ModelSurfaceView extends GLSurfaceView {
 
 	private ModelRenderer mRenderer;
 	private TouchController touchHandler;
-	private float[] backgroundColor = new float[]{1f, 1f, 1f, 0.0f};
 	private SceneLoader scene;
 	private Handler handler;
 
 	private String modelSrc;
 	private String textureSrc;
+	private float[] backgroundColor;
 
-	public ModelSurfaceView(Context context) {
+	public ModelSurfaceView(Context context, String modelSrc, String textureSrc, float[] backgroundColor) {
 		super(context);
+		this.modelSrc = modelSrc;
+		this.textureSrc = textureSrc;
+		this.backgroundColor = backgroundColor;
+
 		// Create an OpenGL ES 2.0 context.
 		setEGLContextClientVersion(2);
 
@@ -48,6 +53,7 @@ public class ModelSurfaceView extends GLSurfaceView {
 		handler = new Handler(context.getMainLooper());
 
 		scene = new SceneLoader(this, context);
+		scene.init(modelSrc, textureSrc);
 	}
 
 	@Override
@@ -74,22 +80,8 @@ public class ModelSurfaceView extends GLSurfaceView {
 	}
 
 	private void tryInitScene() {
-		if (modelSrc != null && textureSrc != null) {
+		if (modelSrc != null && textureSrc != null && backgroundColor != null) {
 			scene.init(modelSrc, textureSrc);
 		}
 	}
-
-	/**
-	 * React props
-	 */
-	public void setModelSrc(final String modelSrc) {
-		this.modelSrc = modelSrc;
-		this.tryInitScene();
-	}
-
-	public void setTextureSrc(final String textureSrc) {
-		this.textureSrc = textureSrc;
-		this.tryInitScene();
-	}
-
 }

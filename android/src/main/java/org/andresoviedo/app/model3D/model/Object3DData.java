@@ -10,7 +10,6 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.andresoviedo.app.model3D.collision.Octree;
 import org.andresoviedo.app.model3D.entities.BoundingBox;
 import org.andresoviedo.app.model3D.services.WavefrontLoader;
 import org.andresoviedo.app.model3D.services.WavefrontLoader.FaceMaterials;
@@ -97,9 +96,6 @@ public class Object3DData {
 	private WavefrontLoader.ModelDimensions modelDimensions;
 	private WavefrontLoader loader;
 
-	// collision detection
-	private Octree octree = null;
-
 	public Object3DData(FloatBuffer vertexArrayBuffer) {
 		this.vertexArrayBuffer = vertexArrayBuffer;
 		this.version = 1;
@@ -153,14 +149,6 @@ public class Object3DData {
 
 	public WavefrontLoader.ModelDimensions getDimensions() {
 		return modelDimensions;
-	}
-
-	public void setOctree(Octree octree){
-		this.octree = octree;
-	}
-
-	public Octree getOctree(){
-		return octree;
 	}
 
 	/**

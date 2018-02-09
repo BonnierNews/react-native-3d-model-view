@@ -53,8 +53,6 @@ public class ColladaLoader {
 
 	private static Object[] buildAnimatedModel(URL url) throws IOException {
 		List<AnimatedModel> ret = new ArrayList<AnimatedModel>();
-		Log.d("SceneLoader", "collade");
-		Log.d("SceneLoader", url.toString());
 		AnimatedModelData modelData = loadColladaModel(url.openStream(),3);
 		List<MeshData> meshDataList = modelData.getMeshData();
 		for (MeshData meshData : meshDataList) {

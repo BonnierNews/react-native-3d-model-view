@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.andresoviedo.app.model3D.animation.Animator;
-import org.andresoviedo.app.model3D.collision.CollisionDetection;
 import org.andresoviedo.app.model3D.model.Object3DBuilder;
 import org.andresoviedo.app.model3D.model.Object3DBuilder.Callback;
 import org.andresoviedo.app.model3D.model.Object3DData;
@@ -101,8 +100,16 @@ public class SceneLoader {
 		final URL modelUrl;
 		final URL textureUrl;
 		try {
-			modelUrl = new File(modelPath).toURI().toURL();
-			textureUrl = new File(texturePath).toURI().toURL();
+			if (modelPath.startsWith("http")) {
+				modelUrl = new URL(modelPath);
+			} else {
+				modelUrl = new File(modelPath).toURI().toURL();
+			}
+			if (texturePath.startsWith("http")) {
+				textureUrl = new URL(texturePath);
+			} else {
+				textureUrl = new File(texturePath).toURI().toURL();
+			}
 		} catch (MalformedURLException e) {
 			Log.e("SceneLoader", e.getMessage(), e);
 			throw new RuntimeException(e);
@@ -247,33 +254,20 @@ public class SceneLoader {
 		this.selectedObject = selectedObject;
 	}
 
-	public void loadTexture(Object3DData data, URL url){
-		Log.d("SceneLoader", "try load texture");
-		try {
-			InputStream stream = url.openStream();
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			IOUtils.copy(stream,bos);
-			stream.close();
+	public void loadTexture(final Object3DData data, final URL url){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					InputStream stream = url.openStream();
+					ByteArrayOutputStream bos = new ByteArrayOutputStream();
+					IOUtils.copy(stream,bos);
+					stream.close();
 
-			data.setTextureData(bos.toByteArray());
-		} catch (IOException ex) {
-		}
-	}
-
-	public void processTouch(float x, float y) {
-		Object3DData objectToSelect = CollisionDetection.getBoxIntersection(getObjects(), parent.getgLView().getModelRenderer(), x, y);
-		if (objectToSelect != null) {
-			if (getSelectedObject() == objectToSelect) {
-				Log.i("SceneLoader", "Unselected object " + objectToSelect.getId());
-				setSelectedObject(null);
-			} else {
-				Log.i("SceneLoader", "Selected object " + objectToSelect.getId());
-				setSelectedObject(objectToSelect);
+					data.setTextureData(bos.toByteArray());
+				} catch (IOException ex) {
+				}
 			}
-			float[] point = CollisionDetection.getTriangleIntersection2(getObjects(), parent.getgLView().getModelRenderer(), x, y);
-			if (point != null) {
-				addObject(Object3DBuilder.buildPoint(point).setColor(new float[]{1.0f,0f,0f,1f}));
-			}
-		}
+		}).start();
 	}
 }

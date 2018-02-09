@@ -47,8 +47,7 @@ export default class ModelScreen extends React.Component {
         <ModelView
           style={styles.modelView}
           source={{
-            model: require('../obj/Hamburger.obj'),
-            texture: require('../obj/Hamburger.png')
+            zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Cowboy.zip?raw=true'
           }}
           onLoadModelStart={this.onLoadModelStart}
           onLoadModelSuccess={this.onLoadModelSuccess}
@@ -78,6 +77,7 @@ const styles = StyleSheet.create({
   },
   modelView: {
     width: '100%',
-    height: 300
+    height: 300,
+    backgroundColor: 'white'
   }
 })
