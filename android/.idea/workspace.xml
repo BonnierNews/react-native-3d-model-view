@@ -23,10 +23,16 @@
       <file leaf-file-name="ModelSurfaceView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/view/ModelSurfaceView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="265">
+              <caret line="54" column="61" lean-forward="false" selection-start-line="54" selection-start-column="61" selection-end-line="54" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2407#2408#0" expanded="true" />
+                <element signature="e#2431#2432#0" expanded="true" />
+                <element signature="e#2466#2467#0" expanded="true" />
+                <element signature="e#2498#2499#0" expanded="true" />
+                <element signature="e#2531#2532#0" expanded="true" />
+                <element signature="e#2561#2562#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -35,12 +41,27 @@
       <file leaf-file-name="RN3DViewManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DViewManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="634">
-              <caret line="105" column="71" lean-forward="true" selection-start-line="105" selection-start-column="71" selection-end-line="105" selection-end-column="71" />
+            <state relative-caret-position="465">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
+                <element signature="e#0#46#0" expanded="true" />
+                <element signature="e#2137#2138#0" expanded="true" />
+                <element signature="e#2167#2168#0" expanded="true" />
+                <element signature="e#2247#2248#0" expanded="true" />
+                <element signature="e#2285#2286#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RN3DView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="82" column="56" lean-forward="false" selection-start-line="82" selection-start-column="56" selection-end-line="82" selection-end-column="56" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#3736#3737#0" expanded="true" />
-                <element signature="e#3774#3775#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,8 +70,8 @@
       <file leaf-file-name="SceneLoader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/SceneLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="101" column="13" lean-forward="true" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+            <state relative-caret-position="2246">
+              <caret line="274" column="42" lean-forward="false" selection-start-line="274" selection-start-column="42" selection-end-line="274" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ColladaLoader.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ColladaLoader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/collada/loader/ColladaLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="54" column="65" lean-forward="false" selection-start-line="54" selection-start-column="65" selection-end-line="54" selection-end-column="65" />
+            <state relative-caret-position="2250">
+              <caret line="190" column="9" lean-forward="false" selection-start-line="190" selection-start-column="9" selection-end-line="190" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -71,21 +92,11 @@
       <file leaf-file-name="TouchController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/controller/TouchController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3093">
-              <caret line="207" column="0" lean-forward="false" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+            <state relative-caret-position="336">
+              <caret line="307" column="36" lean-forward="false" selection-start-line="307" selection-start-column="32" selection-end-line="307" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModelRenderer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/view/ModelRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2985">
-              <caret line="246" column="5" lean-forward="false" selection-start-line="246" selection-start-column="5" selection-end-line="246" selection-end-column="5" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -112,11 +123,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WavefrontLoader2.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WavefrontLoader2.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/wavefront/WavefrontLoader2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="543">
-              <caret line="53" column="69" lean-forward="false" selection-start-line="53" selection-start-column="69" selection-end-line="53" selection-end-column="69" />
+            <state relative-caret-position="513">
+              <caret line="84" column="39" lean-forward="true" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -126,14 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>WavefrontLoader2</find>
-      <find>final Activity parent</find>
-      <find>Activ</find>
-      <find>Activity parent</find>
-      <find>FloatM</find>
-      <find>Model data source not specified</find>
-      <find>backgroundColor</find>
-      <find>getBackgroundColor</find>
       <find>loadAsync</find>
       <find>fo</find>
       <find>loadColladaModel</find>
@@ -156,6 +159,14 @@
       <find>MimeTy</find>
       <find>process</find>
       <find>Log.d</find>
+      <find>zoom</find>
+      <find>scale</find>
+      <find>setScale</find>
+      <find>centerAndScale</find>
+      <find>setSc</find>
+      <find>update</find>
+      <find>center</find>
+      <find>addObject</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -170,23 +181,23 @@
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DView" />
-        <option value="$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DView.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/stl/STLLoader.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/controller/LoaderTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/wavefront/WavefrontLoader2.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/controller/TouchController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/model/Object3DData.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/model/Object3DBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/SceneLoader.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/view/ModelRenderer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/view/ModelSurfaceView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DViewManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/collada/loader/ColladaLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DViewManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/view/ModelSurfaceView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/model/Object3DData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/SceneLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/wavefront/WavefrontLoader2.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="392" />
+    <option name="x" value="267" />
     <option name="y" value="23" />
     <option name="width" value="2560" />
     <option name="height" value="1413" />
@@ -266,6 +277,18 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="se" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bonniernews" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rn3d" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -779,7 +802,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1518181007952" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1518192400270" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -826,7 +849,7 @@
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
       </Profilers>
       <method>
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1518181007952" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1518192400271" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -996,7 +1019,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="392" y="23" width="2560" height="1413" extended-state="0" />
+    <frame x="267" y="23" width="2560" height="1413" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1093,6 +1116,12 @@
           <caret line="41" column="23" lean-forward="false" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2407#2408#0" expanded="true" />
+            <element signature="e#2431#2432#0" expanded="true" />
+            <element signature="e#2466#2467#0" expanded="true" />
+            <element signature="e#2498#2499#0" expanded="true" />
+            <element signature="e#2531#2532#0" expanded="true" />
+            <element signature="e#2561#2562#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1171,9 +1200,11 @@
         <state relative-caret-position="60">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3736#3737#0" expanded="true" />
-            <element signature="e#3774#3775#0" expanded="true" />
+            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#2137#2138#0" expanded="true" />
+            <element signature="e#2167#2168#0" expanded="true" />
+            <element signature="e#2247#2248#0" expanded="true" />
+            <element signature="e#2285#2286#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1235,6 +1266,12 @@
           <caret line="68" column="5" lean-forward="true" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2407#2408#0" expanded="true" />
+            <element signature="e#2431#2432#0" expanded="true" />
+            <element signature="e#2466#2467#0" expanded="true" />
+            <element signature="e#2498#2499#0" expanded="true" />
+            <element signature="e#2531#2532#0" expanded="true" />
+            <element signature="e#2561#2562#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1259,9 +1296,11 @@
         <state relative-caret-position="195">
           <caret line="49" column="28" lean-forward="false" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3736#3737#0" expanded="true" />
-            <element signature="e#3774#3775#0" expanded="true" />
+            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#2137#2138#0" expanded="true" />
+            <element signature="e#2167#2168#0" expanded="true" />
+            <element signature="e#2247#2248#0" expanded="true" />
+            <element signature="e#2285#2286#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1279,6 +1318,12 @@
           <caret line="69" column="5" lean-forward="false" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2407#2408#0" expanded="true" />
+            <element signature="e#2431#2432#0" expanded="true" />
+            <element signature="e#2466#2467#0" expanded="true" />
+            <element signature="e#2498#2499#0" expanded="true" />
+            <element signature="e#2531#2532#0" expanded="true" />
+            <element signature="e#2561#2562#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1318,7 +1363,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DView" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DView.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/view/ModelActivity.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/stl/STLLoader.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DPackage.java">
@@ -1342,24 +1386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/model/Object3DData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/controller/TouchController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3093">
-          <caret line="207" column="0" lean-forward="false" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/view/ModelRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2985">
@@ -1368,40 +1394,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/view/ModelSurfaceView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DViewManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="105" column="71" lean-forward="true" selection-start-line="105" selection-start-column="71" selection-end-line="105" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3736#3737#0" expanded="true" />
-            <element signature="e#3774#3775#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/WavefrontLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="623" column="29" lean-forward="false" selection-start-line="623" selection-start-column="24" selection-end-line="623" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/wavefront/WavefrontLoader2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="53" column="69" lean-forward="false" selection-start-line="53" selection-start-column="69" selection-end-line="53" selection-end-column="69" />
           <folding />
         </state>
       </provider>
@@ -1416,10 +1412,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/SceneLoader.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/controller/TouchController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="101" column="13" lean-forward="true" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+        <state relative-caret-position="336">
+          <caret line="307" column="36" lean-forward="false" selection-start-line="307" selection-start-column="32" selection-end-line="307" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DViewManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#2137#2138#0" expanded="true" />
+            <element signature="e#2167#2168#0" expanded="true" />
+            <element signature="e#2247#2248#0" expanded="true" />
+            <element signature="e#2285#2286#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/model/Object3DData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="262" column="0" lean-forward="true" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1428,8 +1448,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/collada/loader/ColladaLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="54" column="65" lean-forward="false" selection-start-line="54" selection-start-column="65" selection-end-line="54" selection-end-column="65" />
+        <state relative-caret-position="2250">
+          <caret line="190" column="9" lean-forward="false" selection-start-line="190" selection-start-column="9" selection-end-line="190" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/SceneLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2246">
+          <caret line="274" column="42" lean-forward="false" selection-start-line="274" selection-start-column="42" selection-end-line="274" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/view/ModelSurfaceView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="54" column="61" lean-forward="false" selection-start-line="54" selection-start-column="61" selection-end-line="54" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2407#2408#0" expanded="true" />
+            <element signature="e#2431#2432#0" expanded="true" />
+            <element signature="e#2466#2467#0" expanded="true" />
+            <element signature="e#2498#2499#0" expanded="true" />
+            <element signature="e#2531#2532#0" expanded="true" />
+            <element signature="e#2561#2562#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/se/bonniernews/rn3d/RN3DView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="82" column="56" lean-forward="false" selection-start-line="82" selection-start-column="56" selection-end-line="82" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/andresoviedo/app/model3D/services/wavefront/WavefrontLoader2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="84" column="39" lean-forward="true" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
           <folding />
         </state>
       </provider>

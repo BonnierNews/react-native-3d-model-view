@@ -686,12 +686,12 @@ public class Object3DData {
 
 	public void centerAndScale(float newScale, float[] newPosition) {
 		// calculate a scale factor
-		float scaleFactor = 1.0f;
+		/*float scaleFactor = 1.0f;
 		float largest = modelDimensions.getLargest();
 		// System.out.println("Largest dimension: " + largest);
 		if (largest != 0.0f)
 			scaleFactor = (1.0f / largest);
-		setScale(new float[]{scaleFactor * newScale, scaleFactor * newScale, scaleFactor * newScale});
+		setScale(new float[]{scaleFactor * newScale, scaleFactor * newScale, scaleFactor * newScale});*/
 
 		Tuple3 center = modelDimensions.getCenter();
 		setPosition(new float[]{-center.getX() + newPosition[0], -center.getY() + newPosition[1], -center.getZ() + newPosition[2]});
@@ -732,14 +732,14 @@ public class Object3DData {
 		float centerZ = (maxNear + maxFar)/2;
 
 		// calculate the scale factor
-		float scaleFactor = 1.0f / maxLength * newScale;
+		//float scaleFactor = 1.0f / maxLength * newScale;
 		float translationX = -centerX + newPosition[0];
 		float translationY = -centerY + newPosition[1];
 		float translationZ = -centerZ + newPosition[2];
 
 		for (Object3DData data : datas){
 			data.setPosition(new float[]{translationX, translationY, translationZ});
-			data.setScale(new float[]{scaleFactor, scaleFactor, scaleFactor});
+			//data.setScale(new float[]{scaleFactor, scaleFactor, scaleFactor});
 		}
 	}
 

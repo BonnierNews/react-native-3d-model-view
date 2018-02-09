@@ -112,31 +112,36 @@ public class SceneLoader {
 			}
 		} catch (MalformedURLException e) {
 			Log.e("SceneLoader", e.getMessage(), e);
+			this.parent.loadModelError();
 			throw new RuntimeException(e);
 		}
-		Object3DBuilder.loadV6AsyncParallel(context, modelUrl, new Callback() {
-			long startTime = SystemClock.uptimeMillis();
+		if (modelUrl != null && textureUrl != null) {
+			Object3DBuilder.loadV6AsyncParallel(context, modelUrl, new Callback() {
+				long startTime = SystemClock.uptimeMillis();
 
-			@Override
-			public void onBuildComplete(List<Object3DData> datas) {
-				for (Object3DData data : datas) {
-					loadTexture(data, textureUrl);
+				@Override
+				public void onBuildComplete(List<Object3DData> datas) {
+					for (Object3DData data : datas) {
+						loadTexture(data, textureUrl);
+					}
+					final String elapsed = (SystemClock.uptimeMillis() - startTime)/1000+" secs";
 				}
-				final String elapsed = (SystemClock.uptimeMillis() - startTime)/1000+" secs";
-			}
 
-			@Override
-			public void onLoadComplete(List<Object3DData> datas) {
-				for (Object3DData data : datas) {
-					addObject(data);
+				@Override
+				public void onLoadComplete(List<Object3DData> datas) {
+					for (Object3DData data : datas) {
+						addObject(data);
+					}
+					parent.loadModelSuccess();
 				}
-			}
 
-			@Override
-			public void onLoadError(Exception ex) {
-				Log.e("SceneLoader",ex.getMessage(),ex);
-			}
-		});
+				@Override
+				public void onLoadError(Exception ex) {
+					parent.loadModelError();
+					Log.e("SceneLoader",ex.getMessage(),ex);
+				}
+			});
+		}
 	}
 
 	public Object3DData getLightBulb() {
@@ -172,6 +177,8 @@ public class SceneLoader {
 
 	protected synchronized void addObject(Object3DData obj) {
 		List<Object3DData> newList = new ArrayList<Object3DData>(objects);
+		float scale = this.parent.getScale();
+		obj.setScale(new float[] { scale, scale, scale });
 		newList.add(obj);
 		this.objects = newList;
 		requestRender();
@@ -270,4 +277,11 @@ public class SceneLoader {
 			}
 		}).start();
 	}
+
+	public void setScale(float scale) {
+		for (Object3DData data : this.objects) {
+			data.setScale(new float[] {scale, scale, scale});
+		}
+	}
+
 }

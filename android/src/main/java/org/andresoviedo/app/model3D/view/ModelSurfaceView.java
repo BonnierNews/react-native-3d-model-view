@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.content.Context;
 import android.util.Log;
 
+import se.bonniernews.rn3d.RN3DView;
 /**
  * This is the actual opengl view. From here we can detect touch gestures for example
  * 
@@ -21,6 +22,8 @@ import android.util.Log;
  *
  */
 public class ModelSurfaceView extends GLSurfaceView {
+
+	private RN3DView parent;
 
 	private ModelRenderer mRenderer;
 	private TouchController touchHandler;
@@ -30,9 +33,12 @@ public class ModelSurfaceView extends GLSurfaceView {
 	private String modelSrc;
 	private String textureSrc;
 	private float[] backgroundColor;
+	private float scale;
 
-	public ModelSurfaceView(Context context, String modelSrc, String textureSrc, float[] backgroundColor) {
+	public ModelSurfaceView(Context context, RN3DView parent, String modelSrc, String textureSrc, float[] backgroundColor) {
 		super(context);
+		this.parent = parent;
+
 		this.modelSrc = modelSrc;
 		this.textureSrc = textureSrc;
 		this.backgroundColor = backgroundColor;
@@ -83,5 +89,22 @@ public class ModelSurfaceView extends GLSurfaceView {
 		if (modelSrc != null && textureSrc != null && backgroundColor != null) {
 			scene.init(modelSrc, textureSrc);
 		}
+	}
+
+	public void setScale(float scale) {
+		this.scale = scale;
+		this.scene.setScale(scale);
+	}
+
+	public float getScale() {
+		return this.scale;
+	}
+
+	public void loadModelSuccess() {
+		parent.loadModelSuccess();
+	}
+
+	public void loadModelError() {
+		parent.loadModelError();
 	}
 }
