@@ -21,10 +21,10 @@
 }
 
 
-- (void)loadModel:(NSString *)path type:(ModelType)type color:(UIColor *)color completion:(void (^)(SCNNode * node))completion {
-    NSURL *url = [self urlFromPath:path];
-    NSLog(@"%@", [url path]);
-    completion([self createModel:url type:type color:color]);
+- (void)loadModel:(NSString *)modelSrc textureSrc:(NSString *)textureSrc completion:(void (^)(SCNNode * node))completion {
+    NSURL *modelUrl = [self urlFromPath:modelSrc];
+    NSURL *textureUrl = [self urlFromPath:textureSrc];
+    completion([self createModel:modelUrl textureUrl:textureUrl]);
 }
 
 - (NSURL *)urlFromPath:(NSString *)path {
@@ -34,36 +34,28 @@
         url = [NSURL fileURLWithPath: path];
     } else if ([path hasPrefix: @"http"]) {
         url = [NSURL URLWithString:path];
-    } else {
-        url = [[NSBundle mainBundle] URLForResource:path withExtension:nil];
     }
     
     return url;
 }
 
--(SCNNode *)createModel:(NSURL*)url type:(ModelType)type color:(UIColor *)color  {
-    NSLog(@"[RCT3dModel]: Loading model at %@", url);
+-(SCNNode *)createModel:(NSURL*)modelUrl textureUrl:(NSURL*)textureUrl  {
+    NSLog(@"[RCT3dModel]: Loading model at %@", modelUrl.path);
     SCNNode* node;
-    switch (type) {
-        case ModelTypeSCN:
-            node = [self createScnModel:url color:color];
-            break;
-        case ModelTypeOBJ:
-            node = [self createObjModel:url color:color];
-            break;
-        default:
-            break;
+    NSString *type = [modelUrl pathExtension];
+    NSLog(@"%@", type);
+    if([type  isEqual: @"scn"]) {
+        node = [self createScnModel:modelUrl textureUrl:textureUrl];
+    } else if ([type  isEqual: @"dae"]) {
+        node = [self createDaeModel:modelUrl textureUrl:textureUrl];
+    } else if ([type  isEqual: @"obj"]) {
+        node = [self createObjModel:modelUrl textureUrl:textureUrl];
     }
     return node;
 }
 
--(SCNNode *)createScnModel:(NSURL *)url color:(UIColor *)color {
+-(SCNNode *)createScnModel:(NSURL *)modelUrl textureUrl:(NSURL *)textureUrl {
     NSError* error;
-    NSURL *modelUrl = url;
-    if (![[modelUrl path] hasSuffix:@".scn"]) {
-        NSString *objName = [NSString stringWithFormat:@"%@.scn", [modelUrl lastPathComponent]];
-        modelUrl = [url URLByAppendingPathComponent:objName];
-    }
     SCNScene *scene = [SCNScene sceneWithURL:modelUrl options:nil error:&error];
     if(error) {
         NSLog(@"%@",[error localizedDescription]);
@@ -72,11 +64,8 @@
 
     SCNNode *node = [[SCNNode alloc] init];
     NSArray *nodeArray = [scene.rootNode childNodes];
+
     SCNMaterial *material;
-    if (color != nil) {
-        material = [SCNMaterial material];
-        material.diffuse.contents = color;
-    }
     for (SCNNode *eachChild in nodeArray) {
         if (material != nil) {
             eachChild.geometry.materials = [NSArray arrayWithObject:material];
@@ -86,16 +75,27 @@
     return node;
 }
 
--(SCNNode *)createObjModel:(NSURL *)url color:(UIColor *)color {
-    NSURL *textureUrl;
-    NSURL *modelUrl = url;
-    if (![[modelUrl path] hasSuffix:@".obj"]) {
-        NSString *name = [modelUrl lastPathComponent];
-        NSString *objName = [NSString stringWithFormat:@"%@.obj", name];
-        modelUrl = [url URLByAppendingPathComponent:objName];
-        NSString *textureName = [NSString stringWithFormat:@"%@.png", name];
-        textureUrl = [url URLByAppendingPathComponent:textureName];
+-(SCNNode *)createDaeModel:(NSURL *)modelUrl textureUrl:(NSURL *)textureUrl {
+    NSError* error;
+    SCNScene *scene = [SCNScene sceneWithURL:modelUrl options:nil error:&error];
+    if(error) {
+        NSLog(@"%@",[error localizedDescription]);
+        return nil;
     }
+    
+    SCNNode *node = [[SCNNode alloc] init];
+    NSArray *nodeArray = [scene.rootNode childNodes];
+    SCNMaterial *material;
+    for (SCNNode *eachChild in nodeArray) {
+        if (material != nil) {
+            eachChild.geometry.materials = [NSArray arrayWithObject:material];
+        }
+        [node addChildNode:eachChild];
+    }
+    return node;
+}
+
+-(SCNNode *)createObjModel:(NSURL *)modelUrl textureUrl:(NSURL *)textureUrl {
     MDLAsset *asset = [[MDLAsset alloc] initWithURL:modelUrl];
     if (asset.count == 0) {
         return nil;
@@ -105,10 +105,7 @@
     MDLMaterial *material = [[MDLMaterial alloc] initWithName:@"baseMaterial" scatteringFunction:scatteringFunction];
     MDLMaterialProperty* baseColor = [MDLMaterialProperty new];
     [baseColor setSemantic:MDLMaterialSemanticBaseColor];
-    if (color != nil) {
-        [baseColor setType:MDLMaterialPropertyTypeColor];
-        [baseColor setColor:color.CGColor];
-    } else if (textureUrl) {
+    if (textureUrl) {
         [baseColor setType:MDLMaterialPropertyTypeTexture];
         [baseColor setURLValue:textureUrl];
     } else {

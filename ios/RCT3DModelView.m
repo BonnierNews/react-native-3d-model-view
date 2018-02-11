@@ -5,32 +5,32 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         self.isLoading = NO;
+        self.scale = 1.0;
     }
     return self;
 }
 
-- (void) didMoveToWindow {
-    [super didMoveToWindow];
-    [self loadModel];
-}
-
 - (void)loadModel {
-    if (self.isLoading || self.src == nil || self.type == nil) {
+    if (self.isLoading || self.modelSrc == nil || self.textureSrc == nil) {
         return;
     }
+
     self.isLoading = YES;
-    NSLog(@"%@", self.src);
-    [[RCT3DModelIO sharedInstance] loadModel:self.src type:(ModelType)self.type color:self.color completion:^(SCNNode *node) {
+    [[RCT3DModelIO sharedInstance] loadModel:self.modelSrc textureSrc:self.textureSrc completion:^(SCNNode *node) {
         if (node != nil) {
             self.isLoading = NO;
             [self addModelNode:node];
-            if (self.loadModelSuccess) {
-                self.loadModelSuccess(@{});
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.loadModelSuccess) {
+                    self.loadModelSuccess(@{});
+                }
+            });
         } else {
-            if (self.loadModelError) {
-                self.loadModelError(@{});
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.loadModelError) {
+                    self.loadModelError(@{});
+                }
+            });
         }
     }];
 }
@@ -39,6 +39,7 @@
     if (_modelNode != nil) {
         [self removeNode:_modelNode];
     }
+    _modelNode.scale = SCNVector3Make(_scale, _scale, _scale);
     _modelNode = node;
 }
 
@@ -51,27 +52,32 @@
     [self loadModel];
 }
 
-- (void)setSrc:(NSString *)src {
-    if (src == nil && _modelNode != nil) {
+- (void)setModelSrc:(NSString *)modelSrc {
+    if (modelSrc == nil && _modelNode != nil) {
         [self removeNode:_modelNode];
     }
-    _src = src;
+    _modelSrc = modelSrc;
     [self loadModel];
 }
 
-- (void)setType:(int *)type {
-    _type = type;
+- (void)setTextureSrc:(NSString *)textureSrc {
+    if (textureSrc == nil && _modelNode != nil) {
+        [self removeNode:_modelNode];
+    }
+    _textureSrc = textureSrc;
     [self loadModel];
 }
 
 - (void)setScale:(float)scale {
     _scale = scale;
-    [self loadModel];
 }
 
-- (void)setColor:(UIColor*)color {
-    _color = color;
-    [self loadModel];
+- (void)setLoadModelSuccess:(RCTBubblingEventBlock)loadModelSuccess {
+    _loadModelSuccess = loadModelSuccess;
+}
+
+- (void)setLoadModelError:(RCTBubblingEventBlock)loadModelError {
+    _loadModelError = loadModelError;
 }
 
 @end

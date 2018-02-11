@@ -9,7 +9,6 @@
         _sceneView = [[SCNView alloc] init];
         _sceneView.backgroundColor = [UIColor clearColor];
         SCNScene *scene = [SCNScene scene];
-
         SCNNode *ambientLightNode = [SCNNode new];
         ambientLightNode.light = [SCNLight new];
         ambientLightNode.light.type = SCNLightTypeAmbient;

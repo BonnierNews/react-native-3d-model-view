@@ -4,16 +4,10 @@
 #import <SceneKit/ModelIO.h>
 #import <UIKit/UIKit.h>
 
-typedef enum
-{
-    ModelTypeSCN = 1,
-    ModelTypeOBJ = 2
-} ModelType;
-
 @interface RCT3DModelIO : NSObject
 
 + (instancetype)sharedInstance;
 
-- (void)loadModel:(NSString *)path type:(ModelType)type color:(UIColor *)color completion:(void (^)(SCNNode * node))completion;
+- (void)loadModel:(NSString *)modelSrc textureSrc:(NSString *)textureSrc completion:(void (^)(SCNNode * node))completion;
 - (void)clearDownloadedFiles;
 @end

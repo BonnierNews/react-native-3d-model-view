@@ -6,10 +6,9 @@
 @interface RCT3DModelView : UIView
 
 @property (nonatomic) bool isLoading;
-@property (nonatomic, copy) NSString* src;
-@property (nonatomic) int* type;
+@property (nonatomic, copy) NSString* modelSrc;
+@property (nonatomic, copy) NSString* textureSrc;
 @property (nonatomic) float scale;
-@property (nonatomic, copy) UIColor* color;
 @property (nonatomic, copy) SCNNode* modelNode;
 
 @property (nonatomic, copy) RCTBubblingEventBlock loadModelSuccess;

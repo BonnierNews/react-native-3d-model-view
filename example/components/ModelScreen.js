@@ -33,7 +33,7 @@ export default class ModelScreen extends React.Component {
     console.log('[react-native-3d-model-view]:', 'Load model success.')
   }
 
-  onLoadModelError = () => {
+  onLoadModelError = (error) => {
     this.setState({ message: 'Loading model error :('})
     console.log('[react-native-3d-model-view]:', 'Load model error.')
   }
@@ -47,13 +47,15 @@ export default class ModelScreen extends React.Component {
         <ModelView
           style={styles.modelView}
           source={{
-            model: require('../obj/Hamburger.obj'),
-            texture: require('../obj/Hamburger.png')
+            // model: require('../obj/Hamburger.obj'),
+            // texture: require('../obj/Hamburger.png')
             // or
             // model: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.obj?raw=true',
             // texture: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.png?raw=true'
             // or
-            // zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true'
+            // zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Cowboy.zip?raw=true'
+            // or
+            // zip: require('../obj/Hamburger.zip')
           }}
           onLoadModelStart={this.onLoadModelStart}
           onLoadModelSuccess={this.onLoadModelSuccess}
