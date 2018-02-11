@@ -2,11 +2,9 @@
 [![npm version](https://img.shields.io/npm/v/react-native-3d-model-view.svg?style=flat)](https://www.npmjs.com/package/react-native-3d-model-view)
 [![npm downloads](https://img.shields.io/npm/dm/react-native-3d-model-view.svg?style=flat)](https://www.npmjs.com/package/react-native-3d-model-view)
 
-A React Native view for displaying .obj and .scn (iOS only) models either on screen or in AR (iOS devices with A9 or later processors only).
+A React Native view for displaying .obj, .dae and .scn (iOS only) models either on screen or in AR (iOS devices with A9 or later processors only).
 
 **Example Project**: https://github.com/BonnierNews/react-native-3d-model-view/tree/master/example
-
-**Note**: Currently only supports iOS (Android coming soon).
 
 ## Getting started
 
@@ -22,11 +20,10 @@ The lib also have peer dependencies of `react-native-zip-archive`, `react-native
 
 ### Model view
 ```javascript
-import ModelView, { ModelTypes } from 'react-native-3d-model-view'
+import ModelView from 'react-native-3d-model-view'
 
 <ModelView
-  source={{ uri: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
-  type={ModelTypes.OBJ}
+  source={{ zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
   onLoadModelStart={this.onLoadModelStart}
   onLoadModelSuccess={this.onLoadModelSuccess}
   onLoadModelError={this.onLoadModelError} />
@@ -39,8 +36,7 @@ import ModelView, { ModelTypes } from 'react-native-3d-model-view'
 import ARModelView, { ModelTypes } from 'react-native-3d-model-view'
 
 <ARModelView
-  source={{ uri: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
-  type={ModelTypes.OBJ}
+  source={{ zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
   scale={0.1}
   focusSquareColor='red'
   focusSquareFillColor='blue'
@@ -60,18 +56,63 @@ import ARModelView, { ModelTypes } from 'react-native-3d-model-view'
 
 <img src="https://raw.githubusercontent.com/BonnierNews/react-native-3d-model-view/master/screenshots/arview.png" width="250">
 
+## Source
+The source prop on both `ModelView` and `ARView` can either be a url to a server (e.g. http://example.com/yourmodel.obj) or a local path (use `require`). The source object can either consist of a `zip` prop or a `model` and a `texture` prop. Examples:
+
+```javascript
+source={{
+  zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true'
+}}
+```
+or
+```javascript
+source={{
+  zip: require('../obj/Hamburger.zip')
+}}
+```
+or
+```javascript
+source={{
+  model: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.obj?raw=true',
+  texture: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.png?raw=true'
+}}
+```
+or
+```javascript
+source={{
+  model: require('../obj/Hamburger.obj'),
+  texture: require('../obj/Hamburger.png')
+}}
+```
+### NOTE: File types
+WaveFront (.obj) and Collada (.dae) is supported on both Android and iOS. SceneKit (.scn) is supported on iOS. Collada models with animations is autoplayed.
+
+### NOTE: Using `require`
+To require .obj, .dae, .scn or .zip files you need to add a `rn-cli.config.js` to the root of your project with minimum this config:
+```javascript
+module.exports = {
+  getAssetExts: () => [ 'obj', 'dae', 'scn', 'zip' ]
+}
+```
+See more in the [example project.](https://github.com/BonnierNews/react-native-3d-model-view/tree/master/example)
+
+### NOTE: SceneKit compressed scenes
+SceneKit and Collade files needs to be "SceneKit compressed scenes" on iOS. Compress with this shell command
+```bash
+$ /Applications/Xcode.app/Contents/Developer/usr/bin/scntool --convert InFile.dae --format c3d --output OutFile.dae --force-y-up --force-interleaved --look-for-pvrtc-image
+```
+More info: [developer.apple.com](https://developer.apple.com/documentation/scenekit/scnscenesource#//apple_ref/occ/cl/SCNSceneSource) and [stackoverflow.com](https://stackoverflow.com/a/30115411)
+
 ## Components
 
 ### ModelView
 
-View for displaying .obj or .scn (iOS only) on screen with SceneKit or OpenGL.
+View for displaying .obj, .dae or .scn (iOS only) on screen with SceneKit or OpenGL.
 
 #### Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
-|`source`|`string` or `object`|`null`|Can be either a `string` with a local path or an `object` with prop `uri` if you want to fetch it from a server. Also please note that the source can be a .zip containing the object and the texture.|
-|`type`|`ModelTypes`|`null`|Import `ModelTypes` and select the file type of your model|
-|`color`|`string`|`null`|Desired color of the model.|
+|`source`|`object`|`null`|Can either consist of a `zip` prop or a `model` and a `texture` prop. All three can either be a `string` to a server ("http://...") or you can use `require` to reference a local path. The .zip should contain both the object and the texture.|
 |`scale`|`number`|`1`|Scale of the model.|
 
 #### Events
@@ -90,14 +131,12 @@ Use `ref={modelView => {this.modelView = modelView}}` to be able to call the met
 
 ### ARModelView
 
-View for displaying .obj or .scn in augmented reality (iOS devices with A9 or later processors only).
+View for displaying .obj, .dae or .scn in augmented reality (iOS devices with A9 or later processors only).
 
 #### Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
-|`source`|`string` or `object`|`null`|Can be either a `string` with a local path or an `object` with prop `uri` if you want to fetch it from a server. Also please note that the source can be a .zip containing the object and the texture.|
-|`type`|`ModelTypes`|`null`|Import `ModelTypes` and select the file type of your model|
-|`color`|`string`|`null`|Desired color of the model.|
+|`source`|`object`|`null`|Can either consist of a `zip` prop or a `model` and a `texture` prop. All three can either be a `string` to a server ("http://...") or you can use `require` to reference a local path. The .zip should contain both the object and the texture.|
 |`scale`|`number`|`1`|Scale of the model.|
 |`focusSquareColor`|`string`|`#FFCC00`|Color of the segments in the focus square.|
 |`focusSquareFillColor`|`string`|`#FFEC69`|Fill color of the focus square.|
@@ -146,6 +185,10 @@ Manager for common actions needed for the `ARModelView`.
 ## Contributing
 
 If you find a bug or would like to request a new feature, just [open an issue](https://github.com/BonnierNews/react-native-3d-model-view/issues/new). You are also welcome to submit pull requests and contribute to the project.
+
+## Thanks
+- The entire Android implementation is made by [andresoviedo](https://github.com/andresoviedo). I have only ported his [Android 3D Model Viewer](https://github.com/andresoviedo/android-3D-model-viewer) repo to React Native.
+- Most of the ARKit implementation is taken from the [Handling 3D Interaction and UI Controls in Augmented Reality](https://developer.apple.com/documentation/arkit/handling_3d_interaction_and_ui_controls_in_augmented_reality) project made by Apple. I have only ported this project to React Native.
 
 ## License
 
