@@ -2,7 +2,7 @@
 [![npm version](https://img.shields.io/npm/v/react-native-3d-model-view.svg?style=flat)](https://www.npmjs.com/package/react-native-3d-model-view)
 [![npm downloads](https://img.shields.io/npm/dm/react-native-3d-model-view.svg?style=flat)](https://www.npmjs.com/package/react-native-3d-model-view)
 
-A React Native view for displaying .obj, .dae and .scn (iOS only) models either on screen or in AR (iOS devices with A9 or later processors only).
+A React Native view for displaying .obj, .dae and .scn models either on screen or in AR (iOS devices with A9 or later processors only).
 
 **Example Project**: https://github.com/BonnierNews/react-native-3d-model-view/tree/master/example
 
