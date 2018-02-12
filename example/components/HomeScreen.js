@@ -20,9 +20,15 @@ export default class HomeScreen extends React.Component {
   render () {
     const { navigate } = this.props.navigation
     return <View style={styles.container}>
-      <Button onPress={() => { navigate('ModelScreen') }} title='Model screen (.obj)' />
-      <Button onPress={() => { navigate('AnimatedModelScreen') }} title='Animated model screen (.dae)' />
-      { this.state.arSupported ? <Button onPress={() => { navigate('ARScreen') }} title='AR model screen (.obj)' /> : null }
+      <View style={styles.buttonContainer}>
+        <Button onPress={() => { navigate('ModelScreen') }} title='Model screen (.obj)' />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button onPress={() => { navigate('AnimatedModelScreen') }} title='Animated model screen (.dae)' />
+      </View>
+      { this.state.arSupported ? <View style={styles.buttonContainer}>
+        <Button onPress={() => { navigate('ARScreen') }} title='AR model screen (.obj)' />
+      </View> : null }
     </View>
   }
 }
@@ -32,5 +38,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  buttonContainer: {
+    paddingVertical: 10
   }
 })

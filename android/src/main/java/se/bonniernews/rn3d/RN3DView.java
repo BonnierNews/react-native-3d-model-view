@@ -45,6 +45,7 @@ public class RN3DView extends RelativeLayout {
     private String textureSrc;
     private float[] backgroundColor;
     private float scale = 1f;
+    private boolean autoPlay = true;
 
     public RN3DView(Context context) {
         super(context);
@@ -58,6 +59,7 @@ public class RN3DView extends RelativeLayout {
             layoutParams.addRule(CENTER_IN_PARENT);
             this.modelView.setLayoutParams(layoutParams);
             this.modelView.setScale(this.scale);
+            this.modelView.setPlay(this.autoPlay);
             addView(this.modelView);
         }
     }
@@ -92,6 +94,13 @@ public class RN3DView extends RelativeLayout {
         this.scale = scale;
         if (this.modelView != null) {
             modelView.setScale(scale);
+        }
+    }
+
+    public void setPlay(boolean play) {
+        this.autoPlay = play;
+        if (this.modelView != null) {
+            modelView.setPlay(play);
         }
     }
 

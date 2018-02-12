@@ -96,6 +96,12 @@ public class ModelSurfaceView extends GLSurfaceView {
 		this.scene.setScale(scale);
 	}
 
+	public void setPlay(boolean play) {
+		if (this.scene.getAnimator() != null) {
+			this.scene.getAnimator().setPlay(play);
+		}
+	}
+
 	public float getScale() {
 		return this.scale;
 	}

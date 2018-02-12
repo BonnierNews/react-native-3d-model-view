@@ -39,6 +39,7 @@ import org.andresoviedo.app.model3D.services.collada.entities.Joint;
 public class Animator {
 
 	private float animationTime = 0;
+	private boolean play = true;
 
 	public Animator() {
 	}
@@ -52,6 +53,9 @@ public class Animator {
 	 */
 	public void update(Object3DData obj) {
 		if (!(obj instanceof AnimatedModel)) {
+			return;
+		}
+		if (!this.play) {
 			return;
 		}
 		// if (true) return;
@@ -255,6 +259,10 @@ public class Animator {
 			currentPose.put(jointName, currentTransform.getLocalTransform());
 		}
 		return currentPose;
+	}
+
+	public void setPlay(boolean play) {
+		this.play = play;
 	}
 
 }

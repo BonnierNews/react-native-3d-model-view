@@ -67,7 +67,9 @@ export default class AnimatedModelScreen extends React.Component {
           onLoadModelStart={this.onLoadModelStart}
           onLoadModelSuccess={this.onLoadModelSuccess}
           onLoadModelError={this.onLoadModelError} />
-          <Button onPress={this.togglePlay} title={isPlaying ? 'Stop' : 'Play' } />
+          <View style={styles.buttonContainer}>
+            <Button onPress={this.togglePlay} title={isPlaying ? 'Stop' : 'Play' } />
+          </View>
           <Text>Progress</Text>
           <Slider maximumValue={1} minimumValue={0} onValueChange={this.sliderValueChange} />
       </View>
@@ -89,5 +91,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 300,
     backgroundColor: 'white'
+  },
+  buttonContainer: {
+    paddingVertical: 10
   }
 })

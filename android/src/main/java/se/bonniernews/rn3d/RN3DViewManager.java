@@ -15,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 import android.util.DisplayMetrics;
 
+import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReadableMap;
@@ -36,6 +37,12 @@ import java.util.Map;
 
 class RN3DViewManager extends SimpleViewManager<RN3DView> {
   public static final String REACT_CLASS = "RCT3DScnModelView";
+  private RN3DView view;
+
+  public static final int COMMAND_RELOAD = 1;
+  public static final int COMMAND_START_ANIMATION = 2;
+  public static final int COMMAND_STOP_ANIMATION = 3;
+  public static final int COMMAND_SET_PROGRESS = 4;
 
   @Override
   public String getName() {
@@ -44,8 +51,8 @@ class RN3DViewManager extends SimpleViewManager<RN3DView> {
 
   @Override
   protected RN3DView createViewInstance(ThemedReactContext themedReactContext) {
-    RN3DView view = create3DView(themedReactContext);
-    return view;
+    this.view = create3DView(themedReactContext);
+    return this.view;
   }
 
   @ReactProp(name = "modelSrc")
@@ -68,9 +75,54 @@ class RN3DViewManager extends SimpleViewManager<RN3DView> {
     view.setScale(scale);
   }
 
+  @ReactProp(name = "autoPlayAnimations")
+  public void setAutoPlayAnimations(final RN3DView view, final boolean autoPlay) {
+    view.setPlay(autoPlay);
+  }
+
   @NonNull
   public static RN3DView create3DView(ThemedReactContext context) {
     return new RN3DView(context);
+  }
+
+  @Override
+  public Map<String,Integer> getCommandsMap() {
+    return MapBuilder.of(
+            "reload",
+            COMMAND_RELOAD,
+            "startAnimation",
+            COMMAND_START_ANIMATION,
+            "stopAnimation",
+            COMMAND_STOP_ANIMATION,
+            "setProgress",
+            COMMAND_SET_PROGRESS);
+  }
+
+  @Override
+  public void receiveCommand(
+          RN3DView view,
+          int commandType,
+          @Nullable ReadableArray args) {
+    Assertions.assertNotNull(view);
+    Assertions.assertNotNull(args);
+    switch (commandType) {
+      case COMMAND_RELOAD: {
+        return;
+      }
+      case COMMAND_START_ANIMATION: {
+        view.setPlay(true);
+        return;
+      }
+      case COMMAND_STOP_ANIMATION: {
+        view.setPlay(false);
+        return;
+      }
+      default:
+        throw new IllegalArgumentException(String.format(
+                "Unsupported command %d received by %s.",
+                commandType,
+                getClass().getSimpleName()));
+    }
   }
 
   @Override

@@ -16,6 +16,8 @@ import java.util.List;
  */
 
 public class RN3DPackage implements ReactPackage {
+    private RN3DViewManager viewManager;
+
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         return Collections.emptyList();
@@ -26,5 +28,9 @@ public class RN3DPackage implements ReactPackage {
         List<ViewManager> managers = new ArrayList<>();
         managers.add(new RN3DViewManager());
         return managers;
+    }
+
+    public RN3DViewManager getViewManager() {
+        return this.viewManager;
     }
 }

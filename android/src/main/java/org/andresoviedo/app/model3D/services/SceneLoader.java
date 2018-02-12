@@ -284,4 +284,8 @@ public class SceneLoader {
 		}
 	}
 
+	public Animator getAnimator() {
+		return this.animator;
+	}
+
 }
