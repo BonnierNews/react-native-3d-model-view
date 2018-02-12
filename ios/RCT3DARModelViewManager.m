@@ -20,6 +20,7 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_VIEW_PROPERTY(modelSrc, NSString)
 RCT_EXPORT_VIEW_PROPERTY(textureSrc, NSString)
 RCT_EXPORT_VIEW_PROPERTY(scale, float)
+RCT_EXPORT_VIEW_PROPERTY(autoPlayAnimations, BOOL)
 
 RCT_EXPORT_VIEW_PROPERTY(loadModelSuccess, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(loadModelError, RCTBubblingEventBlock)
@@ -41,6 +42,27 @@ RCT_EXPORT_METHOD(reload)
 {
     if (modelView) {
         [modelView reload];
+    }
+}
+
+RCT_EXPORT_METHOD(startAnimation)
+{
+    if (modelView) {
+        [modelView startAnimation];
+    }
+}
+
+RCT_EXPORT_METHOD(stopAnimation)
+{
+    if (modelView) {
+        [modelView stopAnimation];
+    }
+}
+
+RCT_EXPORT_METHOD(setProgress:(float)progress)
+{
+    if (modelView) {
+        [modelView setProgress:progress];
     }
 }
 

@@ -52,4 +52,5 @@
     [super setScale:scale];
     [_sceneView.scene.rootNode setScale:SCNVector3Make(scale, scale, scale)];
 }
+
 @end

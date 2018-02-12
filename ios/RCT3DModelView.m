@@ -41,6 +41,9 @@
     }
     _modelNode.scale = SCNVector3Make(_scale, _scale, _scale);
     _modelNode = node;
+    if (!_autoPlayAnimations) {
+        [self stopAnimation];
+    }
 }
 
 - (void)removeNode:(SCNNode *)node {
@@ -72,12 +75,50 @@
     _scale = scale;
 }
 
-- (void)setLoadModelSuccess:(RCTBubblingEventBlock)loadModelSuccess {
-    _loadModelSuccess = loadModelSuccess;
+- (NSMutableArray*) getAnimatedNodes:(SCNNode*)parent result:(NSMutableArray *)result {
+    if (parent.childNodes.count == 0) {
+        return result;
+    }
+    for (SCNNode * child in parent.childNodes) {
+        if(child.animationKeys.count > 0) {
+            [result addObject:child];
+        }
+        [self getAnimatedNodes:child result:result];
+    }
+    return result;
 }
 
-- (void)setLoadModelError:(RCTBubblingEventBlock)loadModelError {
-    _loadModelError = loadModelError;
+- (void) startAnimation {
+    NSMutableArray* animatedNodes = [self getAnimatedNodes:_modelNode result:[[NSMutableArray alloc] init]];
+    for (SCNNode *node in animatedNodes) {
+        for (NSString *key in node.animationKeys) {
+            CAAnimation *animation = [node animationForKey:key];
+            [animation setSpeed:1];
+            [node addAnimation:animation forKey:key];
+        }
+    }
+}
+
+- (void) stopAnimation {
+    NSMutableArray* animatedNodes = [self getAnimatedNodes:_modelNode result:[[NSMutableArray alloc] init]];
+    for (SCNNode *node in animatedNodes) {
+        for (NSString *key in node.animationKeys) {
+            CAAnimation *animation = [node animationForKey:key];
+            [animation setSpeed:0];
+            [node addAnimation:animation forKey:key];
+        }
+    }
+}
+
+- (void) setProgress:(float)progress {
+    NSMutableArray* animatedNodes = [self getAnimatedNodes:_modelNode result:[[NSMutableArray alloc] init]];
+    for (SCNNode *node in animatedNodes) {
+        for (NSString *key in node.animationKeys) {
+            CAAnimation *animation = [node animationForKey:key];
+            [animation setTimeOffset:progress * animation.duration];
+            [node addAnimation:animation forKey:key];
+        }
+    }
 }
 
 @end

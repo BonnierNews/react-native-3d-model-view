@@ -43,7 +43,6 @@
     NSLog(@"[RCT3dModel]: Loading model at %@", modelUrl.path);
     SCNNode* node;
     NSString *type = [modelUrl pathExtension];
-    NSLog(@"%@", type);
     if([type  isEqual: @"scn"]) {
         node = [self createScnModel:modelUrl textureUrl:textureUrl];
     } else if ([type  isEqual: @"dae"]) {

@@ -3,17 +3,36 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  Platform,
+  Slider
 } from 'react-native'
 import { ModelView } from 'react-native-3d-model-view'
 
-export default class ModelScreen extends React.Component {
+export default class AnimatedModelScreen extends React.Component {
   state = {
-    message: ''
+    message: '',
+    isPlaying: false
   }
 
+  modelView = null
+
   static navigationOptions = {
-    title: 'Model'
+    title: 'Animated model'
+  }
+
+  togglePlay = () => {
+    const { isPlaying } = this.state
+    isPlaying ? this.modelView.stopAnimation() : this.modelView.startAnimation()
+    this.setState({isPlaying: !isPlaying})
+  }
+
+  sliderValueChange = value => {
+    const { isPlaying } = this.state
+    if (isPlaying) {
+      this.togglePlay()
+    }
+    this.modelView.setProgress(value)
   }
 
   onLoadModelStart = () => {
@@ -33,26 +52,24 @@ export default class ModelScreen extends React.Component {
 
   render () {
     const { navigate } = this.props.navigation
-    const { message } = this.state
+    const { message, isPlaying } = this.state
     return <View style={styles.container}>
       <View style={styles.modelContainer}>
         <Text>{message}</Text>
         <ModelView
+          ref={modelView => { this.modelView = modelView }}
           style={styles.modelView}
           source={{
-            model: require('../obj/Hamburger.obj'),
-            texture: require('../obj/Hamburger.png')
-            // or
-            // model: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.obj?raw=true',
-            // texture: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.png?raw=true'
-            // or
-            // zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Cowboy.zip?raw=true'
-            // or
-            // zip: require('../obj/Hamburger.zip')
+            model: Platform.OS === 'ios' ? require('../obj/Stormtrooper_ios.dae') : require('../obj/Stormtrooper.dae'),
+            texture: require('../obj/Stormtrooper.jpg')
           }}
+          autoPlay={isPlaying}
           onLoadModelStart={this.onLoadModelStart}
           onLoadModelSuccess={this.onLoadModelSuccess}
           onLoadModelError={this.onLoadModelError} />
+          <Button onPress={this.togglePlay} title={isPlaying ? 'Stop' : 'Play' } />
+          <Text>Progress</Text>
+          <Slider maximumValue={1} minimumValue={0} onValueChange={this.sliderValueChange} />
       </View>
     </View>
   }

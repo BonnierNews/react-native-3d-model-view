@@ -65,8 +65,7 @@ export default class ARScreen extends React.Component {
       <ARModelView
         ref={arView => { this.arView = arView }}
         style={styles.modelView}
-        source={{ uri: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
-        type={ModelTypes.OBJ}
+        source={{ zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
         scale={0.1}
         focusSquareColor='red'
         focusSquareFillColor='blue'

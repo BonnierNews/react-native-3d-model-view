@@ -9,6 +9,7 @@
 @property (nonatomic, copy) NSString* modelSrc;
 @property (nonatomic, copy) NSString* textureSrc;
 @property (nonatomic) float scale;
+@property (nonatomic) bool autoPlayAnimations;
 @property (nonatomic, copy) SCNNode* modelNode;
 
 @property (nonatomic, copy) RCTBubblingEventBlock loadModelSuccess;
@@ -18,4 +19,7 @@
 - (void)reload;
 - (void)addModelNode:(SCNNode *)node;
 - (void)removeNode:(SCNNode *)node;
+- (void)startAnimation;
+- (void)stopAnimation;
+- (void)setProgress:(float)progress;
 @end
