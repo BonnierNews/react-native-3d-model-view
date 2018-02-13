@@ -107,6 +107,7 @@ class RN3DViewManager extends SimpleViewManager<RN3DView> {
     Assertions.assertNotNull(args);
     switch (commandType) {
       case COMMAND_RELOAD: {
+        view.reload();
         return;
       }
       case COMMAND_START_ANIMATION: {

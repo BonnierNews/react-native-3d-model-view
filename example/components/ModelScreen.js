@@ -72,5 +72,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 300,
     backgroundColor: 'white'
+  },
+  buttonContainer: {
+    paddingVertical: 10
   }
 })
