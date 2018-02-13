@@ -128,6 +128,9 @@ Use `ref={modelView => {this.modelView = modelView}}` to be able to call the met
 | Method Name | Returns | Notes |
 |---|---|---|
 |`reload`|`null`|Reloads the model.|
+|`startAnimation`|`null`|Start playing animated model.|
+|`stopAnimation`|`null`|Stops playing animated model.|
+|`setProgress(float)`|`null`|Set animation progress of animated model (allowed values: 0-1).|
 
 ### ARModelView
 
@@ -162,6 +165,9 @@ Use `ref={arView => {this.arView = arView}}` to be able to call the methods list
 | Method Name | Returns | Notes |
 |---|---|---|
 |`reload`|`null`|Reloads the model.|
+|`startAnimation`|`null`|Start playing animated model.|
+|`stopAnimation`|`null`|Stops playing animated model.|
+|`setProgress(float)`|`null`|Set animation progress of animated model (allowed values: 0-1).|
 |`restart`|`null`|Restarts the ARKit session.|
 |`getSnapshot(boolean)`|`Promise`|Save a print screen of the current AR session. Boolean determines if the image should be saved to the Photo Library of the device. The promise return the url of the saved image.|
 
