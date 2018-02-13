@@ -46,6 +46,7 @@ public class RN3DView extends RelativeLayout {
     private float[] backgroundColor;
     private float scale = 1f;
     private boolean autoPlay = true;
+    private float progress = 0f;
 
     public RN3DView(Context context) {
         super(context);
@@ -60,6 +61,7 @@ public class RN3DView extends RelativeLayout {
             this.modelView.setLayoutParams(layoutParams);
             this.modelView.setScale(this.scale);
             this.modelView.setPlay(this.autoPlay);
+            this.modelView.setProgress(this.progress);
             addView(this.modelView);
         }
     }
@@ -101,6 +103,13 @@ public class RN3DView extends RelativeLayout {
         this.autoPlay = play;
         if (this.modelView != null) {
             modelView.setPlay(play);
+        }
+    }
+
+    public void setProgress(float progress) {
+        this.progress = progress;
+        if (this.modelView != null) {
+            modelView.setProgress(progress);
         }
     }
 

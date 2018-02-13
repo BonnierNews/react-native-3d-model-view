@@ -52,13 +52,12 @@ public class Animator {
 	 * joints by setting the joint transforms.
 	 */
 	public void update(Object3DData obj) {
-		if (!(obj instanceof AnimatedModel)) {
-			return;
-		}
 		if (!this.play) {
 			return;
 		}
-		// if (true) return;
+		if (!(obj instanceof AnimatedModel)) {
+			return;
+		}
 		AnimatedModel animatedModel = (AnimatedModel)obj;
 		if (animatedModel.getAnimation() == null) return;
 
@@ -263,6 +262,18 @@ public class Animator {
 
 	public void setPlay(boolean play) {
 		this.play = play;
+	}
+
+	public void setProgress(float progress, Object3DData obj) {
+		AnimatedModel animatedObj = (AnimatedModel)obj;
+		this.animationTime = animatedObj.getAnimation().getLength() * progress;
+		if (this.animationTime > animatedObj.getAnimation().getLength()) {
+			this.animationTime %= animatedObj.getAnimation().getLength();
+		}
+		Map<String, float[]> currentPose = calculateCurrentAnimationPose(animatedObj);
+		float parentTransform[] = new float[16];
+		Matrix.setIdentityM(parentTransform,0);
+		applyPoseToJoints(currentPose, animatedObj.getRootJoint(), parentTransform);
 	}
 
 }

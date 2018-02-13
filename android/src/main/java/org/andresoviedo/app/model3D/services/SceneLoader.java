@@ -181,6 +181,7 @@ public class SceneLoader {
 		obj.setScale(new float[] { scale, scale, scale });
 		newList.add(obj);
 		this.objects = newList;
+		this.selectedObject = obj;
 		requestRender();
 	}
 

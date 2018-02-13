@@ -102,6 +102,12 @@ public class ModelSurfaceView extends GLSurfaceView {
 		}
 	}
 
+	public void setProgress(float progress) {
+		if (this.scene.getAnimator() != null && this.scene.getSelectedObject() != null) {
+			this.scene.getAnimator().setProgress(progress, this.scene.getSelectedObject());
+		}
+	}
+
 	public float getScale() {
 		return this.scale;
 	}

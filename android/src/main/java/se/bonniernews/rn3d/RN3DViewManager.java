@@ -117,6 +117,10 @@ class RN3DViewManager extends SimpleViewManager<RN3DView> {
         view.setPlay(false);
         return;
       }
+      case COMMAND_SET_PROGRESS: {
+        view.setProgress((float)args.getDouble(0));
+        return;
+      }
       default:
         throw new IllegalArgumentException(String.format(
                 "Unsupported command %d received by %s.",
