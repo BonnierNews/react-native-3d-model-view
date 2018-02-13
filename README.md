@@ -114,6 +114,7 @@ View for displaying .obj, .dae or .scn (iOS only) on screen with SceneKit or Ope
 |---|---|---|---|
 |`source`|`object`|`null`|Can either consist of a `zip` prop or a `model` and a `texture` prop. All three can either be a `string` to a server ("http://...") or you can use `require` to reference a local path. The .zip should contain both the object and the texture.|
 |`scale`|`number`|`1`|Scale of the model.|
+|`autoPlay`|`boolean`|`true`|Should animated models play on mount.|
 
 #### Events
 | Event Name | Returns | Notes |
@@ -141,6 +142,7 @@ View for displaying .obj, .dae or .scn in augmented reality (iOS devices with A9
 |---|---|---|---|
 |`source`|`object`|`null`|Can either consist of a `zip` prop or a `model` and a `texture` prop. All three can either be a `string` to a server ("http://...") or you can use `require` to reference a local path. The .zip should contain both the object and the texture.|
 |`scale`|`number`|`1`|Scale of the model.|
+|`autoPlay`|`boolean`|`true`|Should animated models play on mount.|
 |`focusSquareColor`|`string`|`#FFCC00`|Color of the segments in the focus square.|
 |`focusSquareFillColor`|`string`|`#FFEC69`|Fill color of the focus square.|
 
