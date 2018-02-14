@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.andresoviedo.app.model3D.model.AnimatedModel;
 import org.andresoviedo.app.model3D.model.Object3DData;
+import org.andresoviedo.app.model3D.view.ModelSurfaceView;
 import org.andresoviedo.app.model3D.services.collada.entities.Joint;
 
 
@@ -38,10 +39,12 @@ import org.andresoviedo.app.model3D.services.collada.entities.Joint;
  */
 public class Animator {
 
+	private ModelSurfaceView parent;
 	private float animationTime = 0;
 	private boolean play = true;
 
-	public Animator() {
+	public Animator(ModelSurfaceView parent) {
+		this.parent = parent;
 	}
 
 	/**
@@ -115,6 +118,8 @@ public class Animator {
 		if (animationTime > obj.getAnimation().getLength()) {
 			this.animationTime %= obj.getAnimation().getLength();
 		}
+		double progress = (this.animationTime % obj.getAnimation().getLength()) / obj.getAnimation().getLength();
+		this.parent.onAnimationUpdate(progress);
 	}
 
 	/**

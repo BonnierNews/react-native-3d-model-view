@@ -119,17 +119,34 @@ public class RN3DView extends RelativeLayout {
     /**
      * React events
      */
-    public void loadModelSuccess() {
+    public void onLoadModelSuccess() {
         WritableMap event = Arguments.createMap();
         ReactContext reactContext = (ReactContext)getContext();
-        reactContext.getJSModule(RCTEventEmitter.class)
-                .receiveEvent(getId(), "loadModelSuccess", event);
+        reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "onLoadModelSuccess", event);
     }
 
-    public void loadModelError() {
+    public void onLoadModelError() {
         WritableMap event = Arguments.createMap();
         ReactContext reactContext = (ReactContext)getContext();
-        reactContext.getJSModule(RCTEventEmitter.class)
-                .receiveEvent(getId(), "loadModelError", event);
+        reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "onLoadModelError", event);
+    }
+
+    public void onAnimationStart() {
+        WritableMap event = Arguments.createMap();
+        ReactContext reactContext = (ReactContext)getContext();
+        reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "onAnimationStart", event);
+    }
+
+    public void onAnimationStop() {
+        WritableMap event = Arguments.createMap();
+        ReactContext reactContext = (ReactContext)getContext();
+        reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "onAnimationStop", event);
+    }
+
+    public void onAnimationUpdate(double progress) {
+        WritableMap event = Arguments.createMap();
+        event.putDouble("progress", progress);
+        ReactContext reactContext = (ReactContext)getContext();
+        reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "onAnimationUpdate", event);
     }
 }

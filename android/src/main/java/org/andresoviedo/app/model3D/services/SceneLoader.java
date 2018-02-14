@@ -89,11 +89,12 @@ public class SceneLoader {
 	/**
 	 * Animator
 	 */
-	private Animator animator = new Animator();
+	private Animator animator;
 
-	public SceneLoader(ModelSurfaceView main, Context context) {
-		this.parent = main;
+	public SceneLoader(ModelSurfaceView parent, Context context) {
+		this.parent = parent;
 		this.context = context;
+		this.animator = new Animator(parent);
 	}
 
 	public void init(final String modelPath, final String texturePath) {
@@ -112,7 +113,7 @@ public class SceneLoader {
 			}
 		} catch (MalformedURLException e) {
 			Log.e("SceneLoader", e.getMessage(), e);
-			this.parent.loadModelError();
+			this.parent.onLoadModelError();
 			throw new RuntimeException(e);
 		}
 		if (modelUrl != null && textureUrl != null) {
@@ -132,12 +133,12 @@ public class SceneLoader {
 					for (Object3DData data : datas) {
 						addObject(data);
 					}
-					parent.loadModelSuccess();
+					parent.onLoadModelSuccess();
 				}
 
 				@Override
 				public void onLoadError(Exception ex) {
-					parent.loadModelError();
+					parent.onLoadModelError();
 					Log.e("SceneLoader",ex.getMessage(),ex);
 				}
 			});

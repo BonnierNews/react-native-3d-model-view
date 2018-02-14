@@ -135,8 +135,11 @@ class RN3DViewManager extends SimpleViewManager<RN3DView> {
   public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
     MapBuilder.Builder<String, Object> builder = MapBuilder.builder();
     return builder
-            .put("loadModelSuccess", MapBuilder.of("registrationName", "loadModelSuccess"))
-            .put("loadModelError", MapBuilder.of("registrationName", "loadModelError"))
+            .put("onLoadModelSuccess", MapBuilder.of("registrationName", "onLoadModelSuccess"))
+            .put("onLoadModelError", MapBuilder.of("registrationName", "onLoadModelError"))
+            .put("onAnimationStart", MapBuilder.of("registrationName", "onAnimationStart"))
+            .put("onAnimationStop", MapBuilder.of("registrationName", "onAnimationStop"))
+            .put("onAnimationUpdate", MapBuilder.of("registrationName", "onAnimationUpdate"))
             .build();
   }
 }

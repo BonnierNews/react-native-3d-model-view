@@ -99,6 +99,11 @@ public class ModelSurfaceView extends GLSurfaceView {
 	public void setPlay(boolean play) {
 		if (this.scene.getAnimator() != null) {
 			this.scene.getAnimator().setPlay(play);
+			if (play) {
+				this.parent.onAnimationStart();
+			} else {
+				this.parent.onAnimationStop();
+			}
 		}
 	}
 
@@ -112,11 +117,19 @@ public class ModelSurfaceView extends GLSurfaceView {
 		return this.scale;
 	}
 
-	public void loadModelSuccess() {
-		parent.loadModelSuccess();
+	public void onLoadModelSuccess() {
+		parent.onLoadModelSuccess();
 	}
 
-	public void loadModelError() {
-		parent.loadModelError();
+	public void onLoadModelError() {
+		parent.onLoadModelError();
 	}
+
+	public void onAnimationStart() { parent.onAnimationStart(); }
+
+	public void onAnimationStop() { parent.onAnimationStop(); }
+
+	public void onAnimationUpdate(double progress) { parent.onAnimationUpdate(progress); }
+
+
 }
