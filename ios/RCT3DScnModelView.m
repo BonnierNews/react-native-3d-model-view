@@ -6,6 +6,8 @@
 }
 - (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
+        self.sceneTime = 0;
+        
         _sceneView = [[SCNView alloc] init];
         _sceneView.backgroundColor = [UIColor clearColor];
         SCNScene *scene = [SCNScene scene];
@@ -28,6 +30,7 @@
         spotLightNode.position = SCNVector3Make(100, 100, 170);
         _sceneView.allowsCameraControl = YES;
         _sceneView.scene = scene;
+        _sceneView.delegate = self;
         [self addSubview:_sceneView];
     }
     return self;
@@ -51,6 +54,32 @@
 -(void) setScale:(float)scale {
     [super setScale:scale];
     [_sceneView.scene.rootNode setScale:SCNVector3Make(scale, scale, scale)];
+}
+
+-(void) startAnimation {
+    [super startAnimation];
+    _sceneView.playing = true;
+    self.lastSceneTime = CACurrentMediaTime();
+}
+
+-(void) stopAnimation {
+    [super stopAnimation];
+    _sceneView.playing = false;
+}
+
+-(void) setProgress:(float)progress {
+    [super setProgress:progress];
+    [self stopAnimation];
+    self.sceneTime = progress * self.animationDuration;
+    _sceneView.sceneTime = self.sceneTime;
+}
+
+-(void) renderer:(id<SCNSceneRenderer>)renderer updateAtTime:(NSTimeInterval)time {
+    if (self.isPlaying) {
+        self.sceneTime += (time - self.lastSceneTime);
+        self.lastSceneTime = time;
+        _sceneView.sceneTime = self.sceneTime;
+    }
 }
 
 @end

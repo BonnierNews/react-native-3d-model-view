@@ -6,6 +6,7 @@
     if ((self = [super initWithFrame:frame])) {
         self.isLoading = NO;
         self.scale = 1.0;
+        self.sliderProgress = 0.0;
     }
     return self;
 }
@@ -41,9 +42,14 @@
     }
     _modelNode.scale = SCNVector3Make(_scale, _scale, _scale);
     _modelNode = node;
-    if (!_autoPlayAnimations) {
-        [self stopAnimation];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setupAnimations];
+        if (_autoPlayAnimations) {
+            [self startAnimation];
+        } else {
+            [self stopAnimation];
+        }
+    });
 }
 
 - (void)removeNode:(SCNNode *)node {
@@ -88,37 +94,29 @@
     return result;
 }
 
-- (void) startAnimation {
+-(void) setupAnimations {
     NSMutableArray* animatedNodes = [self getAnimatedNodes:_modelNode result:[[NSMutableArray alloc] init]];
     for (SCNNode *node in animatedNodes) {
         for (NSString *key in node.animationKeys) {
             CAAnimation *animation = [node animationForKey:key];
-            [animation setSpeed:1];
-            [node addAnimation:animation forKey:key];
+            animation.usesSceneTimeBase = true;
+            self.animationDuration = animation.duration;
+            [node removeAnimationForKey:key];
+            [_modelNode addAnimation:animation forKey:key];
         }
     }
+}
+
+- (void) startAnimation {
+    self.isPlaying = true;
 }
 
 - (void) stopAnimation {
-    NSMutableArray* animatedNodes = [self getAnimatedNodes:_modelNode result:[[NSMutableArray alloc] init]];
-    for (SCNNode *node in animatedNodes) {
-        for (NSString *key in node.animationKeys) {
-            CAAnimation *animation = [node animationForKey:key];
-            [animation setSpeed:0];
-            [node addAnimation:animation forKey:key];
-        }
-    }
+    self.isPlaying = false;
 }
 
 - (void) setProgress:(float)progress {
-    NSMutableArray* animatedNodes = [self getAnimatedNodes:_modelNode result:[[NSMutableArray alloc] init]];
-    for (SCNNode *node in animatedNodes) {
-        for (NSString *key in node.animationKeys) {
-            CAAnimation *animation = [node animationForKey:key];
-            [animation setTimeOffset:progress * animation.duration];
-            [node addAnimation:animation forKey:key];
-        }
-    }
+    self.sliderProgress = progress;
 }
 
 @end

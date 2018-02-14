@@ -4,6 +4,7 @@
 #import <SceneKit/SceneKit.h>
 #import <React/RCTConvert.h>
 
-@interface RCT3DScnModelView : RCT3DModelView
-
+@interface RCT3DScnModelView : RCT3DModelView<SCNSceneRendererDelegate>
+    @property (nonatomic) float lastSceneTime;
+    @property (nonatomic) float sceneTime;
 @end
