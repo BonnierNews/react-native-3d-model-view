@@ -20,7 +20,6 @@
     return self;
 }
 
-
 - (void)loadModel:(NSString *)modelSrc textureSrc:(NSString *)textureSrc completion:(void (^)(SCNNode * node))completion {
     NSURL *modelUrl = [self urlFromPath:modelSrc];
     NSURL *textureUrl = [self urlFromPath:textureSrc];

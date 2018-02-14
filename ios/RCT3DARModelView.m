@@ -76,6 +76,10 @@
     [_arView snapshotWithSaveToPhotoLibrary:saveToLibrary completion:completion];
 }
 
+-(SCNView*) getScnView {
+    return _arView.sceneView;
+}
+
 // MARK: - ARViewDelegate
 -(void) start {
     if (self.onStart) {

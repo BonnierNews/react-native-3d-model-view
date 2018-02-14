@@ -18,8 +18,11 @@ RCT_EXPORT_VIEW_PROPERTY(textureSrc, NSString)
 RCT_EXPORT_VIEW_PROPERTY(scale, float)
 RCT_EXPORT_VIEW_PROPERTY(autoPlayAnimations, BOOL)
 
-RCT_EXPORT_VIEW_PROPERTY(loadModelSuccess, RCTBubblingEventBlock)
-RCT_EXPORT_VIEW_PROPERTY(loadModelError, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onLoadModelSuccess, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onLoadModelError, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onAnimationStart, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onAnimationStop, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onAnimationUpdate, RCTBubblingEventBlock)
 
 RCT_EXPORT_METHOD(reload)
 {

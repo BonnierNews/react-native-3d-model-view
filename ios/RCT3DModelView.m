@@ -22,14 +22,14 @@
             self.isLoading = NO;
             [self addModelNode:node];
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (self.loadModelSuccess) {
-                    self.loadModelSuccess(@{});
+                if (self.onLoadModelSuccess) {
+                    self.onLoadModelSuccess(@{});
                 }
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (self.loadModelError) {
-                    self.loadModelError(@{});
+                if (self.onLoadModelError) {
+                    self.onLoadModelError(@{});
                 }
             });
         }
@@ -109,14 +109,42 @@
 
 - (void) startAnimation {
     self.isPlaying = true;
+    [self getScnView].playing = true;
+    self.lastSceneTime = CACurrentMediaTime();
+    if (self.onAnimationStart) {
+        self.onAnimationStart(@{});
+    }
 }
 
 - (void) stopAnimation {
     self.isPlaying = false;
+    [self getScnView].playing = false;
+    if (self.onAnimationStop) {
+        self.onAnimationStop(@{});
+    }
 }
 
 - (void) setProgress:(float)progress {
     self.sliderProgress = progress;
+    [self stopAnimation];
+    self.sceneTime = progress * self.animationDuration;
+    [self getScnView].sceneTime = self.sceneTime;
+    if (self.onAnimationUpdate) {
+        NSNumber *progress = [NSNumber numberWithFloat:fmod(self.sceneTime, self.animationDuration) / self.animationDuration];
+        self.onAnimationUpdate(@{@"progress":progress});
+    }
+}
+
+-(void) renderer:(id<SCNSceneRenderer>)renderer updateAtTime:(NSTimeInterval)time {
+    if (self.isPlaying) {
+        self.sceneTime += (time - self.lastSceneTime);
+        self.lastSceneTime = time;
+        [self getScnView].sceneTime = self.sceneTime;
+        if (self.onAnimationUpdate) {
+            NSNumber *progress = [NSNumber numberWithFloat:fmod(self.sceneTime, self.animationDuration) / self.animationDuration];
+            self.onAnimationUpdate(@{@"progress":progress});
+        }
+    }
 }
 
 @end
