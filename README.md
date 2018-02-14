@@ -122,6 +122,10 @@ View for displaying .obj, .dae or .scn (iOS only) on screen with SceneKit or Ope
 |`onLoadModelStart`|`null`|Loading model has started.|
 |`onLoadModelSuccess`|`null`|Loading model has succeeded.|
 |`onLoadModelError`|`Error`|Failed loading model.|
+|`onAnimationStart`|`null`|Animated model has started animating.|
+|`onAnimationStop`|`null`|Animated model has stopped animating.|
+|`onAnimationUpdate`|`event`|Animated model animation update. Get progress from `event.nativeEvent.progress`|
+
 
 #### Methods
 Use `ref={modelView => {this.modelView = modelView}}` to be able to call the methods listed below.
@@ -152,6 +156,9 @@ View for displaying .obj, .dae or .scn in augmented reality (iOS devices with A9
 |`onLoadModelStart`|`null`|Loading model has started.|
 |`onLoadModelSuccess`|`null`|Loading model has succeeded.|
 |`onLoadModelError`|`Error`|Failed loading model.|
+|`onAnimationStart`|`null`|Animated model has started animating.|
+|`onAnimationStop`|`null`|Animated model has stopped animating.|
+|`onAnimationUpdate`|`event`|Animated model animation update. Get progress from `event.nativeEvent.progress`|
 |`onStart`|`null`||
 |`onSurfaceFound`|`null`||
 |`onSurfaceLost`|`null`||
