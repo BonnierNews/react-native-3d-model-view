@@ -54,7 +54,13 @@ class ARView: UIView {
     }
     
     var hasFoundSurface = false
-        
+    
+    // MARK: - Animation Controller Properties
+    var isPlaying = false
+    var sliderProgress: Double = 0
+    var lastSceneTime: Double = 0
+    var sceneTime: Double = 0
+    
     /// Convenience accessor for the session owned by ARSCNView.
     var session: ARSession {
         return sceneView.session
@@ -90,6 +96,7 @@ class ARView: UIView {
     
     deinit {
         session.pause()
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     override func layoutSubviews() {
@@ -121,6 +128,7 @@ class ARView: UIView {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
 		session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         hasFoundSurface = false
         if let delegate = self.delegate {
             delegate.start()

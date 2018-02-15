@@ -24,13 +24,6 @@ RCT_EXPORT_VIEW_PROPERTY(onAnimationStart, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onAnimationStop, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onAnimationUpdate, RCTBubblingEventBlock)
 
-RCT_EXPORT_METHOD(reload)
-{
-    if (modelView) {
-        [modelView reload];
-    }
-}
-
 RCT_EXPORT_METHOD(startAnimation)
 {
     if (modelView) {

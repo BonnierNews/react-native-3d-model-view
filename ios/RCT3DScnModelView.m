@@ -3,10 +3,14 @@
 @implementation RCT3DScnModelView
 {
     SCNView *_sceneView;
+    float _sliderProgress;
+    float _lastSceneTime;
+    float _sceneTime;
 }
 - (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        self.sceneTime = 0;
+        _sceneTime = 0;
+        _sliderProgress = 0;
         
         _sceneView = [[SCNView alloc] init];
         _sceneView.backgroundColor = [UIColor clearColor];
@@ -56,8 +60,42 @@
     [_sceneView.scene.rootNode setScale:SCNVector3Make(scale, scale, scale)];
 }
 
--(SCNView*) getScnView {
-    return _sceneView;
+- (void) startAnimation {
+    _sceneView.playing = true;
+    _lastSceneTime = CACurrentMediaTime();
+    if (self.onAnimationStart) {
+        self.onAnimationStart(@{});
+    }
+}
+
+- (void) stopAnimation {
+    _sceneView.playing = false;
+    if (self.onAnimationStop) {
+        self.onAnimationStop(@{});
+    }
+}
+
+- (void) setProgress:(float)progress {
+    _sliderProgress = progress;
+    [self stopAnimation];
+    _sceneTime = progress * self.animationDuration;
+    _sceneView.sceneTime = _sceneTime;
+    if (self.onAnimationUpdate) {
+        NSNumber *progress = [NSNumber numberWithFloat:fmod(_sceneTime, self.animationDuration) / self.animationDuration];
+        self.onAnimationUpdate(@{@"progress":progress});
+    }
+}
+
+-(void) renderer:(id<SCNSceneRenderer>)renderer updateAtTime:(NSTimeInterval)time {
+    if (_sceneView.isPlaying) {
+        _sceneTime += (time - _lastSceneTime);
+        _lastSceneTime = time;
+        _sceneView.sceneTime = _sceneTime;
+        if (self.onAnimationUpdate) {
+            NSNumber *progress = [NSNumber numberWithFloat:fmod(_sceneTime, self.animationDuration) / self.animationDuration];
+            self.onAnimationUpdate(@{@"progress":progress});
+        }
+    }
 }
 
 @end

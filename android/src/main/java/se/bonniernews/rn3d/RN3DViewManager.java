@@ -39,7 +39,6 @@ class RN3DViewManager extends SimpleViewManager<RN3DView> {
   public static final String REACT_CLASS = "RCT3DScnModelView";
   private RN3DView view;
 
-  public static final int COMMAND_RELOAD = 1;
   public static final int COMMAND_START_ANIMATION = 2;
   public static final int COMMAND_STOP_ANIMATION = 3;
   public static final int COMMAND_SET_PROGRESS = 4;
@@ -88,8 +87,6 @@ class RN3DViewManager extends SimpleViewManager<RN3DView> {
   @Override
   public Map<String,Integer> getCommandsMap() {
     return MapBuilder.of(
-            "reload",
-            COMMAND_RELOAD,
             "startAnimation",
             COMMAND_START_ANIMATION,
             "stopAnimation",
@@ -106,10 +103,6 @@ class RN3DViewManager extends SimpleViewManager<RN3DView> {
     Assertions.assertNotNull(view);
     Assertions.assertNotNull(args);
     switch (commandType) {
-      case COMMAND_RELOAD: {
-        view.reload();
-        return;
-      }
       case COMMAND_START_ANIMATION: {
         view.setPlay(true);
         return;

@@ -33,7 +33,7 @@
     [super addModelNode:node];
     [self addScaleToModelNode];
     if (_hasSurface && !_modelIsAddedToScene) {
-        [_arView addVirtualObject:node];
+        self.modelNode = [_arView addVirtualObject:node];
         _modelIsAddedToScene = YES;
     }
 }
@@ -44,11 +44,11 @@
 }
 
 -(void) setFocusSquareColor:(UIColor*)color {
-    [[_arView focusSquare] setColorWithPrimary:color fill:nil];
+//    [[_arView focusSquare] setColorWithPrimary:color fill:nil];
 }
 
 -(void) setFocusSquareFillColor:(UIColor*)color {
-    [[_arView focusSquare] setColorWithPrimary:nil fill:color];
+//    [[_arView focusSquare] setColorWithPrimary:nil fill:color];
 }
 
 -(void) setScale:(float)scale {
@@ -66,18 +66,29 @@
 }
 
 -(void) restart {
-    _modelIsAddedToScene = NO;
-    [self removeNode:self.modelNode];
     [_arView restartExperience];
-    [self loadModel];
+    _modelIsAddedToScene = false;
 }
 
 -(void) takeSnapshot:(bool)saveToLibrary completion:(void (^)(BOOL success, NSURL *))completion {
     [_arView snapshotWithSaveToPhotoLibrary:saveToLibrary completion:completion];
 }
 
--(SCNView*) getScnView {
-    return _arView.sceneView;
+-(void) startAnimation {
+    [_arView startAnimation];
+    if (self.onAnimationStart) {
+        self.onAnimationStart(@{});
+    }
+}
+
+-(void) stopAnimation {
+    [_arView stopAnimation];
+    if (self.onAnimationStop) {
+        self.onAnimationStop(@{});
+    }
+}
+
+-(void) setProgress:(float)progress {
 }
 
 // MARK: - ARViewDelegate
@@ -89,8 +100,10 @@
 
 -(void) surfaceFound {
     _hasSurface = YES;
+    NSLog(@"hej:found");
     if (self.modelNode && !_modelIsAddedToScene) {
-        [_arView addVirtualObject:self.modelNode];
+        NSLog(@"hej:add");
+        self.modelNode = [_arView addVirtualObject:self.modelNode];
         _modelIsAddedToScene = YES;
     }
     if (self.onSurfaceFound) {

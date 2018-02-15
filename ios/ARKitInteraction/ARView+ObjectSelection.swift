@@ -18,6 +18,7 @@ extension ARView {
      - Tag: PlaceVirtualObject
      */
     func placeVirtualObject(_ virtualObject: VirtualObject) {
+        print("hej:place!")
         guard let cameraTransform = session.currentFrame?.camera.transform,
             let focusSquarePosition = focusSquare.lastPosition else {
             if let delegate = self.delegate {
@@ -26,8 +27,10 @@ extension ARView {
             return
         }
         virtualObjectInteraction.selectedObject = virtualObject
+        print("hej:place")
         virtualObject.setPosition(focusSquarePosition, relativeTo: cameraTransform, smoothMovement: false)
         updateQueue.async {
+            virtualObject.isAddedToScene = true
             self.sceneView.scene.rootNode.addChildNode(virtualObject)
         }
         if let delegate = self.delegate {
@@ -35,7 +38,8 @@ extension ARView {
         }
     }
     
-    func addVirtualObject(_ node: SCNNode) {
+    func addVirtualObject(_ node: SCNNode) -> SCNNode {
+        print("hej:addvirtual")
         let virtualObject = VirtualObject()
         for child in node.childNodes {
             virtualObject.addChildNode(child)
@@ -45,5 +49,6 @@ extension ARView {
                 self.placeVirtualObject(object)
             }
         })
+        return virtualObject
     }
 }

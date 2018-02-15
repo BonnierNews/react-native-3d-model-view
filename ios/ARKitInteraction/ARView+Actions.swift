@@ -17,6 +17,7 @@ extension ARView: UIGestureRecognizerDelegate {
         isRestartAvailable = false
         
         virtualObjectLoader.removeAllVirtualObjects()
+        
         snapshotImageCompletion = nil
         
         resetTracking()
@@ -64,5 +65,20 @@ extension ARView: UIGestureRecognizerDelegate {
             }
         }
         self.snapshotImageCompletion = nil
+    }
+    
+    func startAnimation() {
+        self.isPlaying = true
+        self.sceneView.isPlaying = true
+        self.lastSceneTime = CACurrentMediaTime()
+    }
+    
+    func stopAnimation() {
+        self.isPlaying = false
+        self.sceneView.isPlaying = false
+    }
+    
+    func setProgress(value: CGFloat, animationDuration: CGFloat) {
+        
     }
 }

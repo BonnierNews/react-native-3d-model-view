@@ -11,11 +11,7 @@
 @property (nonatomic) float scale;
 @property (nonatomic) bool autoPlayAnimations;
 @property (nonatomic, copy) SCNNode* modelNode;
-@property (nonatomic) bool isPlaying;
 @property (nonatomic) float animationDuration;
-@property (nonatomic) float sliderProgress;
-@property (nonatomic) float lastSceneTime;
-@property (nonatomic) float sceneTime;
 
 @property (nonatomic, copy) RCTBubblingEventBlock onLoadModelSuccess;
 @property (nonatomic, copy) RCTBubblingEventBlock onLoadModelError;
@@ -24,11 +20,9 @@
 @property (nonatomic, copy) RCTBubblingEventBlock onAnimationUpdate;
 
 - (void)loadModel;
-- (void)reload;
 - (void)addModelNode:(SCNNode *)node;
 - (void)removeNode:(SCNNode *)node;
 - (void)startAnimation;
 - (void)stopAnimation;
 - (void)setProgress:(float)progress;
-- (SCNView*)getScnView;
 @end

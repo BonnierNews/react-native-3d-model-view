@@ -53,9 +53,6 @@ public class RN3DView extends RelativeLayout {
         this.context = context;
     }
 
-    public void reload() {
-    }
-
     private void tryInitScene() {
         if (context != null && modelSrc != null && textureSrc != null && backgroundColor != null) {
             this.modelView = new ModelSurfaceView(context, this, modelSrc, textureSrc, backgroundColor);

@@ -12,8 +12,14 @@ export default class ModelScreen extends React.Component {
     message: ''
   }
 
+  modelView = null
+
   static navigationOptions = {
     title: 'Model'
+  }
+
+  reload = () => {
+    this.modelView && this.modelView.reload()
   }
 
   onLoadModelStart = () => {
@@ -38,6 +44,7 @@ export default class ModelScreen extends React.Component {
       <View style={styles.modelContainer}>
         <Text>{message}</Text>
         <ModelView
+          ref={modelView => { this.modelView = modelView }}
           style={styles.modelView}
           source={{
             model: require('../obj/Hamburger.obj'),
@@ -53,6 +60,9 @@ export default class ModelScreen extends React.Component {
           onLoadModelStart={this.onLoadModelStart}
           onLoadModelSuccess={this.onLoadModelSuccess}
           onLoadModelError={this.onLoadModelError} />
+        <View style={styles.buttonContainer}>
+          <Button onPress={this.reload} title='Reload' />
+        </View>
       </View>
     </View>
   }

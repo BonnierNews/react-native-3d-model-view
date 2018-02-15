@@ -12,6 +12,9 @@ import ARKit
 @available(iOS 11.0, *)
 class VirtualObject: SCNNode {
     
+    var isAddedToScene = false
+    var isPlaced = false
+    
     /// Use average of recent virtual object distances to avoid rapid changes in object scale.
     private var recentVirtualObjectDistances = [Float]()
     

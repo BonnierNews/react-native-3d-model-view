@@ -26,6 +26,16 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
         } else {
             lightingEnvironment.intensity = baseIntensity
         }
+        
+        if self.isPlaying {
+            self.sceneTime += (time - self.lastSceneTime);
+            self.lastSceneTime = time;
+            self.sceneView.sceneTime = self.sceneTime;
+            //                if (self.onAnimationUpdate) {
+            //                    NSNumber *progress = [NSNumber numberWithFloat:fmod(_sceneTime, self.animationDuration) / self.animationDuration];
+            //                    self.onAnimationUpdate(@{@"progress":progress});
+            //                }
+        }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {

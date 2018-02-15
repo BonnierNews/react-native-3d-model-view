@@ -41,13 +41,6 @@ RCT_EXPORT_VIEW_PROPERTY(onPlaceObjectSuccess, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onPlaceObjectError, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTrackingQualityInfo, RCTBubblingEventBlock)
 
-RCT_EXPORT_METHOD(reload)
-{
-    if (modelView) {
-        [modelView reload];
-    }
-}
-
 RCT_EXPORT_METHOD(startAnimation)
 {
     if (modelView) {
