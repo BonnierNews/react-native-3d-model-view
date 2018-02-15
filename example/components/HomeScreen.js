@@ -29,6 +29,9 @@ export default class HomeScreen extends React.Component {
       { this.state.arSupported ? <View style={styles.buttonContainer}>
         <Button onPress={() => { navigate('ARScreen') }} title='AR model screen (.obj)' />
       </View> : null }
+      { this.state.arSupported ? <View style={styles.buttonContainer}>
+        <Button onPress={() => { navigate('AnimatedARScreen') }} title='Animated AR model screen (.dae)' />
+      </View> : null }
     </View>
   }
 }
