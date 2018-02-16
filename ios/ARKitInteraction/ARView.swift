@@ -19,6 +19,7 @@ import UIKit
     func sessionInteruptedEnded()
     func placeObjectSuccess()
     func placeObjectError()
+    func animationUpdate(time: Double)
 }
 
 @available(iOS 11.0, *)
@@ -80,6 +81,7 @@ class ARView: UIView {
         sceneView.automaticallyUpdatesLighting = true
         
         virtualObjectInteraction = VirtualObjectInteraction(sceneView: sceneView)
+        virtualObjectInteraction.delegate = self
         
         // Prevent the screen from being dimmed to avoid interuppting the AR experience.
         UIApplication.shared.isIdleTimerDisabled = true

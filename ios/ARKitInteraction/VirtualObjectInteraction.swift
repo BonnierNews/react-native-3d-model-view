@@ -7,6 +7,10 @@ Coordinates movement and gesture interactions with virtual objects.
 
 import UIKit
 import ARKit
+@available(iOS 11.0, *)
+@objc protocol VirtualObjectInteractionDelegate: class {
+    func didPlaceObject()
+}
 
 @available(iOS 11.0, *)
 class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
@@ -22,6 +26,8 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
      The `selectedObject` can be moved at any time with the tap gesture.
      */
     var selectedObject: VirtualObject?
+    
+    var delegate: VirtualObjectInteractionDelegate?
     
     /// The object that is tracked for use by the pan and rotation gestures.
     private var trackedObject: VirtualObject? {
@@ -125,6 +131,9 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
                 translate(object, basedOn: touchLocation, infinitePlane: false)
             } else {
                 object.isPlaced = true
+                if let delegate = delegate {
+                    delegate.didPlaceObject()
+                }
             }
         } else if let tappedObject = sceneView.virtualObject(at: touchLocation) {
             selectedObject = tappedObject

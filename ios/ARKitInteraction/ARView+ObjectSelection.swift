@@ -23,9 +23,6 @@ extension ARView {
         updateQueue.async {
             self.sceneView.scene.rootNode.addChildNode(virtualObject)
         }
-        if let delegate = self.delegate {
-            delegate.placeObjectSuccess()
-        }
     }
     
     func addVirtualObject(_ node: SCNNode) -> SCNNode {

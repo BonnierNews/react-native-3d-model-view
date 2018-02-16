@@ -78,7 +78,14 @@ extension ARView: UIGestureRecognizerDelegate {
         self.sceneView.isPlaying = false
     }
     
-    func setProgress(value: CGFloat, animationDuration: CGFloat) {
-        
+    func setProgress(value: Double, animationDuration: Double) {
+        self.sliderProgress = value
+        self.stopAnimation()
+        self.sceneTime = value * animationDuration
+        self.sceneView.sceneTime = self.sceneTime
+//        if (self.onAnimationUpdate) {
+//            NSNumber *progress = [NSNumber numberWithFloat:fmod(_sceneTime, self.animationDuration) / self.animationDuration];
+//            self.onAnimationUpdate(@{@"progress":progress});
+//        }
     }
 }
