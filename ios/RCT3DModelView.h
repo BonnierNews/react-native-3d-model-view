@@ -22,6 +22,7 @@
 - (void)loadModel;
 - (void)addModelNode:(SCNNode *)node;
 - (void)removeNode:(SCNNode *)node;
+- (void)setupAnimations;
 - (void)startAnimation;
 - (void)stopAnimation;
 - (void)setProgress:(float)progress;

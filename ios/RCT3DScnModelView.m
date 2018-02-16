@@ -68,17 +68,6 @@
     [_sceneView.scene.rootNode setScale:SCNVector3Make(scale, scale, scale)];
 }
 
--(void) setupAnimations {
-    [self.modelNode enumerateChildNodesUsingBlock:^(SCNNode * _Nonnull child, BOOL * _Nonnull stop) {
-        for (NSString *key in child.animationKeys) {
-            CAAnimation *animation = [child animationForKey:key];
-            animation.usesSceneTimeBase = true;
-            self.animationDuration = animation.duration;
-            [child addAnimation:animation forKey:key];
-        }
-    }];
-}
-
 - (void) startAnimation {
     _sceneView.playing = true;
     _lastSceneTime = CACurrentMediaTime();

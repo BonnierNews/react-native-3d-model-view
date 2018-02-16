@@ -28,7 +28,15 @@
 -(void) addModelNode:(SCNNode *)node {
     [super addModelNode:node];
     [self addScaleToModelNode];
-    self.modelNode = [_arView addVirtualObject:self.modelNode];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setupAnimations];
+        if (self.autoPlayAnimations) {
+            [self startAnimation];
+        } else {
+            [self stopAnimation];
+        }
+        self.modelNode = [_arView addVirtualObject:self.modelNode];
+    });
 }
 
 -(void) removeNode:(SCNNode *)node {

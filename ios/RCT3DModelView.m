@@ -67,6 +67,19 @@
     _scale = scale;
 }
 
+-(void) setupAnimations {
+    if (self.modelNode != nil) {
+        [self.modelNode enumerateChildNodesUsingBlock:^(SCNNode * _Nonnull child, BOOL * _Nonnull stop) {
+            for (NSString *key in child.animationKeys) {
+                CAAnimation *animation = [child animationForKey:key];
+                animation.usesSceneTimeBase = true;
+                self.animationDuration = animation.duration;
+                [child addAnimation:animation forKey:key];
+            }
+        }];
+    }
+}
+
 -(void) startAnimation {
 }
 

@@ -22,12 +22,49 @@ class VirtualObject: SCNNode {
     func reset() {
         recentVirtualObjectDistances.removeAll()
     }
+    
+    /**
+     Set the object's position based on the provided position relative to the `cameraTransform`.
+     If `smoothMovement` is true, the new position will be averaged with previous position to
+     avoid large jumps.
+     
+     - Tag: VirtualObjectSetPosition
+     */
+    func setPosition(_ newPosition: float3, relativeTo cameraTransform: matrix_float4x4, smoothMovement: Bool) {
+        let cameraWorldPosition = cameraTransform.translation
+        var positionOffsetFromCamera = newPosition - cameraWorldPosition
+        
+        // Limit the distance of the object from the camera to a maximum of 10 meters.
+        if simd_length(positionOffsetFromCamera) > 10 {
+            positionOffsetFromCamera = simd_normalize(positionOffsetFromCamera)
+            positionOffsetFromCamera *= 10
+        }
+        
+        /*
+         Compute the average distance of the object from the camera over the last ten
+         updates. Notice that the distance is applied to the vector from
+         the camera to the content, so it affects only the percieved distance to the
+         object. Averaging does _not_ make the content "lag".
+         */
+        if smoothMovement {
+            let hitTestResultDistance = simd_length(positionOffsetFromCamera)
+            
+            // Add the latest position and keep up to 10 recent distances to smooth with.
+            recentVirtualObjectDistances.append(hitTestResultDistance)
+            recentVirtualObjectDistances = Array(recentVirtualObjectDistances.suffix(10))
+            
+            let averageDistance = recentVirtualObjectDistances.average!
+            let averagedDistancePosition = simd_normalize(positionOffsetFromCamera) * averageDistance
+            simdPosition = cameraWorldPosition + averagedDistancePosition
+        } else {
+            simdPosition = cameraWorldPosition + positionOffsetFromCamera
+        }
+    }
 	
     /// - Tag: AdjustOntoPlaneAnchor
     func adjustOntoPlaneAnchor(_ anchor: ARPlaneAnchor, using node: SCNNode) {
         // Get the object's position in the plane's coordinate system.
         let planePosition = node.convertPosition(position, from: parent)
-        
         // Check that the object is not already on the plane.
         guard planePosition.y != 0 else { return }
         

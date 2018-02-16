@@ -45,14 +45,16 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
             return
         }
         
-        let translation = hitTestResult.worldTransform.translation
-        let x = translation.x
-        let y = translation.y
-        let z = translation.z
-        let position = SCNVector3(x, y, z)
-        for object in self.virtualObjectLoader.loadedObjects {
-            if !object.isPlaced {
-                object.position = position
+        if let cameraTransform = session.currentFrame?.camera.transform {
+            let translation = hitTestResult.worldTransform.translation
+            let x = translation.x
+            let y = translation.y
+            let z = translation.z
+            let position = float3(x, y, z)
+            for object in self.virtualObjectLoader.loadedObjects {
+                if !object.isPlaced {
+                    object.setPosition(position, relativeTo: cameraTransform, smoothMovement: false)
+                }
             }
         }
     }
