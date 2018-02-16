@@ -104,8 +104,6 @@ export default class AnimatedARScreen extends React.Component {
           texture: require('../obj/Stormtrooper.jpg')
         }}
         scale={0.1}
-        focusSquareColor='red'
-        focusSquareFillColor='blue'
         onLoadModelStart={this.onLoadModelStart}
         onLoadModelSuccess={this.onLoadModelSuccess}
         onLoadModelError={this.onLoadModelError}

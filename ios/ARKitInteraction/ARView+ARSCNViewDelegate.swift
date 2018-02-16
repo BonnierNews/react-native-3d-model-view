@@ -14,8 +14,7 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         DispatchQueue.main.async {
-            self.virtualObjectInteraction.updateObjectToCurrentTrackingPosition()
-            self.updateFocusSquare()
+            self.mainRender()
         }
         
         // If light estimation is enabled, update the intensity of the model's lights and the environment map
@@ -38,19 +37,40 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
         }
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-        DispatchQueue.main.async {
-//            self.statusViewController.cancelScheduledMessage(for: .planeEstimation)
-//            self.statusViewController.showMessage("SURFACE DETECTED")
-            if self.virtualObjectLoader.loadedObjects.isEmpty {
-//                self.statusViewController.scheduleMessage("TAP + TO PLACE AN OBJECT", inSeconds: 7.5, messageType: .contentPlacement)
-            }
+    
+    func mainRender() {
+        self.virtualObjectInteraction.updateObjectToCurrentTrackingPosition()
+        let hitTestResults = sceneView.hitTest(screenCenter, types: [.existingPlane, .estimatedHorizontalPlane])
+        guard let hitTestResult = hitTestResults.first else {
+            return
         }
         
+        let translation = hitTestResult.worldTransform.translation
+        let x = translation.x
+        let y = translation.y
+        let z = translation.z
+        let position = SCNVector3(x, y, z)
+        for object in self.virtualObjectLoader.loadedObjects {
+            if !object.isPlaced {
+                object.position = position
+            }
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        self.sceneView.debugOptions = []
+        self.hasFoundSurface = true
+        if let delegate = self.delegate {
+            delegate.surfaceFound()
+        }
         updateQueue.async {
             for object in self.virtualObjectLoader.loadedObjects {
-                object.adjustOntoPlaneAnchor(planeAnchor, using: node)
+                if !object.isAddedToScene {
+                    self.placeVirtualObject(object)
+                } else {
+                    object.adjustOntoPlaneAnchor(planeAnchor, using: node)
+                }
             }
         }
     }
@@ -59,8 +79,20 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         updateQueue.async {
             for object in self.virtualObjectLoader.loadedObjects {
-                object.adjustOntoPlaneAnchor(planeAnchor, using: node)
+                if !object.isAddedToScene {
+                    self.placeVirtualObject(object)
+                } else {
+                    object.adjustOntoPlaneAnchor(planeAnchor, using: node)
+                }
             }
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        self.hasFoundSurface = false
+        if let delegate = self.delegate {
+            delegate.surfaceLost()
         }
     }
     

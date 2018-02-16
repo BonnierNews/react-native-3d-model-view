@@ -41,6 +41,7 @@ class VirtualObjectLoader {
         guard loadedObjects.indices.contains(index) else { return }
         
         loadedObjects[index].removeFromParentNode()
-        loadedObjects.remove(at: index)
+        loadedObjects[index].isAddedToScene = false
+        loadedObjects[index].isPlaced = false
     }
 }

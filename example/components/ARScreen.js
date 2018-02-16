@@ -67,8 +67,6 @@ export default class ARScreen extends React.Component {
         style={styles.modelView}
         source={{ zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
         scale={0.1}
-        focusSquareColor='red'
-        focusSquareFillColor='blue'
         onLoadModelStart={this.onLoadModelStart}
         onLoadModelSuccess={this.onLoadModelSuccess}
         onLoadModelError={this.onLoadModelError}

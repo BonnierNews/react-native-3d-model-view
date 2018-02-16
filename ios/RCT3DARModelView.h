@@ -7,8 +7,6 @@
 #import "RCT3DModel-Swift.h"
 
 @interface RCT3DARModelView : RCT3DModelView
-@property (nonatomic, copy) UIColor* focusSquareColor;
-@property (nonatomic, copy) UIColor* focusSquareFillColor;
 
 @property (nonatomic, copy) RCTBubblingEventBlock onStart;
 @property (nonatomic, copy) RCTBubblingEventBlock onSurfaceFound;

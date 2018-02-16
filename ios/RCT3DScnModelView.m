@@ -47,7 +47,15 @@
 
 -(void) addModelNode:(SCNNode *)node {
     [super addModelNode:node];
-    [_sceneView.scene.rootNode addChildNode:node];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setupAnimations];
+        if (self.autoPlayAnimations) {
+            [self startAnimation];
+        } else {
+            [self stopAnimation];
+        }
+        [_sceneView.scene.rootNode addChildNode:node];
+    });
 }
 
 -(void) removeNode:(SCNNode *)node {
@@ -58,6 +66,17 @@
 -(void) setScale:(float)scale {
     [super setScale:scale];
     [_sceneView.scene.rootNode setScale:SCNVector3Make(scale, scale, scale)];
+}
+
+-(void) setupAnimations {
+    [self.modelNode enumerateChildNodesUsingBlock:^(SCNNode * _Nonnull child, BOOL * _Nonnull stop) {
+        for (NSString *key in child.animationKeys) {
+            CAAnimation *animation = [child animationForKey:key];
+            animation.usesSceneTimeBase = true;
+            self.animationDuration = animation.duration;
+            [child addAnimation:animation forKey:key];
+        }
+    }];
 }
 
 - (void) startAnimation {

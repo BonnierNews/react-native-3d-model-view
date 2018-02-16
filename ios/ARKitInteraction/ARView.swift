@@ -29,7 +29,6 @@ class ARView: UIView {
     
     // MARK: - UI Elements
     var sceneView: VirtualObjectARView!
-    let focusSquare = FocusSquare()
     
     // MARK: - Action Properties
     var snapshotImageCompletion: ((Bool, NSURL?) -> Void)?
@@ -52,9 +51,7 @@ class ARView: UIView {
         let bounds = sceneView.bounds
         return CGPoint(x: bounds.midX, y: bounds.midY)
     }
-    
-    var hasFoundSurface = false
-    
+        
     // MARK: - Animation Controller Properties
     var isPlaying = false
     var sliderProgress: Double = 0
@@ -65,6 +62,8 @@ class ARView: UIView {
     var session: ARSession {
         return sceneView.session
     }
+    
+    var hasFoundSurface = false
     
     // MARK: - View Controller Life Cycle
     override init(frame: CGRect) {
@@ -78,7 +77,6 @@ class ARView: UIView {
         
         // Set up scene content.
         setupCamera()
-        sceneView.scene.rootNode.addChildNode(self.focusSquare)
         sceneView.automaticallyUpdatesLighting = true
         
         virtualObjectInteraction = VirtualObjectInteraction(sceneView: sceneView)
@@ -132,48 +130,6 @@ class ARView: UIView {
         hasFoundSurface = false
         if let delegate = self.delegate {
             delegate.start()
-        }
-	}
-
-    // MARK: - Focus Square
-
-	func updateFocusSquare() {
-        let isObjectVisible = virtualObjectLoader.loadedObjects.contains { object in
-            return sceneView.isNode(object, insideFrustumOf: sceneView.pointOfView!)
-        }
-        
-        if isObjectVisible {
-            focusSquare.hide()
-        } else {
-            focusSquare.unhide()
-        }
-        
-        // We should always have a valid world position unless the sceen is just being initialized.
-        guard let (worldPosition, planeAnchor, _) = sceneView.worldPosition(fromScreenPosition: screenCenter, objectPosition: focusSquare.lastPosition) else {
-            updateQueue.async {
-                self.focusSquare.state = .initializing
-                self.sceneView.pointOfView?.addChildNode(self.focusSquare)
-            }
-            if let delegate = self.delegate, hasFoundSurface == true {
-                delegate.surfaceLost()
-                hasFoundSurface = false
-            }
-            return
-        }
-        
-        updateQueue.async {
-            self.sceneView.scene.rootNode.addChildNode(self.focusSquare)
-            let camera = self.session.currentFrame?.camera
-            
-            if let planeAnchor = planeAnchor {
-                self.focusSquare.state = .planeDetected(anchorPosition: worldPosition, planeAnchor: planeAnchor, camera: camera)
-            } else {
-                self.focusSquare.state = .featuresDetected(anchorPosition: worldPosition, camera: camera)
-            }
-        }
-        if let delegate = self.delegate, hasFoundSurface == false {
-            delegate.surfaceFound()
-            hasFoundSurface = true
         }
 	}
     

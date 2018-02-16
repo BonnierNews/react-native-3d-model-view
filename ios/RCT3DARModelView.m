@@ -6,14 +6,10 @@
 @implementation RCT3DARModelView
 {
     ARView *_arView;
-    bool _hasSurface;
-    bool _modelIsAddedToScene;
 }
 - (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         if (@available(iOS 11.0, *)) {
-            _hasSurface = false;
-            _modelIsAddedToScene = false;
             _arView = [[ARView alloc] initWithFrame:frame];
             _arView.delegate = self;
             [self addSubview:_arView];
@@ -32,23 +28,12 @@
 -(void) addModelNode:(SCNNode *)node {
     [super addModelNode:node];
     [self addScaleToModelNode];
-    if (_hasSurface && !_modelIsAddedToScene) {
-        self.modelNode = [_arView addVirtualObject:node];
-        _modelIsAddedToScene = YES;
-    }
+    self.modelNode = [_arView addVirtualObject:self.modelNode];
 }
 
 -(void) removeNode:(SCNNode *)node {
     [super removeNode:node];
     [node removeFromParentNode];
-}
-
--(void) setFocusSquareColor:(UIColor*)color {
-//    [[_arView focusSquare] setColorWithPrimary:color fill:nil];
-}
-
--(void) setFocusSquareFillColor:(UIColor*)color {
-//    [[_arView focusSquare] setColorWithPrimary:nil fill:color];
 }
 
 -(void) setScale:(float)scale {
@@ -67,7 +52,6 @@
 
 -(void) restart {
     [_arView restartExperience];
-    _modelIsAddedToScene = false;
 }
 
 -(void) takeSnapshot:(bool)saveToLibrary completion:(void (^)(BOOL success, NSURL *))completion {
@@ -99,20 +83,12 @@
 }
 
 -(void) surfaceFound {
-    _hasSurface = YES;
-    NSLog(@"hej:found");
-    if (self.modelNode && !_modelIsAddedToScene) {
-        NSLog(@"hej:add");
-        self.modelNode = [_arView addVirtualObject:self.modelNode];
-        _modelIsAddedToScene = YES;
-    }
     if (self.onSurfaceFound) {
         self.onSurfaceFound(@{});
     }
 }
 
 -(void) surfaceLost {
-    _hasSurface = NO;
     if (self.onSurfaceLost) {
         self.onSurfaceLost(@{});
     }

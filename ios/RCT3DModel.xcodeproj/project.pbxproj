@@ -15,8 +15,6 @@
 		536AB81820050426004223D4 /* ARView+ObjectSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538848992004EB180000C28B /* ARView+ObjectSelection.swift */; };
 		536AB81920050426004223D4 /* VirtualObjectARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5388489C2004EB180000C28B /* VirtualObjectARView.swift */; };
 		536AB81A20050426004223D4 /* VirtualObjectInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5388489D2004EB180000C28B /* VirtualObjectInteraction.swift */; };
-		538B82D82004EBE100206B2E /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B82D62004EBE100206B2E /* FocusSquare.swift */; };
-		538B82D92004EBE100206B2E /* FocusSquareSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B82D72004EBE100206B2E /* FocusSquareSegment.swift */; };
 		538B82DB2004EBE800206B2E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B82DA2004EBE800206B2E /* Utilities.swift */; };
 		538B82DE2004EBF100206B2E /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B82DC2004EBF100206B2E /* VirtualObject.swift */; };
 		538B82DF2004EBF100206B2E /* VirtualObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B82DD2004EBF100206B2E /* VirtualObjectLoader.swift */; };
@@ -52,8 +50,6 @@
 		5388489A2004EB180000C28B /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
 		5388489C2004EB180000C28B /* VirtualObjectARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObjectARView.swift; sourceTree = "<group>"; };
 		5388489D2004EB180000C28B /* VirtualObjectInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObjectInteraction.swift; sourceTree = "<group>"; };
-		538B82D62004EBE100206B2E /* FocusSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
-		538B82D72004EBE100206B2E /* FocusSquareSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusSquareSegment.swift; sourceTree = "<group>"; };
 		538B82DA2004EBE800206B2E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		538B82DC2004EBF100206B2E /* VirtualObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObject.swift; sourceTree = "<group>"; };
 		538B82DD2004EBF100206B2E /* VirtualObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectLoader.swift; sourceTree = "<group>"; };
@@ -92,7 +88,6 @@
 		538848882004EB180000C28B /* ARKitInteraction */ = {
 			isa = PBXGroup;
 			children = (
-				5388488F2004EB180000C28B /* Focus Square */,
 				538848962004EB180000C28B /* Utilities */,
 				5388489B2004EB180000C28B /* Virtual Objects */,
 				538848952004EB180000C28B /* ThresholdPanGesture.swift */,
@@ -105,15 +100,6 @@
 				538B82E02004EC2600206B2E /* RCT3DModel-Bridging-Header.h */,
 			);
 			path = ARKitInteraction;
-			sourceTree = "<group>";
-		};
-		5388488F2004EB180000C28B /* Focus Square */ = {
-			isa = PBXGroup;
-			children = (
-				538B82D62004EBE100206B2E /* FocusSquare.swift */,
-				538B82D72004EBE100206B2E /* FocusSquareSegment.swift */,
-			);
-			path = "Focus Square";
 			sourceTree = "<group>";
 		};
 		538848962004EB180000C28B /* Utilities */ = {
@@ -222,12 +208,10 @@
 				538B82DF2004EBF100206B2E /* VirtualObjectLoader.swift in Sources */,
 				53B59F162003BC21007669AA /* RCT3DARModelViewManager.m in Sources */,
 				D913528C1EA2F479001C1909 /* RCT3DScnModelViewManager.h in Sources */,
-				538B82D82004EBE100206B2E /* FocusSquare.swift in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RCT3DModelView.m in Sources */,
 				53B59F192003BCD4007669AA /* RCT3DARModelView.m in Sources */,
 				D913528A1EA2F442001C1909 /* RCT3DScnModelViewManager.m in Sources */,
 				538B82DB2004EBE800206B2E /* Utilities.swift in Sources */,
-				538B82D92004EBE100206B2E /* FocusSquareSegment.swift in Sources */,
 				D913528B1EA2F477001C1909 /* RCT3DModelView.h in Sources */,
 				538B82DE2004EBF100206B2E /* VirtualObject.swift in Sources */,
 				530C02881FFD0CFA00187B2C /* RCT3DModelIO.m in Sources */,

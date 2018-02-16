@@ -29,9 +29,6 @@ RCT_EXPORT_VIEW_PROPERTY(onAnimationStop, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onAnimationUpdate, RCTBubblingEventBlock)
 
 // MARK: - ARView specifics
-RCT_EXPORT_VIEW_PROPERTY(focusSquareColor, UIColor)
-RCT_EXPORT_VIEW_PROPERTY(focusSquareFillColor, UIColor)
-
 RCT_EXPORT_VIEW_PROPERTY(onStart, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSurfaceFound, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSurfaceLost, RCTBubblingEventBlock)

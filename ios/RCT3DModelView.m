@@ -41,14 +41,6 @@
     }
     _modelNode.scale = SCNVector3Make(_scale, _scale, _scale);
     _modelNode = node;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self setupAnimations];
-        if (_autoPlayAnimations) {
-            [self startAnimation];
-        } else {
-            [self stopAnimation];
-        }
-    });
 }
 
 - (void)removeNode:(SCNNode *)node {
@@ -73,17 +65,6 @@
 
 - (void)setScale:(float)scale {
     _scale = scale;
-}
-
--(void) setupAnimations {
-    [self.modelNode enumerateChildNodesUsingBlock:^(SCNNode * _Nonnull child, BOOL * _Nonnull stop) {
-        for (NSString *key in child.animationKeys) {
-            CAAnimation *animation = [child animationForKey:key];
-            animation.usesSceneTimeBase = true;
-            self.animationDuration = animation.duration;
-            [child addAnimation:animation forKey:key];
-        }
-    }];
 }
 
 -(void) startAnimation {
