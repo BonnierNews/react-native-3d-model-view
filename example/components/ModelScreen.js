@@ -53,7 +53,7 @@ export default class ModelScreen extends React.Component {
             // model: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.obj?raw=true',
             // texture: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.png?raw=true'
             // or
-            // zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Cowboy.zip?raw=true'
+            // zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true'
             // or
             // zip: require('../obj/Hamburger.zip')
           }}

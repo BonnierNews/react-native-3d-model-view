@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Button, StyleSheet } from 'react-native'
-import { ARManager } from 'react-native-3d-model-view'
+import { Manager, ARManager } from 'react-native-3d-model-view'
 
 export default class HomeScreen extends React.Component {
   state = {
@@ -12,6 +12,7 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount () {
+    Manager.clearDownloadedFiles()
     ARManager.checkIfARSupported(supported => {
       this.setState({ arSupported: supported })
     })
