@@ -37,9 +37,6 @@ import ARModelView, { ModelTypes } from 'react-native-3d-model-view'
 
 <ARModelView
   source={{ zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
-  scale={0.1}
-  focusSquareColor='red'
-  focusSquareFillColor='blue'
   onLoadModelStart={this.onLoadModelStart}
   onLoadModelSuccess={this.onLoadModelSuccess}
   onLoadModelError={this.onLoadModelError}
@@ -132,7 +129,6 @@ Use `ref={modelView => {this.modelView = modelView}}` to be able to call the met
 
 | Method Name | Returns | Notes |
 |---|---|---|
-|`reload`|`null`|Reloads the model.|
 |`startAnimation`|`null`|Start playing animated model.|
 |`stopAnimation`|`null`|Stops playing animated model.|
 |`setProgress(float)`|`null`|Set animation progress of animated model (allowed values: 0-1).|
@@ -147,8 +143,7 @@ View for displaying .obj, .dae or .scn in augmented reality (iOS devices with A9
 |`source`|`object`|`null`|Can either consist of a `zip` prop or a `model` and a `texture` prop. All three can either be a `string` to a server ("http://...") or you can use `require` to reference a local path. The .zip should contain both the object and the texture.|
 |`scale`|`number`|`1`|Scale of the model.|
 |`autoPlay`|`boolean`|`true`|Should animated models play on mount.|
-|`focusSquareColor`|`string`|`#FFCC00`|Color of the segments in the focus square.|
-|`focusSquareFillColor`|`string`|`#FFEC69`|Fill color of the focus square.|
+|`miniature`|`boolean`|`false`|Shows the model in a miniature mode.|
 
 #### Events
 | Event Name | Returns | Notes |
@@ -173,7 +168,6 @@ Use `ref={arView => {this.arView = arView}}` to be able to call the methods list
 
 | Method Name | Returns | Notes |
 |---|---|---|
-|`reload`|`null`|Reloads the model.|
 |`startAnimation`|`null`|Start playing animated model.|
 |`stopAnimation`|`null`|Stops playing animated model.|
 |`setProgress(float)`|`null`|Set animation progress of animated model (allowed values: 0-1).|
