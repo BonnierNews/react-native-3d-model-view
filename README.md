@@ -81,6 +81,13 @@ source={{
   texture: require('../obj/Hamburger.png')
 }}
 ```
+The lib will assume that the unzipped folder result will have the same name as the .zip (e.g. `Hamburger.zip` => `Hamburger`). This might not always be the case, then you can set the name of the unzipped folder:
+```javascript
+source={{
+  zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Archive.zip?raw=true',
+  unzippedFolderName: 'Hamburger'
+}}
+```
 ### NOTE: File types
 WaveFront (.obj) and Collada (.dae) is supported on both Android and iOS. SceneKit (.scn) is supported on iOS. Collada models with animations is autoplayed.
 
@@ -109,7 +116,7 @@ View for displaying .obj, .dae or .scn (iOS only) on screen with SceneKit or Ope
 #### Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
-|`source`|`object`|`null`|Can either consist of a `zip` prop or a `model` and a `texture` prop. All three can either be a `string` to a server ("http://...") or you can use `require` to reference a local path. The .zip should contain both the object and the texture.|
+|`source`|`object`|`null`|Can either consist of a `zip` prop or a `model` and a `texture` prop. All three can either be a url `string` ("http://...") or you can use `require` to reference a local path. The .zip archive should contain both the object and the texture. Can also contain `unzippedFolderName` for setting the unzipped folder name (see more above).|
 |`scale`|`number`|`1`|Scale of the model.|
 |`autoPlay`|`boolean`|`true`|Should animated models play on mount.|
 
@@ -140,7 +147,7 @@ View for displaying .obj, .dae or .scn in augmented reality (iOS devices with A9
 #### Props
 | Prop | Type | Default | Note |
 |---|---|---|---|
-|`source`|`object`|`null`|Can either consist of a `zip` prop or a `model` and a `texture` prop. All three can either be a `string` to a server ("http://...") or you can use `require` to reference a local path. The .zip should contain both the object and the texture.|
+|`source`|`object`|`null`|Can either consist of a `zip` prop or a `model` and a `texture` prop. All three can either be a url `string` ("http://...") or you can use `require` to reference a local path. The .zip archive should contain both the object and the texture. Can also contain `unzippedFolderName` for setting the unzipped folder name (see more above). |
 |`scale`|`number`|`1`|Scale of the model.|
 |`autoPlay`|`boolean`|`true`|Should animated models play on mount.|
 |`miniature`|`boolean`|`false`|Shows the model in a miniature mode.|
