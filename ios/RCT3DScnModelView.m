@@ -83,14 +83,13 @@
     }
 }
 
-- (void) setProgress:(float)progress {
+-(void) setProgress:(float)progress {
     _sliderProgress = progress;
     [self stopAnimation];
     _sceneTime = progress * self.animationDuration;
     _sceneView.sceneTime = _sceneTime;
     if (self.onAnimationUpdate) {
-        NSNumber *progress = [NSNumber numberWithFloat:fmod(_sceneTime, self.animationDuration) / self.animationDuration];
-        self.onAnimationUpdate(@{@"progress":progress});
+        self.onAnimationUpdate(@{@"progress":[NSNumber numberWithFloat:fmod(_sceneTime, self.animationDuration) / self.animationDuration]});
     }
 }
 

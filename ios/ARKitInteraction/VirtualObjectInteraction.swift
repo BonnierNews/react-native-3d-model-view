@@ -130,7 +130,7 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
             if object.isPlaced {
                 translate(object, basedOn: touchLocation, infinitePlane: false)
             } else {
-                object.isPlaced = true
+                object.setPlaced(true)
                 if let delegate = delegate {
                     delegate.didPlaceObject()
                 }

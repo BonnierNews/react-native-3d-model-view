@@ -33,6 +33,7 @@ extension ARView {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000), execute: {
             self.virtualObjectLoader.loadVirtualObject(virtualObject) { (object) in
                 self.virtualObjectInteraction.selectedObject = virtualObject
+                virtualObject.setPlaced(false)
             }
         })
         return virtualObject

@@ -12,6 +12,8 @@ import ARKit
 @available(iOS 11.0, *)
 class VirtualObject: SCNNode {
     
+    static let miniatureScale = SCNVector3(0.2, 0.2, 0.2)
+    
     var isAddedToScene = false
     var isPlaced = false
     
@@ -89,6 +91,39 @@ class VirtualObject: SCNNode {
             SCNTransaction.animationDuration = CFTimeInterval(distanceToPlane * 500) // Move 2 mm per second.
             SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
             position.y = anchor.transform.columns.3.y
+            SCNTransaction.commit()
+        }
+    }
+    
+    func setPlaced(_ isPlaced: Bool, animate: Bool = true) {
+        DispatchQueue.main.async {
+            SCNTransaction.begin()
+            if animate {
+                SCNTransaction.animationDuration = CFTimeInterval(0.6)
+                SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            }
+            self.isPlaced = isPlaced
+            if isPlaced {
+                self.scale = SCNVector3(1, 1, 1)
+                self.opacity = 1
+            } else {
+                self.scale = VirtualObject.miniatureScale
+                self.opacity = 0.6
+            }
+            SCNTransaction.commit()
+        }
+    }
+    
+    func setMiniature(_ miniature: Bool) {
+        DispatchQueue.main.async {
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = CFTimeInterval(0.6)
+            SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            if miniature {
+                self.scale = VirtualObject.miniatureScale
+            } else {
+                self.scale = SCNVector3(1, 1, 1)
+            }
             SCNTransaction.commit()
         }
     }

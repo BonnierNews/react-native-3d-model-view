@@ -34,18 +34,20 @@ extension ARView: UIGestureRecognizerDelegate {
             self.snapshotImageCompletion = completion
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image), nil)
         } else {
-            if let directory = NSURL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent("rct-3d-model-view", isDirectory: true),
-                let imageData = UIImagePNGRepresentation(image) {
+            let fileManager = FileManager.default
+            let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+            if let imageData = UIImagePNGRepresentation(image),
+                let directory = urls.first {
                 let baseName = "rct-3d-model-view-"
                 let fileExtension = ".png"
                 var index = 1
-                var url = directory.appendingPathComponent("\(baseName)\(index)\(fileExtension)")
-                while FileManager.default.fileExists(atPath: url.path) {
+                var url = directory.appendingPathComponent("rct-3d-model-view/\(baseName)\(index)\(fileExtension)")
+                while fileManager.fileExists(atPath: url.path) {
                     index += 1
-                    url = directory.appendingPathComponent("\(baseName)\(index)\(fileExtension)")
+                    url = directory.appendingPathComponent("rct-3d-model-view/\(baseName)\(index)\(fileExtension)")
                 }
                 do {
-                    try imageData.write(to: url)
+                    try imageData.write(to: url, options: [.atomic])
                     completion(true, url as NSURL)
                 } catch {
                     completion(false, nil)
@@ -83,9 +85,11 @@ extension ARView: UIGestureRecognizerDelegate {
         self.stopAnimation()
         self.sceneTime = value * animationDuration
         self.sceneView.sceneTime = self.sceneTime
-//        if (self.onAnimationUpdate) {
-//            NSNumber *progress = [NSNumber numberWithFloat:fmod(_sceneTime, self.animationDuration) / self.animationDuration];
-//            self.onAnimationUpdate(@{@"progress":progress});
-//        }
+    }
+    
+    func setMiniature(_ miniature: Bool) {
+        if let selectedObject = self.virtualObjectInteraction.selectedObject {
+            selectedObject.setMiniature(miniature)
+        }
     }
 }

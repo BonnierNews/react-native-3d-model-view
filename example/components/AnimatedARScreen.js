@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   Platform,
-  Slider
+  Slider,
+  Switch
 } from 'react-native'
 import { ARModelView } from 'react-native-3d-model-view'
 
@@ -13,7 +14,8 @@ export default class AnimatedARScreen extends React.Component {
   state = {
     message: '',
     isPlaying: false,
-    animationProgress: 0
+    animationProgress: 0,
+    miniature: false
   }
 
   arView = null
@@ -30,6 +32,16 @@ export default class AnimatedARScreen extends React.Component {
   sliderValueChange = value => {
     const { isPlaying } = this.state
     this.arView.setProgress(value)
+  }
+
+  miniatureChange = value => {
+    this.setState({miniature: value})
+  }
+
+  snapshot = () => {
+    this.arView.getSnapshot(true)
+    .then(event => console.log(event))
+    .catch(error => console.log(error))
   }
 
   onLoadModelStart = () => {
@@ -94,7 +106,7 @@ export default class AnimatedARScreen extends React.Component {
 
   render () {
     const { navigate } = this.props.navigation
-    const { message, isPlaying, animationProgress } = this.state
+    const { message, isPlaying, animationProgress, miniature } = this.state
     return <View style={styles.container}>
       <ARModelView
         ref={arView => { this.arView = arView }}
@@ -103,7 +115,7 @@ export default class AnimatedARScreen extends React.Component {
           model: Platform.OS === 'ios' ? require('../obj/Stormtrooper_ios.dae') : require('../obj/Stormtrooper.dae'),
           texture: require('../obj/Stormtrooper.jpg')
         }}
-        scale={0.1}
+        miniature={miniature}
         onLoadModelStart={this.onLoadModelStart}
         onLoadModelSuccess={this.onLoadModelSuccess}
         onLoadModelError={this.onLoadModelError}
@@ -116,18 +128,23 @@ export default class AnimatedARScreen extends React.Component {
         onSessionInteruptedEnded={this.onSessionInteruptedEnded}
         onPlaceObjectSuccess={this.onPlaceObjectSuccess}
         onPlaceObjectError={this.onPlaceObjectError}
-        onTrackingQualityInfo={this.onTrackingQualityInfo} />
+        onTrackingQualityInfo={this.onTrackingQualityInfo}
+        onAnimationUpdate={this.onAnimationUpdate} />
       <Text style={[styles.controlItem, styles.message]}>{message}</Text>
+      <View style={styles.miniatureSwitch}>
+        <Text>Miniature</Text>
+        <Switch onValueChange={this.miniatureChange} value={miniature} />
+      </View>
       <TouchableOpacity onPress={() => { this.arView.restart() }} style={styles.restartButton}>
         <Text style={styles.controlItem}>Restart</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { this.arView.getSnapshot(false).then(event => console.log(event) ) }} style={styles.photoButton}>
+      <TouchableOpacity onPress={this.snapshot} style={styles.photoButton}>
         <Text style={styles.controlItem}>Take photo</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={this.togglePlay} style={styles.playPauseButton}>
         <Text style={styles.controlItem}>{isPlaying ? 'Stop' : 'Play' }</Text>
       </TouchableOpacity>
-      <Slider style={styles.slider} maximumValue={1} minimumValue={0} onValueChange={this.sliderValueChange} />
+      <Slider style={styles.slider} maximumValue={1} minimumValue={0} value={animationProgress} onValueChange={this.sliderValueChange} />
     </View>
   }
 }
@@ -174,6 +191,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
+    left: 20
+  },
+  miniatureSwitch: {
+    position: 'absolute',
+    top: 60,
     left: 20
   }
 })

@@ -29,13 +29,13 @@ RCT_EXPORT_VIEW_PROPERTY(onAnimationStop, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onAnimationUpdate, RCTBubblingEventBlock)
 
 // MARK: - ARView specifics
+RCT_EXPORT_VIEW_PROPERTY(miniature, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(onStart, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSurfaceFound, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSurfaceLost, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSessionInterupted, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSessionInteruptedEnded, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onPlaceObjectSuccess, RCTBubblingEventBlock)
-RCT_EXPORT_VIEW_PROPERTY(onPlaceObjectError, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTrackingQualityInfo, RCTBubblingEventBlock)
 
 RCT_EXPORT_METHOD(startAnimation)

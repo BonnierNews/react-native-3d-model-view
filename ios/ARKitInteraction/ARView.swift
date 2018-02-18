@@ -18,7 +18,6 @@ import UIKit
     func sessionInterupted()
     func sessionInteruptedEnded()
     func placeObjectSuccess()
-    func placeObjectError()
     func animationUpdate(time: Double)
 }
 

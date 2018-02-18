@@ -49,6 +49,12 @@
     [self addScaleToModelNode];
 }
 
+-(void) setMiniature:(bool)miniature {
+    if (_arView != nil) {
+        [_arView setMiniature:miniature];
+    }
+}
+
 -(void) addScaleToModelNode {
     if (self.scale && self.modelNode) {
         SCNVector3 scaleV = SCNVector3Make(self.scale, self.scale, self.scale);
@@ -59,6 +65,7 @@
 }
 
 -(void) restart {
+    [self stopAnimation];
     [_arView restartExperience];
 }
 
@@ -81,6 +88,9 @@
 }
 
 -(void) setProgress:(float)progress {
+    if (_arView != nil) {
+        [_arView setProgressWithValue:progress animationDuration:self.animationDuration];
+    }
 }
 
 // MARK: - ARViewDelegate
@@ -126,9 +136,10 @@
     }
 }
 
--(void) placeObjectError {
-    if (self.onPlaceObjectError) {
-        self.onPlaceObjectError(@{});
+-(void) animationUpdateWithTime:(double)time {
+    if (self.onAnimationUpdate) {
+        NSNumber *progress = [NSNumber numberWithFloat:fmod(time, self.animationDuration) / self.animationDuration];
+        self.onAnimationUpdate(@{@"progress":progress});
     }
 }
 

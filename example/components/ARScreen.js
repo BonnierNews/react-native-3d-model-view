@@ -14,6 +14,12 @@ export default class ARScreen extends React.Component {
 
   arView = null
 
+  snapshot = () => {
+    this.arView.getSnapshot(false)
+    .then(event => console.log(event))
+    .catch(error => console.log(error))
+  }
+
   onLoadModelStart = () => {
     console.log('[react-native-3d-model-view]:', 'Load model start.')
   }
@@ -82,7 +88,7 @@ export default class ARScreen extends React.Component {
       <TouchableOpacity onPress={() => { this.arView.restart() }} style={styles.restartButton}>
         <Text style={styles.controlItem}>Restart</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { this.arView.getSnapshot(false).then(event => console.log(event) ) }} style={styles.photoButton}>
+      <TouchableOpacity onPress={this.snapshot} style={styles.photoButton}>
         <Text style={styles.controlItem}>Take photo</Text>
       </TouchableOpacity>
     </View>

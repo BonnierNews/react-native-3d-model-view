@@ -6,6 +6,7 @@
     if ((self = [super initWithFrame:frame])) {
         self.isLoading = NO;
         self.scale = 1.0;
+        self.animationDuration = 0.0;
     }
     return self;
 }
@@ -67,6 +68,9 @@
     _scale = scale;
 }
 
+-(void) setProgress:(float)progress {
+}
+
 -(void) setupAnimations {
     if (self.modelNode != nil) {
         [self.modelNode enumerateChildNodesUsingBlock:^(SCNNode * _Nonnull child, BOOL * _Nonnull stop) {
@@ -84,9 +88,6 @@
 }
 
 -(void) stopAnimation {
-}
-
--(void) setProgress:(float)progress {
 }
 
 @end

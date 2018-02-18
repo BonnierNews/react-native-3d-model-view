@@ -30,10 +30,9 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
             self.sceneTime += (time - self.lastSceneTime);
             self.lastSceneTime = time;
             self.sceneView.sceneTime = self.sceneTime;
-            //                if (self.onAnimationUpdate) {
-            //                    NSNumber *progress = [NSNumber numberWithFloat:fmod(_sceneTime, self.animationDuration) / self.animationDuration];
-            //                    self.onAnimationUpdate(@{@"progress":progress});
-            //                }
+            if let delegate = delegate {
+                delegate.animationUpdate(time: self.sceneTime)
+            }
         }
     }
     
