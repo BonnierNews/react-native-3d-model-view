@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		530C02881FFD0CFA00187B2C /* RCT3DModelIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C02871FFD0CFA00187B2C /* RCT3DModelIO.m */; };
 		536AB81420050426004223D4 /* ThresholdPanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538848952004EB180000C28B /* ThresholdPanGesture.swift */; };

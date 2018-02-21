@@ -40,6 +40,8 @@ RCT_EXPORT_VIEW_PROPERTY(onSessionInterupted, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSessionInteruptedEnded, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onPlaceObjectSuccess, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTrackingQualityInfo, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onTapView, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onTapObject, RCTBubblingEventBlock)
 
 RCT_EXPORT_METHOD(startAnimation)
 {

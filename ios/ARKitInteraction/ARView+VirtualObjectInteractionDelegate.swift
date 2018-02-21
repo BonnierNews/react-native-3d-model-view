@@ -12,5 +12,20 @@ import Foundation
 extension ARView: VirtualObjectInteractionDelegate {
     func placeObject(object: VirtualObject) {
         object.setPlaced(true, miniatureScale: self.miniatureScale, placeOpacity: self.placeOpacity)
+        if let delegate = delegate {
+            delegate.placeObjectSuccess()
+        }
+    }
+    
+    func tapView() {
+        if let delegate = delegate {
+            delegate.tapView()
+        }
+    }
+    
+    func tapObject() {
+        if let delegate = delegate {
+            delegate.tapObject()
+        }
     }
 }

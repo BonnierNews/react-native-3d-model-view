@@ -10,6 +10,8 @@ import ARKit
 @available(iOS 11.0, *)
 @objc protocol VirtualObjectInteractionDelegate: class {
     func placeObject(object: VirtualObject)
+    func tapObject()
+    func tapView()
 }
 
 @available(iOS 11.0, *)
@@ -125,17 +127,15 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
     @objc
     func didTap(_ gesture: UITapGestureRecognizer) {
         let touchLocation = gesture.location(in: sceneView)
-        
-        if let object = selectedObject {
-            if object.isPlaced {
-                translate(object, basedOn: touchLocation, infinitePlane: false)
-            } else {
-                if let delegate = delegate {
-                    delegate.placeObject(object: object)
-                }
-            }
+        guard let delegate = delegate else {
+            return
+        }
+        if let object = selectedObject, object.isPlaced == false {
+            delegate.placeObject(object: object)
         } else if let tappedObject = sceneView.virtualObject(at: touchLocation) {
-            selectedObject = tappedObject
+            delegate.tapObject()
+        } else {
+            delegate.tapView()
         }
     }
     

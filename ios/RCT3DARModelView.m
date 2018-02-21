@@ -25,6 +25,13 @@
     }
 }
 
+-(void)loadModel {
+    [super loadModel];
+    if (_arView != nil) {
+        [_arView start];
+    }
+}
+
 -(void) addModelNode:(SCNNode *)node {
     [super addModelNode:node];
     [self addScaleToModelNode];
@@ -152,6 +159,18 @@
     if (self.onAnimationUpdate) {
         NSNumber *progress = [NSNumber numberWithFloat:fmod(time, self.animationDuration) / self.animationDuration];
         self.onAnimationUpdate(@{@"progress":progress});
+    }
+}
+
+-(void) tapView {
+    if (self.onTapView) {
+        self.onTapView(@{});
+    }
+}
+
+-(void) tapObject {
+    if (self.onTapObject) {
+        self.onTapObject(@{});
     }
 }
 

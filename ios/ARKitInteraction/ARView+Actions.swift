@@ -11,6 +11,10 @@ import SceneKit
 @available(iOS 11.0, *)
 extension ARView: UIGestureRecognizerDelegate {
     
+    func start() {
+        resetTracking()
+    }
+    
     /// - Tag: restartExperience
     func restartExperience() {
         guard isRestartAvailable else { return }

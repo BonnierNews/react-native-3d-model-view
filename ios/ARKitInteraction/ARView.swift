@@ -19,6 +19,8 @@ import UIKit
     func sessionInteruptedEnded()
     func placeObjectSuccess()
     func animationUpdate(time: Double)
+    func tapView()
+    func tapObject()
 }
 
 @available(iOS 11.0, *)
@@ -88,9 +90,6 @@ class ARView: UIView {
         
         // Prevent the screen from being dimmed to avoid interuppting the AR experience.
         UIApplication.shared.isIdleTimerDisabled = true
-        
-        // Start the `ARSession`.
-        resetTracking()
     }
     
     required init?(coder aDecoder: NSCoder) {

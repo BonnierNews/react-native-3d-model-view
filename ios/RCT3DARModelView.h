@@ -19,6 +19,8 @@
 @property (nonatomic, copy) RCTBubblingEventBlock onSessionInteruptedEnded;
 @property (nonatomic, copy) RCTBubblingEventBlock onPlaceObjectSuccess;
 @property (nonatomic, copy) RCTBubblingEventBlock onTrackingQualityInfo;
+@property (nonatomic, copy) RCTBubblingEventBlock onTapView;
+@property (nonatomic, copy) RCTBubblingEventBlock onTapObject;
 
 - (void)restart;
 - (void)takeSnapshot:(bool)saveToLibrary completion:(void (^)(BOOL success, NSURL* url))completion;
