@@ -171,6 +171,9 @@ View for displaying .obj, .dae or .scn in augmented reality (iOS devices with A9
 |`onPlaceObjectSuccess`|`null`||
 |`onPlaceObjectError`|`null`||
 |`onTrackingQualityInfo`|`{id: number, presentation: string, recommendation: string`|The current info about the tracking quality.|
+|`onTapObject`|`null`|Called when tapped an object in the AR scene.|
+|`onTapView`|`null`|Called when tapped the screen but no object was hit by the tap.|
+
 
 #### Methods
 Use `ref={arView => {this.arView = arView}}` to be able to call the methods listed below.
