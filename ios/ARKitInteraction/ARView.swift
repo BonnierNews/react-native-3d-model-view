@@ -51,6 +51,10 @@ class ARView: UIView {
         let bounds = sceneView.bounds
         return CGPoint(x: bounds.midX, y: bounds.midY)
     }
+    
+    // MARK: - VirtualObject properties
+    var miniatureScale = SCNVector3(0.2, 0.2, 0.2)
+    var placeOpacity = 0.2
         
     // MARK: - Animation Controller Properties
     var isPlaying = false

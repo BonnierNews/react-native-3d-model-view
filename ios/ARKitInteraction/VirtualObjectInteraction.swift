@@ -9,7 +9,7 @@ import UIKit
 import ARKit
 @available(iOS 11.0, *)
 @objc protocol VirtualObjectInteractionDelegate: class {
-    func didPlaceObject()
+    func placeObject(object: VirtualObject)
 }
 
 @available(iOS 11.0, *)
@@ -130,9 +130,8 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
             if object.isPlaced {
                 translate(object, basedOn: touchLocation, infinitePlane: false)
             } else {
-                object.setPlaced(true)
                 if let delegate = delegate {
-                    delegate.didPlaceObject()
+                    delegate.placeObject(object: object)
                 }
             }
         } else if let tappedObject = sceneView.virtualObject(at: touchLocation) {

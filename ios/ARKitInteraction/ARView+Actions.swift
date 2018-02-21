@@ -89,7 +89,15 @@ extension ARView: UIGestureRecognizerDelegate {
     
     func setMiniature(_ miniature: Bool) {
         if let selectedObject = self.virtualObjectInteraction.selectedObject {
-            selectedObject.setMiniature(miniature)
+            selectedObject.setMiniature(miniature, miniatureScale: self.miniatureScale)
         }
+    }
+    
+    func setMinScale(_ scale: Double) {
+        self.miniatureScale = SCNVector3(scale, scale, scale)
+    }
+    
+    func setPlaceOpac(_ opacity: Double) {
+        self.placeOpacity = opacity
     }
 }

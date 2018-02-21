@@ -116,6 +116,8 @@ export default class AnimatedARScreen extends React.Component {
           texture: require('../obj/Stormtrooper.jpg')
         }}
         miniature={miniature}
+        miniatureScale={0.1}
+        placeOpacity={0.1}
         onLoadModelStart={this.onLoadModelStart}
         onLoadModelSuccess={this.onLoadModelSuccess}
         onLoadModelError={this.onLoadModelError}

@@ -20,6 +20,7 @@ extension ARView {
     func placeVirtualObject(_ virtualObject: VirtualObject) {
         virtualObjectInteraction.selectedObject = virtualObject
         virtualObject.isAddedToScene = true
+        virtualObject.setPlaced(false, miniatureScale: self.miniatureScale, placeOpacity: self.placeOpacity)
         updateQueue.async {
             self.sceneView.scene.rootNode.addChildNode(virtualObject)
         }
@@ -33,7 +34,6 @@ extension ARView {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000), execute: {
             self.virtualObjectLoader.loadVirtualObject(virtualObject) { (object) in
                 self.virtualObjectInteraction.selectedObject = virtualObject
-                virtualObject.setPlaced(false)
             }
         })
         return virtualObject

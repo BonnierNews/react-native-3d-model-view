@@ -30,6 +30,9 @@ RCT_EXPORT_VIEW_PROPERTY(onAnimationUpdate, RCTBubblingEventBlock)
 
 // MARK: - ARView specifics
 RCT_EXPORT_VIEW_PROPERTY(miniature, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(miniatureScale, float)
+RCT_EXPORT_VIEW_PROPERTY(placeOpacity, float)
+
 RCT_EXPORT_VIEW_PROPERTY(onStart, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSurfaceFound, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSurfaceLost, RCTBubblingEventBlock)

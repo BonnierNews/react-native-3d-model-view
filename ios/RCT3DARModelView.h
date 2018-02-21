@@ -9,6 +9,8 @@
 @interface RCT3DARModelView : RCT3DModelView
 
 @property (nonatomic) bool miniature;
+@property (nonatomic) float miniatureScale;
+@property (nonatomic) float placeOpacity;
 
 @property (nonatomic, copy) RCTBubblingEventBlock onStart;
 @property (nonatomic, copy) RCTBubblingEventBlock onSurfaceFound;

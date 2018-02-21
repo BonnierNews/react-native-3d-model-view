@@ -12,8 +12,6 @@ import ARKit
 @available(iOS 11.0, *)
 class VirtualObject: SCNNode {
     
-    static let miniatureScale = SCNVector3(0.2, 0.2, 0.2)
-    
     var isAddedToScene = false
     var isPlaced = false
     
@@ -95,7 +93,7 @@ class VirtualObject: SCNNode {
         }
     }
     
-    func setPlaced(_ isPlaced: Bool, animate: Bool = true) {
+    func setPlaced(_ isPlaced: Bool, miniatureScale: SCNVector3, placeOpacity: Double, animate: Bool = true) {
         DispatchQueue.main.async {
             SCNTransaction.begin()
             if animate {
@@ -107,20 +105,20 @@ class VirtualObject: SCNNode {
                 self.scale = SCNVector3(1, 1, 1)
                 self.opacity = 1
             } else {
-                self.scale = VirtualObject.miniatureScale
-                self.opacity = 0.6
+                self.scale = miniatureScale
+                self.opacity = CGFloat(placeOpacity)
             }
             SCNTransaction.commit()
         }
     }
     
-    func setMiniature(_ miniature: Bool) {
+    func setMiniature(_ miniature: Bool, miniatureScale: SCNVector3) {
         DispatchQueue.main.async {
             SCNTransaction.begin()
             SCNTransaction.animationDuration = CFTimeInterval(0.6)
             SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
             if miniature {
-                self.scale = VirtualObject.miniatureScale
+                self.scale = miniatureScale
             } else {
                 self.scale = SCNVector3(1, 1, 1)
             }

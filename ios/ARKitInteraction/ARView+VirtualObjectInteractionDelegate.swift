@@ -10,9 +10,7 @@ import Foundation
 
 @available(iOS 11.0, *)
 extension ARView: VirtualObjectInteractionDelegate {
-    func didPlaceObject() {
-        if let delegate = self.delegate {
-            delegate.placeObjectSuccess()
-        }
+    func placeObject(object: VirtualObject) {
+        object.setPlaced(true, miniatureScale: self.miniatureScale, placeOpacity: self.placeOpacity)
     }
 }

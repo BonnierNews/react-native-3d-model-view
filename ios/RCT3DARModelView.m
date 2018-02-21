@@ -55,6 +55,18 @@
     }
 }
 
+-(void) setMiniatureScale:(float)miniatureScale {
+    if (_arView != nil) {
+        [_arView setMinScale:miniatureScale];
+    }
+}
+
+-(void) setPlaceOpacity:(float)placeOpacity {
+    if (_arView != nil) {
+        [_arView setPlaceOpac:placeOpacity];
+    }
+}
+
 -(void) addScaleToModelNode {
     if (self.scale && self.modelNode) {
         SCNVector3 scaleV = SCNVector3Make(self.scale, self.scale, self.scale);
