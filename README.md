@@ -151,6 +151,8 @@ View for displaying .obj, .dae or .scn in augmented reality (iOS devices with A9
 |`scale`|`number`|`1`|Scale of the model.|
 |`autoPlay`|`boolean`|`true`|Should animated models play on mount.|
 |`miniature`|`boolean`|`false`|Shows the model in a miniature mode.|
+|`miniatureScale`|`float`|`0.2`|The scale of the model in miniature mode.|
+|`placeOpacity`|`float`|`0.2`|The opacity of the model when placing.|
 
 #### Events
 | Event Name | Returns | Notes |
