@@ -27,7 +27,7 @@ import com.facebook.react.bridge.ReadableNativeArray;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.facebook.react.uimanager.SimpleViewManager;
+import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 
@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-class RN3DViewManager extends SimpleViewManager<RN3DView> {
+class RN3DViewManager extends ViewGroupManager<RN3DView> {
   public static final String REACT_CLASS = "RCT3DScnModelView";
   private RN3DView view;
 
