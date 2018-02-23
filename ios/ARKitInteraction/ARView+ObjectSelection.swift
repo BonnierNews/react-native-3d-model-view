@@ -21,9 +21,7 @@ extension ARView {
         virtualObjectInteraction.selectedObject = virtualObject
         virtualObject.isAddedToScene = true
         virtualObject.setPlaced(false, miniatureScale: self.miniatureScale, placeOpacity: self.placeOpacity)
-        updateQueue.async {
-            self.sceneView.scene.rootNode.addChildNode(virtualObject)
-        }
+        self.sceneView.scene.rootNode.addChildNode(virtualObject)
     }
     
     func addVirtualObject(_ node: SCNNode) -> SCNNode {

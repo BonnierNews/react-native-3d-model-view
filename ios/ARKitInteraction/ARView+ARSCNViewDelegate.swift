@@ -15,24 +15,24 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         DispatchQueue.main.async {
             self.mainRender()
-        }
-        
-        // If light estimation is enabled, update the intensity of the model's lights and the environment map
-        let baseIntensity: CGFloat = 40
-        let lightingEnvironment = sceneView.scene.lightingEnvironment
-        if let lightEstimate = session.currentFrame?.lightEstimate {
-            lightingEnvironment.intensity = lightEstimate.ambientIntensity / baseIntensity
-        } else {
-            lightingEnvironment.intensity = baseIntensity
-        }
-        
-        if self.isPlaying {
-            self.sceneTime += (time - self.lastSceneTime);
-            self.lastSceneTime = time;
-            self.sceneView.sceneTime = self.sceneTime;
-            if let delegate = delegate {
-                delegate.animationUpdate(time: self.sceneTime)
+            
+            // If light estimation is enabled, update the intensity of the model's lights and the environment map
+            let baseIntensity: CGFloat = 40
+            let lightingEnvironment = self.sceneView.scene.lightingEnvironment
+            if let lightEstimate = self.session.currentFrame?.lightEstimate {
+                lightingEnvironment.intensity = lightEstimate.ambientIntensity / baseIntensity
+            } else {
+                lightingEnvironment.intensity = baseIntensity
             }
+            
+            if self.isPlaying {
+                self.sceneTime += (time - self.lastSceneTime);
+                self.lastSceneTime = time;
+                if let delegate = self.delegate {
+                    delegate.animationUpdate(time: self.sceneTime)
+                }
+            }
+            self.sceneView.sceneTime = self.sceneTime;
         }
     }
     
@@ -65,26 +65,22 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
         if let delegate = self.delegate {
             delegate.surfaceFound()
         }
-        updateQueue.async {
-            for object in self.virtualObjectLoader.loadedObjects {
-                if !object.isAddedToScene {
-                    self.placeVirtualObject(object)
-                } else {
-                    object.adjustOntoPlaneAnchor(planeAnchor, using: node)
-                }
+        for object in self.virtualObjectLoader.loadedObjects {
+            if !object.isAddedToScene {
+                self.placeVirtualObject(object)
+            } else {
+                object.adjustOntoPlaneAnchor(planeAnchor, using: node)
             }
         }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-        updateQueue.async {
-            for object in self.virtualObjectLoader.loadedObjects {
-                if !object.isAddedToScene {
-                    self.placeVirtualObject(object)
-                } else {
-                    object.adjustOntoPlaneAnchor(planeAnchor, using: node)
-                }
+        for object in self.virtualObjectLoader.loadedObjects {
+            if !object.isAddedToScene {
+                self.placeVirtualObject(object)
+            } else {
+                object.adjustOntoPlaneAnchor(planeAnchor, using: node)
             }
         }
     }

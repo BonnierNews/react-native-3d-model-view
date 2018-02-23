@@ -88,7 +88,9 @@ extension ARView: UIGestureRecognizerDelegate {
         self.sliderProgress = value
         self.stopAnimation()
         self.sceneTime = value * animationDuration
-        self.sceneView.sceneTime = self.sceneTime
+        if let delegate = delegate {
+            delegate.animationUpdate(time: self.sceneTime)
+        }
     }
     
     func setMiniature(_ miniature: Bool) {
