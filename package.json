@@ -1,6 +1,6 @@
 {
   "name": "react-native-3d-model-view",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "React Native plugin for showing .obj, .dae and .scn models.",
   "main": "index.js",
   "scripts": {
