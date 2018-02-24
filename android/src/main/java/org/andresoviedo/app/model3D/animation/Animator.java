@@ -271,6 +271,7 @@ public class Animator {
 
 	public void setProgress(float progress, Object3DData obj) {
 		AnimatedModel animatedObj = (AnimatedModel)obj;
+		initAnimation(animatedObj);
 		this.animationTime = animatedObj.getAnimation().getLength() * progress;
 		if (this.animationTime > animatedObj.getAnimation().getLength()) {
 			this.animationTime %= animatedObj.getAnimation().getLength();

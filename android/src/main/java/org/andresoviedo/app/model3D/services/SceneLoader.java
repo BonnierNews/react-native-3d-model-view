@@ -126,6 +126,7 @@ public class SceneLoader {
 						loadTexture(data, textureUrl);
 					}
 					final String elapsed = (SystemClock.uptimeMillis() - startTime)/1000+" secs";
+					parent.onLoadModelSuccess();
 				}
 
 				@Override
@@ -133,7 +134,6 @@ public class SceneLoader {
 					for (Object3DData data : datas) {
 						addObject(data);
 					}
-					parent.onLoadModelSuccess();
 				}
 
 				@Override
