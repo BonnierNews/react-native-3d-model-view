@@ -5,30 +5,14 @@
 package se.bonniernews.rn3d;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.View;
-import android.graphics.Paint;
-import android.graphics.Canvas;
 import android.widget.RelativeLayout;
-import android.support.annotation.NonNull;
 import android.view.ViewGroup;
-import android.util.DisplayMetrics;
 import android.graphics.Color;
+import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
-import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.bridge.ReadableMapKeySetIterator;
-import com.facebook.react.bridge.ReadableNativeMap;
 import com.facebook.react.bridge.WritableMap;
-import com.facebook.react.bridge.ReadableArray;
-import com.facebook.react.bridge.ReadableNativeArray;
-import com.facebook.react.common.MapBuilder;
-import com.facebook.react.uimanager.PixelUtil;
-import com.facebook.react.uimanager.annotations.ReactProp;
-import com.facebook.react.uimanager.SimpleViewManager;
-import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 
 import org.andresoviedo.app.model3D.view.ModelSurfaceView;
@@ -62,7 +46,7 @@ public class RN3DView extends RelativeLayout {
             this.modelView.setScale(this.scale);
             this.modelView.setPlay(this.autoPlay);
             this.modelView.setProgress(this.progress);
-            addView(this.modelView);
+            this.addView(this.modelView);
         }
     }
 

@@ -6,42 +6,28 @@ package se.bonniernews.rn3d;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.View;
-import android.graphics.Paint;
-import android.graphics.Canvas;
-import android.widget.RelativeLayout;
 import android.support.annotation.NonNull;
 import android.view.ViewGroup;
-import android.util.DisplayMetrics;
 
 import com.facebook.infer.annotation.Assertions;
-import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.ReactContext;
-import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.bridge.ReadableMapKeySetIterator;
-import com.facebook.react.bridge.ReadableNativeMap;
-import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.bridge.ReadableArray;
-import com.facebook.react.bridge.ReadableNativeArray;
 import com.facebook.react.common.MapBuilder;
-import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
+@ReactModule(name = RN3DViewManager.REACT_CLASS)
 class RN3DViewManager extends ViewGroupManager<RN3DView> {
   public static final String REACT_CLASS = "RCT3DScnModelView";
   private RN3DView view;
 
-  public static final int COMMAND_START_ANIMATION = 2;
-  public static final int COMMAND_STOP_ANIMATION = 3;
-  public static final int COMMAND_SET_PROGRESS = 4;
+  public static final int COMMAND_START_ANIMATION = 1;
+  public static final int COMMAND_STOP_ANIMATION = 2;
+  public static final int COMMAND_SET_PROGRESS = 3;
 
   @Override
   public String getName() {
@@ -50,7 +36,7 @@ class RN3DViewManager extends ViewGroupManager<RN3DView> {
 
   @Override
   protected RN3DView createViewInstance(ThemedReactContext themedReactContext) {
-    this.view = create3DView(themedReactContext);
+    this.view = new RN3DView(themedReactContext);
     return this.view;
   }
 
@@ -79,11 +65,6 @@ class RN3DViewManager extends ViewGroupManager<RN3DView> {
     view.setPlay(autoPlay);
   }
 
-  @NonNull
-  public static RN3DView create3DView(ThemedReactContext context) {
-    return new RN3DView(context);
-  }
-
   @Override
   public Map<String,Integer> getCommandsMap() {
     return MapBuilder.of(
@@ -96,10 +77,7 @@ class RN3DViewManager extends ViewGroupManager<RN3DView> {
   }
 
   @Override
-  public void receiveCommand(
-          RN3DView view,
-          int commandType,
-          @Nullable ReadableArray args) {
+  public void receiveCommand(RN3DView view, int commandType, @Nullable ReadableArray args) {
     Assertions.assertNotNull(view);
     Assertions.assertNotNull(args);
     switch (commandType) {
