@@ -130,19 +130,5 @@ class ARView: UIView {
             delegate.start()
         }
 	}
-    
-	// MARK: - Error handling
-    
-    func displayErrorMessage(title: String, message: String) {
-        // Blur the background.
-        
-        // Present an alert informing about the error that has occurred.
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let restartAction = UIAlertAction(title: "Restart Session", style: .default) { _ in
-            alertController.dismiss(animated: true, completion: nil)
-            self.resetTracking()
-        }
-        alertController.addAction(restartAction)
-    }
 
 }

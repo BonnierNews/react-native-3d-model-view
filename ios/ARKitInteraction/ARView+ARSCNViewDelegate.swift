@@ -24,16 +24,15 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
             } else {
                 lightingEnvironment.intensity = baseIntensity
             }
-            
-            if self.isPlaying {
-                self.sceneTime += (time - self.lastSceneTime);
-                self.lastSceneTime = time;
-                if let delegate = self.delegate {
-                    delegate.animationUpdate(time: self.sceneTime)
-                }
-            }
-            self.sceneView.sceneTime = self.sceneTime;
         }
+        if self.isPlaying {
+            self.sceneTime += (time - self.lastSceneTime);
+            self.lastSceneTime = time;
+            if let delegate = self.delegate {
+                delegate.animationUpdate(time: self.sceneTime)
+            }
+        }
+        self.sceneView.sceneTime = self.sceneTime;
     }
     
     
@@ -100,23 +99,19 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
         }
     }
     
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        guard error is ARError else { return }
-        
-        let errorWithInfo = error as NSError
-        let messages = [
-            errorWithInfo.localizedDescription,
-            errorWithInfo.localizedFailureReason,
-            errorWithInfo.localizedRecoverySuggestion
-        ]
-        
-        // Use `flatMap(_:)` to remove optional error messages.
-        let errorMessage = messages.flatMap({ $0 }).joined(separator: "\n")
-        
-        DispatchQueue.main.async {
-            self.displayErrorMessage(title: "The AR session failed.", message: errorMessage)
-        }
-    }
+//    func session(_ session: ARSession, didFailWithError error: Error) {
+//        guard error is ARError else { return }
+//        
+//        let errorWithInfo = error as NSError
+//        let messages = [
+//            errorWithInfo.localizedDescription,
+//            errorWithInfo.localizedFailureReason,
+//            errorWithInfo.localizedRecoverySuggestion
+//        ]
+//        
+//        // Use `flatMap(_:)` to remove optional error messages.
+//        let errorMessage = messages.flatMap({ $0 }).joined(separator: "\n")
+//    }
     
     func sessionWasInterrupted(_ session: ARSession) {
         if let delegate = self.delegate {
