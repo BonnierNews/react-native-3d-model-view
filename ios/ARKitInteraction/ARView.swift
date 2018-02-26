@@ -115,9 +115,6 @@ class ARView: UIView {
          with environmental lighting and physically based materials.
          */
         camera.wantsHDR = true
-        camera.exposureOffset = -1
-        camera.minimumExposure = -1
-        camera.maximumExposure = 3
     }
 
     // MARK: - Session management
