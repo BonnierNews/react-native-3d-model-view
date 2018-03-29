@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/BonnierNews/react-native-3d-model-view"
   },
   "keywords": [
     "react-native",
