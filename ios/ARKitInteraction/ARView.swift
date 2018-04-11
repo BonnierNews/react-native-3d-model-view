@@ -80,7 +80,8 @@ class ARView: UIView {
         
         // Set up scene content.
         setupCamera()
-        sceneView.automaticallyUpdatesLighting = true
+        sceneView.automaticallyUpdatesLighting = false
+        sceneView.autoenablesDefaultLighting = false
         
         virtualObjectInteraction = VirtualObjectInteraction(sceneView: sceneView)
         virtualObjectInteraction.delegate = self
