@@ -1,20 +1,22 @@
 #import "RCT3DARModelViewManager.h"
 
 @implementation RCT3DARModelViewManager
-{
-  RCT3DARModelView *modelView;
-}
 
 RCT_EXPORT_MODULE()
 
-- (UIView *)view
-{
+@synthesize bridge = _bridge;
+
+- (UIView *)view {
     if (@available(iOS 11.0, *)) {
         if ([ARConfiguration isSupported]) {
-            modelView = [[RCT3DARModelView alloc] init];
+            return [[RCT3DARModelView alloc] init];
         }
     }
-    return modelView;
+    return nil;
+}
+
+- (dispatch_queue_t)methodQueue {
+    return _bridge.uiManager.methodQueue;
 }
 
 RCT_EXPORT_VIEW_PROPERTY(modelSrc, NSString)
@@ -43,25 +45,40 @@ RCT_EXPORT_VIEW_PROPERTY(onTrackingQualityInfo, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTapView, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTapObject, RCTBubblingEventBlock)
 
-RCT_EXPORT_METHOD(startAnimation)
+RCT_EXPORT_METHOD(startAnimation:(nonnull NSNumber *)reactTag)
 {
-    if (modelView) {
-        [modelView startAnimation];
-    }
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+        RCT3DARModelView *modelView = (RCT3DARModelView*)viewRegistry[reactTag];
+        if ([modelView isKindOfClass:[RCT3DARModelView class]]) {
+            [modelView startAnimation];
+        } else {
+            RCTLogError(@"Cannot startAnimation: %@ (tag #%@) is not RCT3DARModelView", modelView, reactTag);
+        }
+    }];
 }
 
-RCT_EXPORT_METHOD(stopAnimation)
+RCT_EXPORT_METHOD(stopAnimation:(nonnull NSNumber *)reactTag)
 {
-    if (modelView) {
-        [modelView stopAnimation];
-    }
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+        RCT3DARModelView *modelView = (RCT3DARModelView*)viewRegistry[reactTag];
+        if ([modelView isKindOfClass:[RCT3DARModelView class]]) {
+            [modelView stopAnimation];
+        } else {
+            RCTLogError(@"Cannot stopAnimation: %@ (tag #%@) is not RCT3DARModelView", modelView, reactTag);
+        }
+    }];
 }
 
-RCT_EXPORT_METHOD(setProgress:(float)progress)
+RCT_EXPORT_METHOD(setProgress:(nonnull NSNumber *)reactTag progress:(float)progress)
 {
-    if (modelView) {
-        [modelView setProgress:progress];
-    }
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+        RCT3DARModelView *modelView = (RCT3DARModelView*)viewRegistry[reactTag];
+        if ([modelView isKindOfClass:[RCT3DARModelView class]]) {
+            [modelView setProgress:progress];
+        } else {
+            RCTLogError(@"Cannot setProgress: %@ (tag #%@) is not RCT3DARModelView", modelView, reactTag);
+        }
+    }];
 }
 
 RCT_EXPORT_METHOD(checkIfARSupported:(RCTResponseSenderBlock)callback)
@@ -73,32 +90,41 @@ RCT_EXPORT_METHOD(checkIfARSupported:(RCTResponseSenderBlock)callback)
     callback(@[@(isSupported)]);
 }
 
-RCT_EXPORT_METHOD(restart)
+RCT_EXPORT_METHOD(restart:(nonnull NSNumber *)reactTag)
 {
-    if (modelView) {
-        [modelView restart];
-    }
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+        RCT3DARModelView *modelView = (RCT3DARModelView*)viewRegistry[reactTag];
+        if ([modelView isKindOfClass:[RCT3DARModelView class]]) {
+            [modelView restart];
+        } else {
+            RCTLogError(@"Cannot restart: %@ (tag #%@) is not RCT3DARModelView", modelView, reactTag);
+        }
+    }];
 }
 
-RCT_EXPORT_METHOD(getSnapshot:(BOOL)saveToLibrary
+RCT_EXPORT_METHOD(getSnapshot:(nonnull NSNumber *)reactTag saveToLibrary:(BOOL)saveToLibrary
                  findEventsWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-    if (modelView) {
-        [modelView takeSnapshot:saveToLibrary completion:^(BOOL success, NSURL *url) {
-            if (success) {
-                if (saveToLibrary) {
-                    resolve(@{@"success":@YES});
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+        RCT3DARModelView *modelView = (RCT3DARModelView*)viewRegistry[reactTag];
+        if ([modelView isKindOfClass:[RCT3DARModelView class]]) {
+            [modelView takeSnapshot:saveToLibrary completion:^(BOOL success, NSURL *url) {
+                if (success) {
+                    if (saveToLibrary) {
+                        resolve(@{@"success":@YES});
+                    } else {
+                        resolve(@{@"success":@YES, @"url": [url path]});
+                    }
                 } else {
-                    resolve(@{@"success":@YES, @"url": [url path]});
+                    reject(RCTErrorUnspecified, nil, RCTErrorWithMessage(@"RCT3DModelView: Could not save image"));
                 }
-            } else {
-                reject(RCTErrorUnspecified, nil, RCTErrorWithMessage(@"RCT3DModelView: Could not save image"));
-            }
-        }];
-    } else {
-        reject(RCTErrorUnspecified, nil, RCTErrorWithMessage(@"RCT3DModelView: Could not save image"));
-    }
+            }];
+        } else {
+            RCTLogError(@"Cannot getSnapshot: %@ (tag #%@) is not RCT3DARModelView", modelView, reactTag);
+            reject(RCTErrorUnspecified, nil, RCTErrorWithMessage(@"RCT3DModelView: View is not RCT3DARModelView"));
+        }
+    }];
 }
 
 @end

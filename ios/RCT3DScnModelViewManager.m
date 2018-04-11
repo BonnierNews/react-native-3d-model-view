@@ -1,16 +1,17 @@
 #import "RCT3DScnModelViewManager.h"
 
 @implementation RCT3DScnModelViewManager
-{
-  RCT3DScnModelView *modelView;
-}
 
 RCT_EXPORT_MODULE()
 
-- (UIView *)view
-{
-  modelView = [[RCT3DScnModelView alloc] init];
-  return modelView;
+@synthesize bridge = _bridge;
+
+- (UIView *)view {
+    return [[RCT3DScnModelView alloc] init];
+}
+
+- (dispatch_queue_t)methodQueue {
+    return _bridge.uiManager.methodQueue;
 }
 
 RCT_EXPORT_VIEW_PROPERTY(modelSrc, NSString)
@@ -24,24 +25,39 @@ RCT_EXPORT_VIEW_PROPERTY(onAnimationStart, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onAnimationStop, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onAnimationUpdate, RCTBubblingEventBlock)
 
-RCT_EXPORT_METHOD(startAnimation)
+RCT_EXPORT_METHOD(startAnimation:(nonnull NSNumber *)reactTag)
 {
-    if (modelView) {
-        [modelView startAnimation];
-    }
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+        RCT3DScnModelView *modelView = (RCT3DScnModelView*)viewRegistry[reactTag];
+        if ([modelView isKindOfClass:[RCT3DScnModelView class]]) {
+            [modelView startAnimation];
+        } else {
+            RCTLogError(@"Cannot startAnimation: %@ (tag #%@) is not RCT3DScnModelView", modelView, reactTag);
+        }
+    }];
 }
 
-RCT_EXPORT_METHOD(stopAnimation)
+RCT_EXPORT_METHOD(stopAnimation:(nonnull NSNumber *)reactTag)
 {
-    if (modelView) {
-        [modelView stopAnimation];
-    }
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+        RCT3DScnModelView *modelView = (RCT3DScnModelView*)viewRegistry[reactTag];
+        if ([modelView isKindOfClass:[RCT3DScnModelView class]]) {
+            [modelView stopAnimation];
+        } else {
+            RCTLogError(@"Cannot stopAnimation: %@ (tag #%@) is not RCT3DScnModelView", modelView, reactTag);
+        }
+    }];
 }
 
-RCT_EXPORT_METHOD(setProgress:(float)progress)
+RCT_EXPORT_METHOD(setProgress:(nonnull NSNumber *)reactTag progress:(float)progress)
 {
-    if (modelView) {
-        [modelView setProgress:progress];
-    }
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+        RCT3DScnModelView *modelView = (RCT3DScnModelView*)viewRegistry[reactTag];
+        if ([modelView isKindOfClass:[RCT3DScnModelView class]]) {
+            [modelView setProgress:progress];
+        } else {
+            RCTLogError(@"Cannot setProgress: %@ (tag #%@) is not RCT3DScnModelView", modelView, reactTag);
+        }
+    }];
 }
 @end
