@@ -213,7 +213,7 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 				}
 
 				// Draw bounding box
-				if (scene.isDrawBoundingBox() || scene.getSelectedObject() == objData) {
+				/*if (scene.isDrawBoundingBox() || scene.getSelectedObject() == objData) {
 					Object3DData boundingBoxData = boundingBoxes.get(objData);
 					if (boundingBoxData == null || changed) {
 						boundingBoxData = Object3DBuilder.buildBoundingBox(objData);
@@ -221,7 +221,7 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 					}
 					Object3D boundingBoxDrawer = drawer.getBoundingBoxDrawer();
 					boundingBoxDrawer.draw(boundingBoxData, modelProjectionMatrix, modelViewMatrix, -1, null);
-				}
+				}*/
 
 				// Draw bounding box
 				if (scene.isDrawNormals()) {
