@@ -74,7 +74,7 @@ public class Animator {
 	}
 
 	private void initAnimation(AnimatedModel animatedModel) {
-		if (animatedModel.getAnimation().isInitialized()) {
+		if (animatedModel == null || animatedModel.getAnimation() == null || animatedModel.getAnimation().isInitialized()) {
 			return;
 		}
 		KeyFrame[] keyFrames = animatedModel.getAnimation().getKeyFrames();
@@ -272,6 +272,9 @@ public class Animator {
 	public void setProgress(float progress, Object3DData obj) {
 		AnimatedModel animatedObj = (AnimatedModel)obj;
 		initAnimation(animatedObj);
+		if (animatedObj == null || animatedObj.getAnimation() == null) {
+			return;
+		}
 		this.animationTime = animatedObj.getAnimation().getLength() * progress;
 		if (this.animationTime > animatedObj.getAnimation().getLength()) {
 			this.animationTime %= animatedObj.getAnimation().getLength();
