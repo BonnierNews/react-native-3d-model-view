@@ -12,7 +12,7 @@ A React Native view for displaying .obj, .dae and .scn models either on screen o
 
 and then
 
-`$ react-native link react-3d-model-view`
+`$ react-native link react-native-3d-model-view`
 
 The lib also have peer dependencies of `react-native-zip-archive`, `react-native-fetch-blob` and `react-native-fs`. Make sure that you `yarn add` and `react-native link` them to.
 
