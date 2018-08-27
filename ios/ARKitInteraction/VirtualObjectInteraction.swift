@@ -132,7 +132,7 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
         }
         if let object = selectedObject, object.isPlaced == false {
             delegate.placeObject(object: object)
-        } else if let tappedObject = sceneView.virtualObject(at: touchLocation) {
+        } else if let _ = sceneView.virtualObject(at: touchLocation) {
             delegate.tapObject()
         } else {
             delegate.tapView()

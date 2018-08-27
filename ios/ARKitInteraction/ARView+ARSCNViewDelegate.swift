@@ -85,7 +85,7 @@ extension ARView: ARSCNViewDelegate, ARSessionDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
-        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        guard let _ = anchor as? ARPlaneAnchor else { return }
         self.hasFoundSurface = false
         if let delegate = self.delegate {
             delegate.surfaceLost()
@@ -141,8 +141,8 @@ extension ARCamera.TrackingState {
             return 3
         case .limited(.initializing):
             return 4
-        case .limited(.relocalizing):
-            return 5
+        default:
+            return 0
         }
     }
     
