@@ -141,6 +141,8 @@ extension ARCamera.TrackingState {
             return 3
         case .limited(.initializing):
             return 4
+        case .limited(.relocalizing):
+            return 5
         }
     }
     
