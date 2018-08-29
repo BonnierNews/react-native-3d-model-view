@@ -14,7 +14,7 @@ and then
 
 `$ react-native link react-native-3d-model-view`
 
-The lib also have peer dependencies of `react-native-zip-archive`, `react-native-fetch-blob` and `react-native-fs`. Make sure that you `yarn add` and `react-native link` them to.
+The lib also have peer dependencies of `react-native-zip-archive`, `rn-fetch-blob` and `react-native-fs`. Make sure that you `yarn add` and `react-native link` them to.
 
 ## Usage
 
