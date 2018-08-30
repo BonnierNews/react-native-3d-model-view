@@ -18,10 +18,6 @@ export default class ModelScreen extends React.Component {
     title: 'Model'
   }
 
-  reload = () => {
-    this.modelView && this.modelView.reload()
-  }
-
   onLoadModelStart = () => {
     this.setState({ message: 'Loading model...'})
     console.log('[react-native-3d-model-view]:', 'Load model start.')
@@ -61,9 +57,6 @@ export default class ModelScreen extends React.Component {
           onLoadModelStart={this.onLoadModelStart}
           onLoadModelSuccess={this.onLoadModelSuccess}
           onLoadModelError={this.onLoadModelError} />
-        <View style={styles.buttonContainer}>
-          <Button onPress={this.reload} title='Reload' />
-        </View>
       </View>
     </View>
   }

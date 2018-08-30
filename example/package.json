@@ -8,22 +8,23 @@
     "clean_native_builds": "rm -rf ios/build/* && rm -rf android/build/*",
     "clean_react_native": "rm -rf $TMPDIR/react-* && watchman watch-del-all && lsof -n -i4TCP:8081 | sed '1 d' | awk '{print $2}' | xargs kill -9",
     "clean_node_modules": "rm -rf node_modules/ && yarn cache clean && yarn",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "rm -rf node_modules/react-native-3d-model-view/node_modules node_modules/react-native-3d-model-view/example"
   },
   "dependencies": {
-    "react": "16.0.0",
-    "react-native": "0.51.0",
+    "react": "^16.4.1",
+    "react-native": "0.56.0",
     "react-native-3d-model-view": "file:../",
-    "react-native-fetch-blob": "^0.10.8",
-    "react-native-fs": "^2.9.7",
-    "react-native-zip-archive": "^2.2.1",
-    "react-navigation": "^1.0.0-beta.23"
+    "react-native-fs": "^2.11",
+    "react-native-zip-archive": "^2.2.2",
+    "react-navigation": "^2.12.1",
+    "rn-fetch-blob": "^0.10.13"
   },
   "devDependencies": {
-    "babel-jest": "22.0.4",
-    "babel-preset-react-native": "4.0.0",
-    "jest": "22.0.4",
-    "react-test-renderer": "16.0.0"
+    "babel-jest": "23.4.2",
+    "babel-preset-react-native": "^5.0.2",
+    "jest": "23.5.0",
+    "react-test-renderer": "^16.4.1"
   },
   "jest": {
     "preset": "react-native"
