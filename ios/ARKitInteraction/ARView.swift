@@ -27,7 +27,7 @@ import UIKit
 class ARView: UIView {
     
     // MARK: - Delegate
-    var delegate: ARViewDelegate?
+    @objc var delegate: ARViewDelegate?
     
     // MARK: - UI Elements
     var sceneView: VirtualObjectARView!

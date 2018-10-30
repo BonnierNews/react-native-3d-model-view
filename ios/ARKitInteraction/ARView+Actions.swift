@@ -11,12 +11,12 @@ import SceneKit
 @available(iOS 11.0, *)
 extension ARView: UIGestureRecognizerDelegate {
     
-    func start() {
+    @objc func start() {
         resetTracking()
     }
     
     /// - Tag: restartExperience
-    func restartExperience() {
+    @objc func restartExperience() {
         guard isRestartAvailable else { return }
         isRestartAvailable = false
         
@@ -32,7 +32,7 @@ extension ARView: UIGestureRecognizerDelegate {
         }
     }
     
-    func snapshot(saveToPhotoLibrary: Bool, completion: @escaping (Bool, NSURL?) -> Void) {
+    @objc func snapshot(saveToPhotoLibrary: Bool, completion: @escaping (Bool, NSURL?) -> Void) {
         let image = self.sceneView.snapshot()
         if (saveToPhotoLibrary) {
             self.snapshotImageCompletion = completion
@@ -40,7 +40,7 @@ extension ARView: UIGestureRecognizerDelegate {
         } else {
             let fileManager = FileManager.default
             let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-            if let imageData = UIImagePNGRepresentation(image),
+            if let imageData = image.pngData(),
                 let directory = urls.first {
                 let baseName = "rct-3d-model-view-"
                 let fileExtension = ".png"
@@ -60,7 +60,7 @@ extension ARView: UIGestureRecognizerDelegate {
         }
     }
     
-    func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let _ = error {
             if let completion = self.snapshotImageCompletion {
                 completion(false, nil)
@@ -73,18 +73,18 @@ extension ARView: UIGestureRecognizerDelegate {
         self.snapshotImageCompletion = nil
     }
     
-    func startAnimation() {
+    @objc func startAnimation() {
         self.isPlaying = true
         self.sceneView.isPlaying = true
         self.lastSceneTime = CACurrentMediaTime()
     }
     
-    func stopAnimation() {
+    @objc func stopAnimation() {
         self.isPlaying = false
         self.sceneView.isPlaying = false
     }
     
-    func setProgress(value: Double, animationDuration: Double) {
+    @objc func setProgress(value: Double, animationDuration: Double) {
         self.sliderProgress = value
         self.stopAnimation()
         self.sceneTime = value * animationDuration
@@ -93,17 +93,17 @@ extension ARView: UIGestureRecognizerDelegate {
         }
     }
     
-    func setMiniature(_ miniature: Bool) {
+    @objc func setMiniature(_ miniature: Bool) {
         if let selectedObject = self.virtualObjectInteraction.selectedObject {
             selectedObject.setMiniature(miniature, miniatureScale: self.miniatureScale)
         }
     }
     
-    func setMinScale(_ scale: Double) {
+    @objc func setMinScale(_ scale: Double) {
         self.miniatureScale = SCNVector3(scale, scale, scale)
     }
     
-    func setPlaceOpac(_ opacity: Double) {
+    @objc func setPlaceOpac(_ opacity: Double) {
         self.placeOpacity = opacity
     }
 }

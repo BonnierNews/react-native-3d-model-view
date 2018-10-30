@@ -24,7 +24,7 @@ extension ARView {
         self.sceneView.scene.rootNode.addChildNode(virtualObject)
     }
     
-    func addVirtualObject(_ node: SCNNode) -> SCNNode {
+    @objc func addVirtualObject(_ node: SCNNode) -> SCNNode {
         let virtualObject = VirtualObject()
         for child in node.childNodes {
             virtualObject.addChildNode(child)
