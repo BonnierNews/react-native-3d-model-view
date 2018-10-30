@@ -237,6 +237,7 @@ extension SCNView {
     }
 }
 
+@available(iOS 11.0, *)
 extension VirtualObjectARView.FeatureHitTestResult {
     /// Add a convenience initializer to `FeatureHitTestResult` for `HitTestRay`.
     /// By adding the initializer in an extension, we also get the default initializer for `FeatureHitTestResult`.

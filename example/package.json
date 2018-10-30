@@ -12,19 +12,18 @@
     "postinstall": "rm -rf node_modules/react-native-3d-model-view/node_modules node_modules/react-native-3d-model-view/example"
   },
   "dependencies": {
-    "react": "^16.4.1",
-    "react-native": "0.56.0",
+    "react": "16.6.0-alpha.8af6728",
+    "react-native": "0.57.3",
     "react-native-3d-model-view": "file:../",
-    "react-native-fs": "^2.11",
-    "react-native-zip-archive": "^2.2.2",
-    "react-navigation": "^2.12.1",
-    "rn-fetch-blob": "^0.10.13"
+    "react-native-fs": "2.11.15",
+    "react-native-zip-archive": "2.2.6",
+    "react-navigation": "2.18.2",
+    "rn-fetch-blob": "0.10.13"
   },
   "devDependencies": {
-    "babel-jest": "23.4.2",
-    "babel-preset-react-native": "^5.0.2",
-    "jest": "23.5.0",
-    "react-test-renderer": "^16.4.1"
+    "babel-jest": "23.6.0",
+    "jest": "23.6.0",
+    "react-test-renderer": "16.6.0"
   },
   "jest": {
     "preset": "react-native"

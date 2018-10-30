@@ -87,7 +87,7 @@ class VirtualObject: SCNNode {
         if distanceToPlane > epsilon && distanceToPlane < verticalAllowance {
             SCNTransaction.begin()
             SCNTransaction.animationDuration = CFTimeInterval(distanceToPlane * 500) // Move 2 mm per second.
-            SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             position.y = anchor.transform.columns.3.y
             SCNTransaction.commit()
         }
@@ -98,7 +98,7 @@ class VirtualObject: SCNNode {
             SCNTransaction.begin()
             if animate {
                 SCNTransaction.animationDuration = CFTimeInterval(0.6)
-                SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             }
             self.isPlaced = isPlaced
             if isPlaced {
@@ -116,7 +116,7 @@ class VirtualObject: SCNNode {
         DispatchQueue.main.async {
             SCNTransaction.begin()
             SCNTransaction.animationDuration = CFTimeInterval(0.6)
-            SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             if miniature {
                 self.scale = miniatureScale
             } else {
