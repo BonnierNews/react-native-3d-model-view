@@ -16,6 +16,11 @@ and then
 
 The lib also have peer dependencies of `react-native-zip-archive`, `rn-fetch-blob` and `react-native-fs`. Make sure that you `yarn add` and `react-native link` them to.
 
+## Swift
+The `ARModelView` is written in Swift. So you need to add Swift to your project:
+1. Add Swift 4.2 in your [Xcode Build Settings](https://stackoverflow.com/questions/46338588/xcode-9-swift-language-version-swift-version/46339401) (Support for Swift 3 is deprecated. If you still want to use Swift 3, use release [1.1.17](https://github.com/BonnierNews/react-native-3d-model-view/tree/release/1.1.17))
+2. Add a `Empty.swift` to your Xcode project (see example project for reference).
+
 ## Usage
 
 ### Model view
@@ -94,9 +99,13 @@ WaveFront (.obj) and Collada (.dae) is supported on both Android and iOS. SceneK
 ### NOTE: Using `require`
 To require .obj, .dae, .scn or .zip files you need to add a `rn-cli.config.js` to the root of your project with minimum this config:
 ```javascript
-module.exports = {
-  getAssetExts: () => [ 'obj', 'dae', 'scn', 'zip' ]
-}
+const { getDefaultConfig } = require("metro-config");
+
+module.exports = (async () => {
+  const { resolver: { assetExts } } = await getDefaultConfig();
+
+  return { resolver: { assetExts: assetExts.concat(['obj', 'dae', 'scn', 'zip']) } };
+})();
 ```
 See more in the [example project.](https://github.com/BonnierNews/react-native-3d-model-view/tree/master/example)
 
