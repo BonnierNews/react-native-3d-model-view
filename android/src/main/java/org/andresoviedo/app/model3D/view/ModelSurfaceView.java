@@ -7,6 +7,7 @@ import org.andresoviedo.app.model3D.controller.TouchController;
 import org.andresoviedo.app.model3D.services.SceneLoader;
 import org.andresoviedo.app.util.Utils;
 import org.andresoviedo.app.util.content.ContentUtils;
+import android.graphics.PixelFormat;
 import android.os.Handler;
 
 import android.opengl.GLSurfaceView;
@@ -37,6 +38,10 @@ public class ModelSurfaceView extends GLSurfaceView {
 
 	public ModelSurfaceView(Context context, RN3DView parent, String modelSrc, String textureSrc, float[] backgroundColor) {
 		super(context);
+		//for aplha channel
+		this.setZOrderOnTop(true);
+		this.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+		this.getHolder().setFormat(PixelFormat.RGBA_8888);
 		this.parent = parent;
 
 		this.modelSrc = modelSrc;
