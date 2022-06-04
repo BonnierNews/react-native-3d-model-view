@@ -81,11 +81,13 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 	public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 		// Set the background frame color
 		float[] backgroundColor = main.getModelActivity().getBackgroundColor();
-		GLES20.glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
+		//add aplha channel to background to render as a overlay on camera
+		GLES20.glClearColor(0f, 0f, 0f, 0f);
+		GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT|GLES20.GL_COLOR_BUFFER_BIT);
 
 		// Use culling to remove back faces.
 		// Don't remove back faces so we can see them
-		// GLES20.glEnable(GLES20.GL_CULL_FACE);
+		//GLES20.glEnable(GLES20.GL_CULL_FACE);
 
 		// Enable depth testing for hidden-surface elimination.
 		GLES20.glEnable(GLES20.GL_DEPTH_TEST);
